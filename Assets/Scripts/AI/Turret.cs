@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    public bool active = true;
+    public Switch connectedSwitch;
+    private bool energized;
     public Animator animator;
     public GameObject turretHead;
 
@@ -33,7 +34,12 @@ public class Turret : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && active)
+        if (connectedSwitch == null)
+        {
+
+        }
+
+        if (collision.gameObject.CompareTag("Player") && energized)
         {
             Vector3 targetToAttack = new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y + 1, 0);
 
@@ -51,6 +57,16 @@ public class Turret : MonoBehaviour
         //Physics2D.CircleCast(projectileOrigin.position, detectionRadius, Vector2.zero, 0, detectedTargets);
 
         if (attackCooldownFrames > 0) attackCooldownFrames--;    
+    }
+
+    private void Update()
+    {
+        if (connectedSwitch == null)
+        {
+            energized = true;
+        }
+        else energized = connectedSwitch.isActive;
+        
     }
 
 }

@@ -97,15 +97,18 @@ public class Player : MonoBehaviour
     public void ToggleIFrames(bool toggleOn)
     {
         inIFrames = toggleOn;
-
-        DamageCollider.enabled = !toggleOn;
         shaderAnimator.SetBool("damaged", toggleOn);
 
         if (toggleOn)
         {
+            DamageCollider.enabled = false;
             if (inCover) Cover(false);
             StopCoroutine(IFramesCount());
             StartCoroutine(IFramesCount());
+        }
+        else
+        {
+            if (inCover == false) DamageCollider.enabled = true;
         }
 
     }

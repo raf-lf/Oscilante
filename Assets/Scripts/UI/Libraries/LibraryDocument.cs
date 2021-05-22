@@ -13,7 +13,7 @@ public static class LibraryDocument
 
     public static string RetrieveDocumentTitle(int category, int id)
     {
-        if (id !=3 && GameManager.documents[category, id] == false) return noDocumentTitle;
+        if (id != 3 && GameManager.documents[category, id] == false) return noDocumentTitle;
         else
         {
             switch (category)
@@ -44,7 +44,7 @@ public static class LibraryDocument
                             return ("Estratégia de Combate");
                         case 3:
                             if (ReportCheck(category)) return ("Análise do Governo");
-                                else return noReportTitle;
+                            else return noReportTitle;
                         default:
                             return error;
                     }
@@ -78,7 +78,7 @@ public static class LibraryDocument
                         default:
                             return error;
                     }
-                default: 
+                default:
                     return error;
             }
         }
@@ -171,5 +171,4 @@ public static class LibraryDocument
         if (GameManager.documents[categoryToCheck, 0] && GameManager.documents[categoryToCheck, 1] && GameManager.documents[categoryToCheck, 2]) return true;
         else return false;
     }
-
 }

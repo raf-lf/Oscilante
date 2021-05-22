@@ -44,8 +44,8 @@ public class BreakableFloor : MonoBehaviour
             animator.SetInteger("state", 3);
             GetComponent<Rigidbody2D>().isKinematic = true;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-
-
+            GameObject vfx = Instantiate(destructionVfx);
+            vfx.transform.position = transform.position;
         }
     }
 

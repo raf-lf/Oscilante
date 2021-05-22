@@ -317,12 +317,6 @@ public class PlayerMovement : MonoBehaviour
             JumpLand();
         }
 
-        //Ends Jump Boost Window
-        if (canJumpBoost == true && Time.time >= jumpBoostTimer)
-        {
-            canJumpBoost = false;
-        }
-
         //If player is falling, set them to falling animation
         if (rb.velocity.y < -8 && jumping == false)
         {
@@ -404,6 +398,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        //Ends Jump Boost Window
+        if (canJumpBoost == true && Time.time >= jumpBoostTimer)
+        {
+            canJumpBoost = false;
+        }
 
         //Boosts jump force if jump key continues being pressed
         if (Input.GetKey(PlayerActions.keyJump) && jumping && canJumpBoost) JumpBoost();

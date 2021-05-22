@@ -43923,7 +43923,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  bossMusic: {fileID: 0}
+  bossMusic: {fileID: 8300000, guid: 68fe9d916f3bffc46a852c1fa15f640f, type: 3}
 --- !u!50 &6039247206017560614
 Rigidbody2D:
   serializedVersion: 4

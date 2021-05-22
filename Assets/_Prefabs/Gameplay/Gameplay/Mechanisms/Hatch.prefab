@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 5756434188335206525}
   - component: {fileID: 5756434188335206527}
   m_Layer: 0
-  m_Name: Locked Door
+  m_Name: Hatch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,7 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f899a72a8a2da54418f5402cd435ab60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchToActivate: {fileID: 0}
+  switchesConnected: []
+  switchesNeeded: 0
+  switchesActive: 0
+  activeAnimatorString: active
+  animator: {fileID: 5756434188335206527}
 --- !u!95 &5756434188335206527
 Animator:
   serializedVersion: 3

@@ -4958,8 +4958,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 1
+      scalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5011,8 +5011,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 5
-      minScalar: 3
+      scalar: 2
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -24089,7 +24089,7 @@ GameObject:
   - component: {fileID: 5897946354078139615}
   - component: {fileID: 5897946354078139600}
   m_Layer: 0
-  m_Name: Weapon Upgrade
+  m_Name: Weapon Unlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24128,6 +24128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017231bef8a084f4f85df6dc729e449e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rememberedInteractibleId: 0
+  rememberOnLoad: 0
   oneUse: 1
   unusable: 0
   canUseFeedback: {fileID: 5897946353733726213}

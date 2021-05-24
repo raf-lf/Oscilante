@@ -51,8 +51,8 @@ public class MenuItem : MonoBehaviour,IPointerClickHandler
                     break;
                 //Medals
                 case 2:
-                    GameManager.scriptMenu.descriptionBoxTitle.text = LibraryMenu.ReturnMedalInfo(false, true, id1);
-                    GameManager.scriptMenu.descriptionBoxText.text = LibraryMenu.ReturnMedalInfo(false, false, id1);
+                    GameManager.scriptMenu.descriptionBoxTitle.text = LibraryMenu.ReturnMedalInfo(true, id1);
+                    GameManager.scriptMenu.descriptionBoxText.text = LibraryMenu.ReturnMedalInfo(false, id1);
                     break;
             }
         }

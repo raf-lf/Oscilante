@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Event_ContinueDialogue : CutsceneEvent
 {
+    public Event_ContinueDialogue thisEvent;
+
     public override void ExecuteEvent()
     {
 
@@ -11,7 +13,10 @@ public class Event_ContinueDialogue : CutsceneEvent
         int chat = GameManager.scriptDialogue.currentChat;
         int section = GameManager.scriptDialogue.currentSection;
 
-        GameManager.scriptDialogue.Write(level, chat, section +1, 1);
+        if (thisEvent == null) GameManager.scriptDialogue.eventCaller = GetComponent<Event_ContinueDialogue>();
+        else GameManager.scriptDialogue.eventCaller = thisEvent;
+
+        GameManager.scriptDialogue.SetupWrite(level, chat, section +1, 1);
 
 
     }

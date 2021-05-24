@@ -8,7 +8,7 @@ public static class LibraryDialogue
     public static int currentPortraitId;
     public static Sprite[] characterPortrait = new Sprite[7];
 
-    public static string RetrieveDialogue(int level, int chatId, int sectionId ,int lineId)
+    public static string RetrieveDialogue(int level, int chatId, int sectionId, int lineId)
     {
         switch (level)
         {
@@ -53,7 +53,7 @@ public static class LibraryDialogue
                                     case 2:
                                         currentPortraitId = 2;
                                         return ("Um sobrevivente nessa frequência? Aqui é Reina, líder da Resistência. Estamos sob ataque dos militares e precisamos " +
-                                            "de evacuação urgente!? ");
+                                            "de evacuação urgente! ");
                                     default: return null;
                                 }
                             case 5:
@@ -61,7 +61,7 @@ public static class LibraryDialogue
                                 {
                                     case 1:
                                         currentPortraitId = 0;
-                                        return ("Estou enviando minha posição. Como chego até aí ?");
+                                        return ("Estou enviando minha posição. Como chego até aí?");
                                     case 2:
                                         currentPortraitId = 2;
                                         return ("Você está no deserto? Está próxima! Siga na direção leste até chegar nos limites da cidade!");
@@ -88,12 +88,12 @@ public static class LibraryDialogue
                                         return ("Operador, você está na escuta?");
                                     case 2:
                                         currentPortraitId = 1;
-                                        return ("Sempre. Parece que a situação da Resistência é pior do que foi reportado, mas parece que ainda tempo " +
+                                        return ("Sempre. Parece que a situação da Resistência é pior do que foi reportado, mas acredito que ainda há " +
                                             "tempo de chegar até eles.");
                                     case 3:
                                         currentPortraitId = 1;
                                         return ("Prepare seu equipamento, agente. Quando estiver pronta ative o interruptor para abrir a porta e siga " +
-                                            "na direção leste.Estarei observando seu trajeto.");
+                                            "na direção leste. Estarei observando seu trajeto.");
                                     case 4:
                                         currentPortraitId = 0;
                                         return ("Certo. Me deseje sorte, Operador.");
@@ -133,17 +133,17 @@ public static class LibraryDialogue
                         switch (sectionId)
                         {
                             case 1:
-                            switch (lineId)
-                            {
-                                case 1:
-                                    currentPortraitId = 0;
-                                    return ("Esta área é perigosa, devo tomarcuidado.");
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 0;
+                                        return ("Esta área é perigosa, devo tomar cuidado.");
 
-                                default: return null;
-                            }
+                                    default: return null;
+                                }
 
                             default: return null;
-                }
+                        }
                     //Shredder in sight
                     case 4:
                         switch (sectionId)
@@ -159,7 +159,7 @@ public static class LibraryDialogue
                                         return ("Coisinhas complicadas... Não acho que vou conseguir passar despercebida.");
                                     case 3:
                                         currentPortraitId = 1;
-                                        return ("Esta variedade de oscilante é programada para atacar alvos se aproximando.Já foram responsáveis por muitas mortes.");
+                                        return ("Esta variedade de oscilante é programada para atacar alvos se aproximando. Já foram responsáveis por muitas mortes.");
                                     case 4:
                                         currentPortraitId = 0;
                                         return ("Sei como lidar com eles, alguns disparos com o revolver serão o suficiente.");
@@ -249,7 +249,7 @@ public static class LibraryDialogue
                                         return "O que é aquilo?";
                                     case 2:
                                         currentPortraitId = 1;
-                                        return "Um antigo poço de escavação do governo.Estou recebendo algumas leituras elétricas comparáveis àquelas presentes " +
+                                        return "Um antigo poço de escavação do governo. Estou recebendo algumas leituras elétricas comparáveis àquelas presentes " +
                                             "em sistemas de defesa avançados.";
 
                                     default: return null;
@@ -340,8 +340,8 @@ public static class LibraryDialogue
                                 {
                                     case 1:
                                         currentPortraitId = 2;
-                                        return "Desculpe! Devem ter uns controles perto de você que eram usadaos para mover as plataformas! É possível que hoje em " +
-                                            "dia os circúitos não estejam funcionando direito, mas talvez você consiga fazer alguma coisa com eles?";
+                                        return "Desculpe! Devem ter uns controles perto de você que eram usados para mover as plataformas! É possível que hoje em " +
+                                            "dia os circuitos não estejam funcionando direito, mas talvez você consiga fazer alguma coisa com eles?";
                                     case 2:
                                         currentPortraitId = 0;
                                         return "Entendido... Vou ver o que consigo fazer.";
@@ -398,7 +398,7 @@ public static class LibraryDialogue
                                             "rebelde imprestável!";
                                     case 6:
                                         currentPortraitId = 0;
-                                        return "Pode deixar, eu também tenho planos de esmagar um certo general quando eu o encontrar. Nos vemos em breve."; 
+                                        return "Pode deixar, eu também tenho planos de esmagar um certo general quando eu o encontrar. Nos vemos em breve.";
 
                                     default: return null;
                                 }
@@ -574,12 +574,631 @@ public static class LibraryDialogue
 
                     default: return null;
                 }
-            
-            default: 
+
+            //Level 2 dialogues
+            case 2:
+                switch (chatId)
+                {
+                    //Intro city
+                    case 1:
+                        switch (sectionId)
+                        {
+                            case 1:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 2;
+                                        return ("Quilla, você precisa encontrar a entrada do metrô! É onde fica a nossa base!");
+
+                                    case 2:
+                                        currentPortraitId = 0;
+                                        return ("Tem muito entulho e obstáculos por aqui, acho que vou ter de entrar em algumas construções para atravessar a cidade.");
+
+                                    case 3:
+                                        currentPortraitId = 2;
+                                        return ("E tome cuidado para não danificar sua máscara, o ar desse lugar não é respirável.");
+
+                                    case 4:
+                                        currentPortraitId = 0;
+                                        return ("Não precisa se preocupar com isso, como está sua situação por aí?");
+
+                                    case 5:
+                                        currentPortraitId = 2;
+                                        return ("Estou ouvindo um barulho mecânico muito alto lá fora! Eu acho que o exército está preparando algum tipo de armamento novo!");
+
+                                    case 6:
+                                        currentPortraitId = 0;
+                                        return ("Mantenha-se em segurança, Reina. Os outros membros da Resistência estão contando com você.");
+
+                                    default: return null;
+
+                                }
+                            default: return null;
+                        }
+
+                    //First soldier encounter
+                    case 2:
+                        switch (sectionId)
+                        {
+
+                            case 1:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 1;
+                                        return ("Você está prestes a lidar com soldados do novo governo, agente. Sugiro cautela.");
+
+                                    case 2:
+                                        currentPortraitId = 0;
+                                        return ("Não tenho escolha, tenho de derrotá-los para chegar até Reina.");
+
+                                    default: return null;
+                                }
+
+                            case 2:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 1;
+                                        return ("As armas do exército são especialmente perigosas. Sugiro encontrar cobertura toda vez que engajar estes soldados.");
+
+                                    case 2:
+                                        currentPortraitId = 0;
+                                        return ("Vou ficar de olho. Não vai ser hoje que vou morrer.");
+
+                                    default: return null;
+
+                                }
+
+                            default: return null;
+                        }
+
+                    //Park
+                    case 3:
+                        switch (sectionId)
+                        {
+                            case 1:
+                                switch (lineId)
+                                {
+                                    case 1:
+
+                                        currentPortraitId = 0;
+                                        return ("Este lugar... Completamente tomado pela arma química...");
+
+                                    case 2:
+
+                                        currentPortraitId = 0;
+                                        return ("Tem... Tem brinquedos e pertences de crianças espalhados por... Toda a parte...");
+                                    case 3:
+
+                                        currentPortraitId = 1;
+                                        return ("...");
+                                    case 4:
+
+                                        currentPortraitId = 0;
+                                        return ("Como foram capazes disso?!");
+
+                                    default: return null;
+                                }
+
+                            case 2:
+                                switch (lineId)
+                                {
+                                    case 1:
+
+                                        currentPortraitId = 0;
+                                        return ("Reina, está aí?");
+
+                                    case 2:
+
+                                        currentPortraitId = 2;
+                                        return ("Sim, o que foi Quilla?");
+
+                                    case 3:
+
+                                        currentPortraitId = 0;
+                                        return ("Estou próxima de um bairro residencial. Muitos inocentes foram mortos por essa névoa tóxica maldita.");
+
+                                    case 4:
+
+                                        currentPortraitId = 2;
+                                        return ("Eu... Eu sei disso, Quilla...");
+
+                                    default: return null;
+
+                                }
+
+                            case 3:
+                                switch (lineId)
+                                {
+                                    case 1:
+
+                                        currentPortraitId = 0;
+                                        return ("Meu operador disse que o governo não foi responsável por esta arma.");
+
+                                    default: return null;
+                                }
+
+                            case 4:
+                                switch (lineId)
+                                {
+                                    case 1:
+
+                                        currentPortraitId = 2;
+                                        return ("...");
+
+                                    default: return null;
+
+                                }
+
+                            case 5:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 0;
+                                        return ("Reina?");
+
+                                    default: return null;
+                                }
+
+                            case 6:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 2;
+                                        return ("Você...Disse operador? Eu... Eu não sabia que você tinha um operador...");
+
+                                    case 2:
+
+                                        currentPortraitId = 0;
+                                        return ("Você sabe quem criou a arma, Reina?");
+
+                                    default: return null;
+
+                                }
+
+                            case 7:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 2;
+                                        return ("...");
+
+                                    default: return null;
+                                }
+
+                            case 8:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 0;
+                                        return ("Reina?!");
+
+                                    default: return null;
+                                }
+                            case 9:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 1;
+                                        return ("A conexão foi perdida, agente.");
+
+                                    case 2:
+
+                                        currentPortraitId = 0;
+                                        return ("...");
+
+                                    default: return null;
+                                }
+
+                            default: return null;
+                        }
+
+                    //Hospital victims
+                    case 4:
+                        switch (sectionId)
+                        {
+
+                            case 1:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 0;
+                                        return ("Estas mortes são recentes... O que aconteceu com elas, operador?");
+
+                                    case 2:
+
+                                        currentPortraitId = 1;
+                                        return ("Alguns corpos têm ferimentos causados por disparos, mas a maioria das mortes foram causadas por dilaceradores.");
+
+                                    case 3:
+
+                                        currentPortraitId = 0;
+                                        return ("Um grupo de sobreviventes é muito raro nestes dias. Parece que estavam sendo perseguidos pelos soldados.");
+
+                                    case 4:
+
+                                        currentPortraitId = 1;
+                                        return ("Eles foram encurralados no hospital e os dilaceradores terminaram o serviço.");
+
+                                    default: return null;
+                                }
+
+                            case 2:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 0;
+                                        return ("...");
+
+                                    case 2:
+
+                                        currentPortraitId = 1;
+                                        return ("Encontre uma saída, agente, este lugar não é nem um pouco seguro.");
+
+                                    default: return null;
+
+                                }
+
+                            default: return null;
+                        }
+
+                    //Barricade
+                    case 5:
+                        switch (sectionId)
+                        {
+                            case 1:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 0;
+                                        return ("Esta barricada parece recente. Os soldados que a construíram?");
+
+                                    case 2:
+
+                                        currentPortraitId = 1;
+                                        return ("Agora sabemos o porquê os sobreviventes no hospital não conseguiram escapar dos dilaceradores.");
+
+                                    case 3:
+
+                                        currentPortraitId = 0;
+                                        return ("Malditos! Eles bloquearam a saída e deixaram aquelas pessoas serem cortadas vivas?!");
+
+                                    case 4:
+
+                                        currentPortraitId = 1;
+                                        return ("Uma maneira eficiente de economizar munição.");
+
+                                    case 5:
+
+                                        currentPortraitId = 0;
+                                        return ("Como você pode dizer uma coisa dessas, operador?!");
+
+                                    case 6:
+
+                                        currentPortraitId = 1;
+                                        return ("...");
+
+                                    case 7:
+
+                                        currentPortraitId = 1;
+                                        return ("Você está apresentando um comportamento bastante empático, agente. Tomarei nota e evitarei comentários como estes no futuro.");
+
+                                    default: return null;
+                                }
+
+                            default: return null;
+                        }
+
+                    //Military complex
+                    case 6:
+                        switch (sectionId)
+                        {
+                            case 1:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 2;
+                                        return ("Você... Você está se aproximando, Quilla.");
+
+                                    case 2:
+
+                                        currentPortraitId = 2;
+                                        return ("Eu... Eu sinto muito...Eu...");
+
+                                    case 3:
+
+                                        currentPortraitId = 0;
+                                        return ("Reina, me escute. No momento o importante é eu chegar até você. Discutiremos outros assuntos quando você estiver em segurança.");
+
+                                    case 4:
+
+                                        currentPortraitId = 2;
+                                        return ("...");
+
+                                    case 5:
+
+                                        currentPortraitId = 2;
+                                        return ("Obrigada... Eu estou vendo sua localização... Você está próxima do complexo militar do governo...");
+
+                                    default: return null;
+                                }
+
+                            case 2:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 0;
+                                        return ("Sim, estou vendoo lugar. E acho que vou ter que entrar pela porta da frente.");
+
+                                    case 2:
+
+                                        currentPortraitId = 2;
+                                        return ("Tome cuidado. Eles possuem máquinas de guerra perigosas nesse lugar!");
+
+                                    case 3:
+
+                                        currentPortraitId = 0;
+                                        return ("Porcaria... A entrada do metrô é muito distante daqui?");
+
+                                    case 4:
+
+                                        currentPortraitId = 2;
+                                        return ("Não! Ela está logo depois do...");
+
+                                    default: return null;
+                                }
+
+                            case 3:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 0;
+                                        return ("Reina? Consegue me ouvir?");
+
+                                    case 2:
+
+                                        currentPortraitId = 3;
+                                        return ("Então é nessa frequência que você está se comunicando com seus amiguinhos, ratazana?");
+
+                                    case 3:
+
+                                        currentPortraitId = 0;
+                                        return ("General Narus!");
+
+                                    case 4:
+
+                                        currentPortraitId = 3;
+                                        return ("Admito que a subestimei muito. Você não é igual os outros vermes da Resistência. Todos os homens que matou até agora... Você vai pagar.");
+
+                                    case 5:
+
+                                        currentPortraitId = 0;
+                                        return ("E você será o próximo!");
+
+                                    case 6:
+
+                                        currentPortraitId = 3;
+                                        return ("Serei? Vamos ver se você é realmente uma boa ratazana e consegue se esgueirar pelo complexo mais bem defendido dessa cidade!" +
+                                            " Meus homens estão esperando por você!");
+
+                                    case 7:
+
+                                        currentPortraitId = 3;
+                                        return ("Quem sabe? Se você conseguir, talvez consiga chegar a tempo de me ver pessoalmente estrangulando aquela garota maldita.");
+
+                                    case 8:
+
+                                        currentPortraitId = 0;
+                                        return ("Não ouse tocar nela! Eu vou te matar, seu desgraçado!");
+
+                                    case 9:
+
+                                        currentPortraitId = 3;
+                                        return ("Confesso que uma parte de mim quer que você sobreviva, já que estou louco para testar meu brinquedo novo em um lixo da Resistência." +
+                                            " Você será o camundongo perfeito!");
+
+                                    default: return null;
+                                }
+
+                            case 4:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 0;
+                                        return ("Aquele... Aquele miserável! Eu vou garantir que ele tenha uma morte horrenda!");
+
+                                    case 2:
+
+                                        currentPortraitId = 1;
+                                        return ("...");
+
+                                    case 3:
+
+                                        currentPortraitId = 1;
+                                        return ("Eu... Eu não esperava esta reação vinda de você, agente. Todo esse comportamento é por causa da ameaça à vida da garota?");
+
+                                    case 4:
+
+                                        currentPortraitId = 0;
+                                        return ("Tenho de chegar até eles o mais rápido possível! Reina está em perigo!");
+
+                                    case 5:
+
+                                        currentPortraitId = 1;
+                                        return ("Definitivamente.");
+
+                                    default: return null;
+                                }
+
+                            default: return null;
+                        }
+
+                    //Puzzle
+                    case 7:
+                        switch (sectionId)
+                        {
+                            case 1:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 1;
+                                        return ("Agente, a saída desta seção está fechada eletronicamente. Você precisa encontrar uma maneira de a destrancar.");
+
+                                    default: return null;
+                                }
+
+                            case 2:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 1;
+                                        return ("Acredito que possa encontrar todos os interruptores necessários para abrir a porta nesta seção," +
+                                            " mas eles só ficam ativados por um tempo limitado, você terá de ser rápida.");
+
+                                    case 2:
+
+                                        currentPortraitId = 0;
+                                        return ("Esse lugar maldito é uma armadilha!" +
+                                            " Não acredito que vou ter que brincar de apertar botões enquanto aquele desgraçado está colocando a vida de Reina em perigo!");
+
+                                    case 3:
+
+                                        currentPortraitId = 1;
+                                        return ("Não existe outro caminho, agente. Se apresse.");
+
+                                    default: return null;
+                                }
+
+                            default: return null;
+                        }
+
+                    //Tank ahead
+                    case 8:
+                        switch (sectionId)
+                        {
+                            case 1:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 1;
+                                        return ("Estou recebendo a leitura de um tanque a frente, agente. É um obstáculo preocupante.");
+
+                                    default: return null;
+                                }
+
+                            case 2:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 0;
+                                        return ("Droga! Eu estou tão perto! A entrada do metrô fica logo depois!");
+
+                                    default: return null;
+                                }
+
+                            case 3:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 1;
+                                        return ("Essa parece ser outra armadilha... O caminho até ele é um túnel cheio de vazamentos de gás." +
+                                            " Creio que você terá de eliminar a ameaça antes de prosseguir.");
+
+                                    case 2:
+
+                                        currentPortraitId = 0;
+                                        return ("Eu não tenho escolha." +
+                                            " Se Narus realmente tem uma surpresa me esperando no final do trajeto, preciso destruir esse tanque, ou vou ter que lidar com os dois problemas juntos depois...");
+
+                                    case 3:
+
+                                        currentPortraitId = 1;
+                                        return ("Analise a situação e prossiga com cautela.");
+
+                                    default: return null;
+                                }
+
+                            default: return null;
+                        }
+
+                    //Metro entrance
+                    case 9:
+                        switch (sectionId)
+                        {
+                            case 1:
+                                switch (lineId)
+                                {
+
+                                    case 1:
+
+                                        currentPortraitId = 0;
+                                        return ("Reina... Eu estou chegando.");
+
+                                    case 2:
+
+                                        currentPortraitId = 1;
+                                        return ("Sua missão está terminando, agente. Agora só faltam dois passos.");
+
+                                    case 3:
+
+                                        currentPortraitId = 0;
+                                        return ("O primeiro deles é eliminar aquele maldito do Narus! Osegundo vai ser finalmente encontrar a Reina!");
+
+                                    case 4:
+
+                                        currentPortraitId = 1;
+                                        return ("Sim, agente. Exatamente.");
+
+                                    default: return null;
+
+                                }
+
+                            default: return null;
+                        }
+
+                    default: return null;
+                }
+
+            default:
                 return null;
 
 
-        }        
+        }
     }
 
     public static string RetrieveComment(int level, int chatId, int lineId)
@@ -598,7 +1217,7 @@ public static class LibraryDialogue
                                 return ("A base da resistência não fica nesta direção, agente.");
                             case 2:
                                 currentPortraitId = 0;
-                                return ("Só que talvez possamos encontrar algo de útil nesta direção.");
+                                return ("Mas talvez possamos encontrar algo de útil nesta direção.");
                             case 3:
                                 currentPortraitId = 1;
                                 return ("É sua decisão, mas se atente à importância de sua tarefa.");
@@ -612,12 +1231,12 @@ public static class LibraryDialogue
                         switch (lineId)
                         {
                             case 1:
-                                currentPortraitId = 0; 
+                                currentPortraitId = 0;
                                 return ("Um acampamento abandonado... O que será que aconteceu com seus antigos habitantes?");
                             case 2:
-                                currentPortraitId = 1; 
+                                currentPortraitId = 1;
                                 return "Procure por documentos deixados por sobreviventes. Estas perguntas podem ser respondidas.";
-                            
+
                             default: return null;
                         }
                     //Outpost 
@@ -755,15 +1374,245 @@ public static class LibraryDialogue
                             default: return null;
                         }
 
-                    default: 
+                    default:
                         return null;
 
                 }
 
-            default: 
-                return null;
+            case 2:
+                switch (chatId)
+                {
+                    //Traffic jam
+                    case 1:
+                        switch (lineId)
+                        {
+
+                            case 1:
+
+                                currentPortraitId = 0;
+                                return ("Quantos carros. Parece que as pessoas tentaram fazer o possível para escapar desse lugar.");
+
+                            case 2:
+
+                                currentPortraitId = 1;
+                                return ("Os civis entraram em pânico quando ocorreu o vazamento da arma química. Como o maior impacto aconteceu na cidade, muitos morreram.");
+
+                            case 3:
+
+                                currentPortraitId = 0;
+                                return ("Como o governo foi capaz disso?");
+
+                            case 4:
+
+                                currentPortraitId = 1;
+                                return ("A arma química não foi lançada pelo governo, agente.");
+
+                            case 5:
+
+                                currentPortraitId = 0;
+                                return ("Eu... Eu não sabia disso...");
+
+                            default: return null;
+
+                        }
+
+                    //Welcome sign
+                    case 2:
+                        switch (lineId)
+                        {
+
+                            case 1:
+
+                                currentPortraitId = 0;
+                                return ("Essa placa é um tanto apropriada vendo o estado desse lugar.");
+
+                            case 2:
+
+                                currentPortraitId = 1;
+                                return ("A revolta da população precede a guerra por muito tempo, agente. Esta pichação é extremamente antiga.");
+
+                            case 3:
+
+                                currentPortraitId = 0;
+                                return ("Será que as coisas teriam sido diferentes se Narus não tivesse existido?");
+
+                            case 4:
+
+                                currentPortraitId = 1;
+                                return ("Os arquivos indicam que Narus foi eleito democraticamente ao posto de presidente, agente.");
+
+                            default: return null;
+                        }
+
+                    //Gas leak
+                    case 3:
+                        switch (lineId)
+                        {
+
+                            case 1:
+
+                                currentPortraitId = 1;
+                                return ("Estou identificando vazamentos de gás combustível em muitos lugares desta região, agente.");
+
+                            case 2:
+
+                                currentPortraitId = 0;
+                                return ("Droga. Qualquer disparo vai ser suficiente para iniciar uma explosão. Tenho que evitar tiroteios dentro destas áreas.");
+
+                            default: return null;
+
+                        }
+
+                    //Soldier's corridor
+                    case 4:
+                        switch (lineId)
+                        {
+
+                            case 1:
+
+                                currentPortraitId = 1;
+                                return ("A leitura indica uma grande quantidade de soldados no corredor a sua direita, agente. Um engajamento direto não é aconselhável.");
+
+                            case 2:
+
+                                currentPortraitId = 0;
+                                return ("Talvez tenha outro caminho. Posso tentar subir mais um pouco.");
+
+                            default: return null;
+                        }
+
+                    //Hospital leaks
+                    case 5:
+                        switch (lineId)
+                        {
+
+                            case 1:
+
+                                currentPortraitId = 1;
+                                return ("Agente, a parte inferior do hospital está completamente preenchida por gás combustível. Evite usar armas de fogo enquanto estiver aqui embaixo.");
+
+                            case 2:
+
+                                currentPortraitId = 1;
+                                return ("E este não é o único problema. Estou detectando múltiplas leituras de oscilantes dilaceradores no local.");
+
+                            case 3:
+
+                                currentPortraitId = 0;
+                                return ("Ótimo. Parece que os soldados do governo não fizeram uma boa limpeza desse lugar. Vai ser um problema sair daqui.");
+
+                            default: return null;
+                        }
+
+                    //Tunnels
+                    case 6:
+                        switch (lineId)
+                        {
+
+                            case 1:
+
+                                currentPortraitId = 0;
+                                return ("Estes túneis não são naturais.");
+
+                            case 2:
+
+                                currentPortraitId = 1;
+                                return ("Dilaceradores são exímios escavadores. Quando se movem pelo substrato, eles deixam túneis como estes.");
+
+                            case 3:
+
+                                currentPortraitId = 0;
+                                return ("Eles devem ter descoberto os sobreviventes se escondendo no hospital e os pegaram de surpresa.");
+
+                            case 4:
+
+                                currentPortraitId = 1;
+                                return ("Os assassinos perfeitos. É tarde demais para fugir quando eles aparecem.");
+
+                            default: return null;
+
+                        }
+
+                    //Hideout
+                    case 7:
+                        switch (lineId)
+                        {
+
+                            case 1:
+
+                                currentPortraitId = 1;
+                                return ("A Resistência estocava suprimentos em lugares escondidos como este, no começo da guerra.");
+
+                            case 2:
+
+                                currentPortraitId = 0;
+                                return ("É estranho pensar que pessoas viviam com explosivos estocados alguns metros abaixo de suas casas.");
+
+                            case 3:
+
+                                currentPortraitId = 1;
+                                return ("Um comportamento irresponsável dos rebeldes. Muitos acidentes foram causados por práticas como estas.");
+
+                            default: return null;
+                        }
+
+                    //Truck crash
+                    case 8:
+                        switch (lineId)
+                        {
+
+                            case 1:
+
+                                currentPortraitId = 0;
+                                return ("Um fuzil em bom estado...");
+
+                            case 2:
+
+                                currentPortraitId = 1;
+                                return ("Um achado bem raro. Estas armas de assalto possuem grande capacidade de munição e disparam muito rápido.");
+
+                            case 3:
+
+                                currentPortraitId = 0;
+                                return ("Vai ser bem útil. Vou cuidar bem dele.");
+
+                            default: return null;
+                        }
+
+                    //Filled cemetery
+                    case 9:
+                        switch (lineId)
+                        {
+
+                            case 1:
+
+                                currentPortraitId = 0;
+                                return ("Esse cemitério me lembra o começo da guerra... Quando as baixas começaram a aumentar, as pessoas tiveram de começar a ser enterradas em covas coletivas.");
+
+                            case 2:
+
+                                currentPortraitId = 1;
+                                return ("Esta memória... É marcante para você, agente?");
+
+                            case 3:
+
+                                currentPortraitId = 0;
+                                return ("O que quer dizer?");
+
+                            case 4:
+
+                                currentPortraitId = 1;
+                                return ("Desconsidere minha curiosidade. Tome o tempo que achar necessário para refletir, agente.");
+
+                            default: return null;
+                        }
+
+                    default: return null;
 
 
+                }
+
+            default: return null;
         }
     }
 }

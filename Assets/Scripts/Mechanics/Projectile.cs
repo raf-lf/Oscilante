@@ -8,11 +8,18 @@ public class Projectile : MonoBehaviour
     public int knockback;
     public float speed;
 
-    public float rotationZ;
-    public Vector2 direction;
+    public GameObject impactEffect;
 
     public float autoDestroyTimer;
-    private float timer;
+    private float autoDestroyTargetTime;
+
+
+    [HideInInspector]
+    public float rotationZ;
+    [HideInInspector]
+    public Vector2 direction;
+
+    private AudioSource audioSource;
 
 
     private void Start()
@@ -21,13 +28,27 @@ public class Projectile : MonoBehaviour
 
         GetComponent<Rigidbody2D>().velocity = direction * speed;
 
-        timer = Time.time + autoDestroyTimer;
+        if (autoDestroyTimer != 0) autoDestroyTargetTime = Time.time + autoDestroyTimer;
+
+
+        if (GetComponent<AudioSource>())
+        {
+            audioSource = GetComponent<AudioSource>();
+            audioSource.transform.parent = null;
+            Destroy(audioSource, 10);
+        }
     }
 
     private void Impact()
     {
         GetComponent<Animator>().SetInteger("state", 1);
         GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+
+        if (impactEffect != null)
+        {
+            GameObject impact =  Instantiate(impactEffect);
+            impact.transform.position = transform.position;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -59,6 +80,6 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Time.time >= timer) GetComponent<Animator>().SetInteger("state", 2);
+        if (Time.time >= autoDestroyTargetTime && autoDestroyTimer != 0) GetComponent<Animator>().SetInteger("state", 2);
     }
 }

@@ -138,17 +138,20 @@ public class MenuUi : MonoBehaviour
 
     void Update()
     {
-        if (menuOpen)
-        { 
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                MenuClose();
-            }
-        }
-
-        else if (menuOpen == false && Input.GetKeyDown(KeyCode.Escape))
+        if (GameManager.CutscenePlaying == false)
         {
-            MenuOpen();
+            if (menuOpen)
+            {
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    MenuClose();
+                }
+            }
+
+            else if (menuOpen == false && Input.GetKeyDown(KeyCode.Escape))
+            {
+                MenuOpen();
+            }
         }
 
     }

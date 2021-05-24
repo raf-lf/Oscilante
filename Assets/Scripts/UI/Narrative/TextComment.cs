@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class TextComment: TextBoxParent
+public class TextComment : TextBoxParent
 {
     public float timeDelayPerCharacter = 0.1f;
     public float additionDelayTime = 2;
@@ -19,7 +19,8 @@ public class TextComment: TextBoxParent
         GameManager.scriptComment = GetComponent<TextComment>();
 
     }
-    public void Write(int level, int section, int line)
+
+    public void SetupWrite(int level, int section, int line)
     {
         endTimer = 0;
         currentLevel = level;
@@ -41,11 +42,14 @@ public class TextComment: TextBoxParent
 
     private void Update()
     {
-        if (Time.time > endTimer && canEnd)
+        if (Time.time > endTimer && canEnd && textActive)
         {
             canEnd = false;
-            if (onLastLine) CloseTextBox();
-            else Write(currentLevel, currentSection, currentLine + 1);
+            if (onLastLine)
+            {
+                CloseTextBox();
+            }
+            else SetupWrite(currentLevel, currentSection, currentLine + 1);
         }
         
     }

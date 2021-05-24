@@ -315,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   knockback: 15
-  speed: 15
+  speed: 10
   rotationZ: 0
   direction: {x: 1, y: 0}
   autoDestroyTimer: 2

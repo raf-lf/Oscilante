@@ -97,7 +97,8 @@ public class SaveDataManager : MonoBehaviour
 
     private static void SaveInteractibles()
     {
-        Interactible[] allInteractibles = FindObjectsOfType<Interactible>();
+        //Interactible[] allInteractibles = FindObjectsOfType<Interactible>();
+        Interactible[] allInteractibles = Resources.FindObjectsOfTypeAll<Interactible>();
 
         foreach (Interactible interactible in allInteractibles)
         {
@@ -144,7 +145,8 @@ public class SaveDataManager : MonoBehaviour
 
     private static void TurnOffSeenCutscenes()
     {
-        Cutscene[] allCutscenes = FindObjectsOfType<Cutscene>();
+       // Cutscene[] allCutscenes = FindObjectsOfType<Cutscene>();
+        Cutscene[] allCutscenes = Resources.FindObjectsOfTypeAll<Cutscene>();
 
         foreach (Cutscene cutscene in allCutscenes)
         {
@@ -154,7 +156,8 @@ public class SaveDataManager : MonoBehaviour
     }
     private static void TurnOffSeenComments()
     {
-        CallCommentLog[] allComments = FindObjectsOfType<CallCommentLog>();
+        //CallCommentLog[] allComments = FindObjectsOfType<CallCommentLog>();
+        CallCommentLog[] allComments = Resources.FindObjectsOfTypeAll<CallCommentLog>();
 
         foreach (CallCommentLog comment in allComments)
         {

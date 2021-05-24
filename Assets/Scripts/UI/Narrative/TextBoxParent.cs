@@ -5,6 +5,8 @@ using UnityEngine;
 
 public abstract class TextBoxParent : MonoBehaviour
 {
+    public bool textActive;
+
     [Header("Typewritter")]
     public float characterIntervalTime;
     public AudioClip characterSFX;
@@ -15,17 +17,41 @@ public abstract class TextBoxParent : MonoBehaviour
     public Animator textBoxAnimator;
     public Text textBoxText;
     public Image textBoxPortrait;
+    public Text textBoxName;
 
     private void SetPortrait()
     {
         if (textBoxPortrait != null) textBoxPortrait.sprite = LibraryDialogue.characterPortrait[LibraryDialogue.currentPortraitId];
+        if (textBoxName != null) textBoxName.text = PortraitName(LibraryDialogue.currentPortraitId);
+    }
+
+    private string PortraitName(int portraitId)
+    {
+        switch (portraitId)
+        {
+            case 0: return "Quilla";
+            case 1: return "Operador";
+            case 2: return "Reina";
+            case 3: return "Narus";
+            case 4: return "Ermitão";
+            case 5: return "Dra.P";
+            case 6: return "IA Oscilante";
+            default: return "???";
+        }
+    }
+
+    public virtual void Interrupt()
+    {
+        StopAllCoroutines();
+        CloseTextBox();
     }
 
     public virtual void Write (string text)
     {
         SetPortrait();
 
-        textBoxAnimator.SetBool("active", true);
+        textActive = true;
+        if(textBoxAnimator.GetBool("active") == false) textBoxAnimator.SetBool("active", true);
 
         textToWrite = text;
 
@@ -63,6 +89,7 @@ public abstract class TextBoxParent : MonoBehaviour
     public void CloseTextBox()
     {
         textBoxAnimator.SetBool("active", false);
+        textActive = false;
 
     }
 

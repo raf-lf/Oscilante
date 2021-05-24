@@ -5,7 +5,7 @@ using UnityEngine;
 public class Event_CameraOffset : CutsceneEvent
 {
 
-    public float lerpSpeed;
+    public float lerpSpeed = 0.05f;
     public Vector3 offsetChange;
     public bool overrideCurentOffset;
 

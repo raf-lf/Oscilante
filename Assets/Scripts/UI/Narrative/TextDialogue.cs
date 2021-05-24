@@ -14,25 +14,17 @@ public class TextDialogue: TextBoxParent
     public int currentSection;
     public int currentLine;
 
+    public CutsceneEvent eventCaller;
+
     private void Start()
     {
         GameManager.scriptDialogue = GetComponent<TextDialogue>();
 
     }
-    public void Write(int level, int chat, int section, int line)
+
+    public void SetupWrite(int level, int chat, int section, int line)
     {
         dialogueOn = true;
-
-        if (GameManager.scriptComment.textBoxAnimator.GetBool("active"))
-        {
-            GameManager.scriptComment.StopAllCoroutines();
-            GameManager.scriptComment.CloseTextBox();
-        }
-        if (GameManager.scriptLog.textBoxAnimator.GetBool("active"))
-        {
-            GameManager.scriptLog.StopAllCoroutines();
-            GameManager.scriptLog.CloseTextBox();
-        }
 
         currentLevel = level;
         currentChat = chat;
@@ -57,7 +49,7 @@ public class TextDialogue: TextBoxParent
     {
         if (dialogueOn == true)
         {
-            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
             {
                 if (canSkip)
                 {
@@ -74,12 +66,11 @@ public class TextDialogue: TextBoxParent
 
                         if (GameManager.CutscenePlaying)
                         {
-                            GameManager.currentCutscene.currentEvent += 1;
-                            GameManager.currentCutscene.PlayEvent();
+                            eventCaller.ContinueEvent();
                         }
                         else GameManager.Cutscene(false);
                     }
-                    else Write(currentLevel, currentChat, currentSection, currentLine + 1);
+                    else SetupWrite(currentLevel, currentChat, currentSection, currentLine + 1);
 
                 }
             }

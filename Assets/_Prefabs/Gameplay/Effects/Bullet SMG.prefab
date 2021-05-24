@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 4110946318458096428}
   - component: {fileID: 8144928668264139428}
   m_Layer: 0
-  m_Name: SFX
+  m_Name: Projectile SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,9 +315,10 @@ MonoBehaviour:
   damage: 1
   knockback: 7
   speed: 20
+  impactEffect: {fileID: 0}
+  autoDestroyTimer: 1
   rotationZ: 0
   direction: {x: 1, y: 0}
-  autoDestroyTimer: 1
 --- !u!212 &1167990767201439461
 SpriteRenderer:
   m_ObjectHideFlags: 0

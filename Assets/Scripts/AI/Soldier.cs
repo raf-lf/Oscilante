@@ -11,6 +11,7 @@ public class Soldier : Creature
     public int state;
 
     [Header("Attack")]
+    public float aimVariance;
     public Vector2 shots;
     [SerializeField]
     private int shotsRemaining;
@@ -70,7 +71,7 @@ public class Soldier : Creature
         shotsRemaining--;
         shotIntervalTimer = Time.time + shotInterval;
 
-        Vector2 shotTarget = target.transform.position;
+        Vector2 shotTarget = target.transform.position + new Vector3 (Random.Range(-aimVariance, aimVariance), Random.Range(-aimVariance, aimVariance),0);
         shotTarget.y += 1;
 
         float rotationZ = Calculations.GetRotationZToTarget(projectileOrigin.position, shotTarget);

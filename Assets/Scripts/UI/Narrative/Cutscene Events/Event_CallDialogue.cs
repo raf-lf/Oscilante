@@ -10,10 +10,13 @@ public class Event_CallDialogue : CutsceneEvent
 
     public override void ExecuteEvent()
     {
+
         GameManager.currentCutscene = GetComponent<Cutscene>();
-        GameManager.scriptDialogue.Write(level, chat, 1, 1);
+
+        GameManager.scriptDialogue.eventCaller = GetComponent<Event_CallDialogue>();
+        GameManager.scriptDialogue.SetupWrite(level, chat, 1, 1);
 
 
     }
-    
+
 }

@@ -50,8 +50,6 @@ public abstract class Creature : MonoBehaviour
     public virtual void Start()
     {
         hp = hpMax;
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
         movementLayerMask = LayerMask.GetMask("Default");
         target = GameManager.PlayerCharacter;
 
@@ -83,11 +81,14 @@ public abstract class Creature : MonoBehaviour
         }
         */
 
-       // Vector2 velocity = moveDirection * speedChange;
-        Vector2 velocity = moveDirection * speedIncrement;
-            
-        if (moveAxisY)  rb.velocity = new Vector2(rb.velocity.x, velocity.y);
-        else rb.velocity = new Vector2(velocity.x, rb.velocity.y);
+        // Vector2 velocity = moveDirection * speedChange;
+        if (rb != null)
+        {
+            Vector2 velocity = moveDirection * speedIncrement;
+
+            if (moveAxisY) rb.velocity = new Vector2(rb.velocity.x, velocity.y);
+            else rb.velocity = new Vector2(velocity.x, rb.velocity.y);
+        }
     }
 
     public void SwitchDirection()
@@ -148,7 +149,7 @@ public abstract class Creature : MonoBehaviour
     {
         if (hpLoss > 0) damageFeedback();
         knockback *= knockbackEffect / 10;
-        rb.velocity = knockback * Calculations.GetDirectionToTarget(sourcePosition.position, transform.position);
+        if (rb != null) rb.velocity = knockback * Calculations.GetDirectionToTarget(sourcePosition.position, transform.position);
 
         ChangeHp(hpLoss * -1);
         Debug.Log(gameObject.name + " took " + hpLoss + " damage. " + hp + " hp remaining.");
@@ -179,7 +180,7 @@ public abstract class Creature : MonoBehaviour
 
     public virtual void Death()
     {
-        rb.velocity = Vector2.zero;
+        if (rb != null) rb.velocity = Vector2.zero;
 
         dying = true;
         anim.Play("death");

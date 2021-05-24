@@ -42,13 +42,13 @@ public static class LibraryMenu
         }
     }
 
-    public static string ReturnMedalInfo(bool ignoraAvaiability, bool returnTitle, int upgradeId)
+    public static string ReturnMedalInfo(bool returnTitle, int medalId)
     {
         if (returnTitle)
         {
-            if (GameManager.weaponUpgrades[upgradeId])
+            if (GameManager.medals[medalId])
             {
-                switch (upgradeId)
+                switch (medalId)
                 {
                     case 0: return "Natureza Verdadeira";
                     case 1: return "Colecionador 5 Estrelas";
@@ -60,9 +60,9 @@ public static class LibraryMenu
         }
         else
         {
-            if (GameManager.weaponUpgrades[upgradeId])
+            if (GameManager.medals[medalId])
             {
-                switch (upgradeId)
+                switch (medalId)
                 {
                     case 0:
                         return
@@ -111,22 +111,29 @@ public static class LibraryMenu
         return "Múltiplos itens encontrados";
     }
 
+    public static string LogWeaponPickup (int weaponId)
+    {
+        switch(weaponId)
+        {
+            case 0: return "Facão encontrado";
+            case 1: return "Pistola encontrada";
+            case 2: return "Fuzil encontrado";
+            default: return null;
+
+        }
+
+    }
+
     public static string LogUpgrade(int upgradeId)
     {
         switch (upgradeId)
         {
-            case 0:
-                return "Melhoria de Pistola: '" + ReturnUpgradeInfo(true,true,0) + "' instalada";
-            case 1:
-                return "Modificação de Pistola: '" + ReturnUpgradeInfo(true,true, 1) + "' instalada";
-            case 2:
-                return "Melhoria de Rifle: '" + ReturnUpgradeInfo(true, true, 2) + "' instalada";
-            case 3:
-                return "Modificação de Rifle: '" + ReturnUpgradeInfo(true, true, 3) + "' instalada";
-            case 4:
-                return "Melhoria Corpo-a-corpo: '" + ReturnUpgradeInfo(true, true, 4) + "' instalada";
-            default:
-                return null;
+            case 0: return "Melhoria de Pistola: '" + ReturnUpgradeInfo(true,true,0) + "' instalada";
+            case 1: return "Modificação de Pistola: '" + ReturnUpgradeInfo(true,true, 1) + "' instalada";
+            case 2: return "Melhoria de Fuzil: '" + ReturnUpgradeInfo(true, true, 2) + "' instalada";
+            case 3:  return "Modificação de Fuzil: '" + ReturnUpgradeInfo(true, true, 3) + "' instalada";
+            case 4: return "Melhoria Corpo-a-corpo: '" + ReturnUpgradeInfo(true, true, 4) + "' instalada";
+            default: return null;
         }
     }
         public static string LogDocument(string documentName)

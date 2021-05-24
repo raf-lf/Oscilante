@@ -18,4 +18,10 @@ public abstract class CutsceneEvent : MonoBehaviour
         GetComponent<Cutscene>().PlayEvent();
 
     }
+
+    //This is only for Call Dialogue and Continue Dialogue events
+    public void ContinueEvent()
+    {
+        StartCoroutine(DelayEvent());
+    }
 }

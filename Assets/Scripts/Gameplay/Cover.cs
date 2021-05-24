@@ -11,6 +11,7 @@ public class Cover : MonoBehaviour
     private bool playerUsingCover = false;
 
     public GameObject popup;
+    public Animator animator;
 
     private void CoverUse(bool wentIn)
     {
@@ -80,6 +81,10 @@ public class Cover : MonoBehaviour
                 }
             }
         }
+
+        if(beingUsed) animator.SetBool("using", true);
+        else if (playerUsingCover) animator.SetBool("using", true);
+        else  animator.SetBool("using", false);
     }
 
     private void OnDrawGizmos()

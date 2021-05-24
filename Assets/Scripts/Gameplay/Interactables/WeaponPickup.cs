@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponPickup : Interactible
 {
     public int weaponId;
+
     private void Start()
     {
         //Destroy this item if it was already picked in a previous save
@@ -26,6 +27,8 @@ public class WeaponPickup : Interactible
 
         GameManager.unlockedWeapon[weaponId] = true;
         GameManager.scriptHud.UpdateWeaponUnlocks();
+
+        GameManager.scriptLog.Write(LibraryMenu.LogWeaponPickup(weaponId));
 
     }
 }

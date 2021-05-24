@@ -34,6 +34,9 @@ public class Cutscene: MonoBehaviour
                 off = true;
             }
 
+            if (GameManager.scriptComment.textActive) GameManager.scriptComment.Interrupt();
+            if (GameManager.scriptLog.textActive) GameManager.scriptLog.Interrupt();
+
             currentEvent = 0;
             GameManager.Cutscene(true);
             PlayEvent();

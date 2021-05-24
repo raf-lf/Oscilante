@@ -19,11 +19,14 @@ public class CallCommentLog : MonoBehaviour
     public void Comment()
     {
         SaveDataManager.commentsSeen.Add(commentSaveId);
-        GameManager.scriptComment.Write(level, chat, 1);
+
+        if (GameManager.scriptComment.textActive) GameManager.scriptComment.Interrupt();
+        GameManager.scriptComment.SetupWrite(level, chat, 1);
     }
 
     public void Log()
     {
+        if (GameManager.scriptLog.textActive) GameManager.scriptLog.Interrupt();
         GameManager.scriptLog.Write(logMessage);
     }
 

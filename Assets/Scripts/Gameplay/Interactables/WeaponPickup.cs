@@ -9,16 +9,10 @@ public class WeaponPickup : Interactible
     private void Start()
     {
         //Destroy this item if it was already picked in a previous save
-        if (GameManager.unlockedWeapon[weaponId]) Destroy(gameObject);
+        if (GameManager.unlockedWeapon[weaponId]) gameObject.SetActive(false);
 
     }
 
-    public override void RememberLoad()
-    {
-        base.RememberLoad();
-        Destroy(gameObject);
-
-    }
     public override void Interact()
     {
         base.Interact();

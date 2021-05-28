@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class SwitchToggle : Switch
 {
-    private void Start()
-    {
-        GetComponent<Animator>().SetBool("active", isActive);
-    }
-
     public override void Interact()
     {
         base.Interact();
 
-        GetComponent<Animator>().SetBool("active", !GetComponent<Animator>().GetBool("active"));
         isActive = !isActive;
 
     }
+
+    protected override void Update()
+    {
+        base.Update();
+        GetComponent<Animator>().SetBool("active", isActive);
+
+    }
+
 
 }

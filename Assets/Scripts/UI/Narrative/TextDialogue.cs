@@ -49,7 +49,7 @@ public class TextDialogue: TextBoxParent
     {
         if (dialogueOn == true)
         {
-            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
             {
                 if (canSkip)
                 {

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CallCommentLog : MonoBehaviour
 {
-    public int commentSaveId;
-
     public bool off;
 
     [Header("IDs")]
@@ -18,7 +16,7 @@ public class CallCommentLog : MonoBehaviour
 
     public void Comment()
     {
-        SaveDataManager.commentsSeen.Add(commentSaveId);
+        if (GetComponent<SaveableObject>()) GetComponent<SaveableObject>().SaveData();
 
         if (GameManager.scriptComment.textActive) GameManager.scriptComment.Interrupt();
         GameManager.scriptComment.SetupWrite(level, chat, 1);

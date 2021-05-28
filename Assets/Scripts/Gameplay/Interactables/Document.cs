@@ -10,16 +10,10 @@ public class Document : Interactible
     private void Start()
     {
         //Destroy this item if it was already picked in a previous save
-        if (GameManager.documents[documentCategory,documentId]) Destroy(gameObject);
+        if (GameManager.documents[documentCategory,documentId]) gameObject.SetActive(false);
 
     }
 
-    public override void RememberLoad()
-    {
-        base.RememberLoad();
-        Destroy(gameObject);
-
-    }
 
     public override void Interact()
     {

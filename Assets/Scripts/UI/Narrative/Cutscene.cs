@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Cutscene: MonoBehaviour
 {
-    public int cutsceneSaveId;
     public bool replayable;
     public bool off;
     public bool triggerColliderActivation = true;
@@ -30,7 +30,7 @@ public class Cutscene: MonoBehaviour
         {
             if (replayable == false)
             {
-                SaveDataManager.cutscenesSeen.Add(cutsceneSaveId);
+                if (GetComponent<SaveableObject>()) GetComponent<SaveableObject>().SaveData();
                 off = true;
             }
 

@@ -32,6 +32,8 @@ public abstract class Creature : MonoBehaviour
     public Rigidbody2D rb;
     public Animator anim;
     public bool spriteFacingLeft;
+    public GameObject damageVFX;
+    public GameObject deathVFX;
 
     [Header("Audio")]
     public AudioSource sfxSource;
@@ -140,14 +142,14 @@ public abstract class Creature : MonoBehaviour
         GetComponent<Animator>().SetBool("move", false);
     }
 
-    public virtual void damageFeedback()
-    {
-
-    }
 
     public virtual void Damage(int hpLoss, float knockback, Transform sourcePosition)
     {
-        if (hpLoss > 0) damageFeedback();
+        if (hpLoss > 0)
+        {
+            if (damageVFX != null) Instantiate(damageVFX, transform);
+        }
+
         knockback *= knockbackEffect / 10;
         if (rb != null) rb.velocity = knockback * Calculations.GetDirectionToTarget(sourcePosition.position, transform.position);
 
@@ -184,6 +186,7 @@ public abstract class Creature : MonoBehaviour
 
         dying = true;
         anim.Play("death");
+        if (deathVFX != null) Instantiate(deathVFX, transform);
     }
 
     public void Destroy()

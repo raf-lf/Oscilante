@@ -39,7 +39,7 @@ public class BreakableFloor : MonoBehaviour
 
     private void Update()
     {
-        if (Physics2D.OverlapBox(damageCollider.transform.position, damageCollider.size/2, 0, maskDestruction) && animator.GetInteger("state") == 2)
+        if (Physics2D.OverlapBox(damageCollider.transform.position, damageCollider.size/2 , 0, maskDestruction) && animator.GetInteger("state") == 2)
         {
             animator.SetInteger("state", 3);
             GetComponent<Rigidbody2D>().isKinematic = true;

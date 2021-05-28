@@ -15,6 +15,8 @@ public class SwitchTimed : Switch
     {
         base.Interact();
 
+        GetComponent<Animator>().Play("switch_off");
+
         timeFrames = seconds * 60;
 
     }
@@ -43,8 +45,6 @@ public class SwitchTimed : Switch
 
         if (timeFrames > 0) isActive = true;
         else isActive = false;
-
-        GetComponent<Animator>().SetBool("active", isActive);
 
         UpdateTimer();
         

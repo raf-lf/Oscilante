@@ -144,9 +144,9 @@ public class Soldier : Creature
 
     }
 
-    public override void damageFeedback()
+    public override void Damage(int hpLoss, float knockback, Transform sourcePosition)
     {
-        base.damageFeedback();
+        base.Damage(hpLoss, knockback, sourcePosition);
         detectionRadius = 14;
     }
 

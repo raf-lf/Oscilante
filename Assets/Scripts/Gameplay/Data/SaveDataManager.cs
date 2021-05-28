@@ -1,39 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class SaveDataManager : MonoBehaviour
 {
-    private static bool pastInitialSetup;
     public static Vector3 playerSpawnPosition;
     public static int currentCheckpointId;
 
-    public static List<int> rememberedIdsToLoad = new List<int>();
-    public static List<int> checkpointsUsed = new List<int>();
-    public static List<int> cutscenesSeen = new List<int>();
-    public static List<int> commentsSeen = new List<int>();
-
-    [Header("Saved Resources")]
-    private static int savedHeals;
-    private static int savedGrenades;
-    private static int[] savedAmmoClips = { 0, 0, 0 };
-    private static int[] savedAmmo = { 0, 0, 0 };
-
     [Header("Starting Resources")]
-    public int startHeals = 5;
-    public int startGrenades = 1;
-    public int[] startAmmoClips = { 0, 3, 0 };
+    public static int startHeals = 8;
+    public static int startGrenades = 0;
+    public static int[] startAmmoClips = { 0, 3, 0 };
 
     private void Start()
     {
         GameManager.scriptSaveData = GetComponent<SaveDataManager>();
 
-        if (pastInitialSetup == false)
+        if (SavedData.pastInitialSetup == false)
         {
-            playerSpawnPosition = GameManager.PlayerCharacter.transform.position;
-
             SetStartingResources();
-            pastInitialSetup = true;
+            SavedData.pastInitialSetup = true;
         }
         else
         {
@@ -45,7 +32,7 @@ public class SaveDataManager : MonoBehaviour
     {
         playerSpawnPosition = checkpointPosition;
         currentCheckpointId = id;
-        checkpointsUsed.Add(id);
+        SavedData.checkpointsUsed.Add(id + SceneManager.GetActiveScene().buildIndex*1000);
         SaveData();
 
     }
@@ -53,7 +40,7 @@ public class SaveDataManager : MonoBehaviour
     public static void SaveData()
     {
         SaveResources();
-        SaveInteractibles();
+        SaveAllSaveableObjects();
 
     }
 
@@ -64,14 +51,12 @@ public class SaveDataManager : MonoBehaviour
         Camera.main.gameObject.transform.position = playerSpawnPosition + GameManager.scriptCamera.offset;
 
         LoadResources();
-        LoadInteractibles();
-        TurnOffSeenCutscenes();
-        TurnOffSeenComments();
+        LoadSaveableObjects();
     }
 
     public void SetStartingResources()
     {
-        if (pastInitialSetup == false)
+        if (SavedData.pastInitialSetup == false)
         {
             GameManager.ItemHeal = startHeals;
             GameManager.ItemGrenade = startGrenades;
@@ -80,89 +65,80 @@ public class SaveDataManager : MonoBehaviour
             {
                 GameManager.AmmoClips[i] = startAmmoClips[i];
             }
+            SaveResources();
         }
 
     }
     private static void SaveResources()
     {
-        savedHeals = GameManager.ItemHeal;
-        savedGrenades = GameManager.ItemGrenade;
+        SavedData.savedHeals = GameManager.ItemHeal;
+        SavedData.savedGrenades = GameManager.ItemGrenade;
 
         for (int i = 0; i < GameManager.AmmoClips.Length; i++)
         {
-            savedAmmoClips[i] = GameManager.AmmoClips[i];
-            savedAmmo[i] = PlayerWeapons.ammo[i];
+            SavedData.savedAmmoClips[i] = GameManager.AmmoClips[i];
+            SavedData.savedAmmo[i] = PlayerWeapons.ammo[i];
         }
     }
-
-    private static void SaveInteractibles()
-    {
-        //Interactible[] allInteractibles = FindObjectsOfType<Interactible>();
-        Interactible[] allInteractibles = Resources.FindObjectsOfTypeAll<Interactible>();
-
-        foreach (Interactible interactible in allInteractibles)
-        {
-            //Objects with remembered Id = 0 are not recorded!
-            if (interactible.rememberOnLoad)
-            {
-                rememberedIdsToLoad.Add(interactible.rememberedInteractibleId);
-                print(interactible.name + " was saved!");
-            }
-
-        }
-    }
-
     private static void LoadResources()
+    {
+        GameManager.ItemHeal = SavedData.savedHeals;
+        GameManager.ItemGrenade = SavedData.savedGrenades;
+
+        for (int i = 0; i < GameManager.AmmoClips.Length; i++)
         {
-            GameManager.ItemHeal = savedHeals;
-            GameManager.ItemGrenade = savedGrenades;
+            GameManager.AmmoClips[i] = SavedData.savedAmmoClips[i];
+            PlayerWeapons.ammo[i] = SavedData.savedAmmo[i];
 
-            for (int i = 0; i < GameManager.AmmoClips.Length; i++)
+        }
+    }
+
+    private static void SaveAllSaveableObjects()
+    {
+        SaveableObject[] allObjects = Resources.FindObjectsOfTypeAll<SaveableObject>();
+        foreach(SaveableObject saveableObject in allObjects)
+        {            
+            if (saveableObject.saveOnNextCheckpoint)
             {
-                GameManager.AmmoClips[i] = savedAmmoClips[i];
-                PlayerWeapons.ammo[i] = savedAmmo[i];
-
+                SaveObject(saveableObject);
             }
         }
 
-    private static void LoadInteractibles()
+    }
+
+    //This can also be used for cutscenes and comments, in order for players to be unable to rewatch them
+    public static void SaveObject(SaveableObject saveableObject)
     {
+        int idToSave = saveableObject.saveId + SceneManager.GetActiveScene().buildIndex * 1000;
 
-        Interactible[] allInteractibles = FindObjectsOfType<Interactible>();
+        if (saveableObject.GetComponent<SupplyCrate>()) SavedData.chestsUsed.Add(idToSave);
+        if (saveableObject.GetComponent<Checkpoint>()) SavedData.checkpointsUsed.Add(idToSave);
+        if (saveableObject.GetComponent<CallCommentLog>()) SavedData.commentsSeen.Add(idToSave);
+        if (saveableObject.GetComponent<Cutscene>()) SavedData.cutscenesSeen.Add(idToSave);
 
-        foreach (Interactible interactible in allInteractibles)
+        Debug.Log(saveableObject.name + " was saved with Id " + idToSave);
+    }
+
+    private static void LoadSaveableObjects()
+    {
+        SaveableObject[] allObjects = Resources.FindObjectsOfTypeAll<SaveableObject>();
+        foreach (SaveableObject saveableObject in allObjects)
         {
-            //Objects with remembered Id = 0 are not recorded!
-            if (rememberedIdsToLoad.Contains(interactible.rememberedInteractibleId))
-            {
-                interactible.RememberLoad();
-                print(interactible.name + " was loaded!");
-            }
+            int idToLoad = saveableObject.saveId + SceneManager.GetActiveScene().buildIndex * 1000;
 
+            if (saveableObject.GetComponent<SupplyCrate>() && SavedData.chestsUsed.Contains(idToLoad)) ConfirmLoadObject(saveableObject, idToLoad);
+            if (saveableObject.GetComponent<Checkpoint>() && SavedData.checkpointsUsed.Contains(idToLoad)) ConfirmLoadObject(saveableObject, idToLoad);
+            if (saveableObject.GetComponent<CallCommentLog>() && SavedData.commentsSeen.Contains(idToLoad)) ConfirmLoadObject(saveableObject, idToLoad);
+            if (saveableObject.GetComponent<Cutscene>() && SavedData.cutscenesSeen.Contains(idToLoad)) ConfirmLoadObject(saveableObject, idToLoad);
         }
+    }
+
+    private static void ConfirmLoadObject(SaveableObject saveableObject, int id)
+    {
+        saveableObject.LoadData();
+        Debug.Log(saveableObject.name + " with Id " + id + " was loaded");
 
     }
 
-    private static void TurnOffSeenCutscenes()
-    {
-       // Cutscene[] allCutscenes = FindObjectsOfType<Cutscene>();
-        Cutscene[] allCutscenes = Resources.FindObjectsOfTypeAll<Cutscene>();
 
-        foreach (Cutscene cutscene in allCutscenes)
-        {
-            if (cutscenesSeen.Contains(cutscene.cutsceneSaveId)) cutscene.off = true;
-        }
-
-    }
-    private static void TurnOffSeenComments()
-    {
-        //CallCommentLog[] allComments = FindObjectsOfType<CallCommentLog>();
-        CallCommentLog[] allComments = Resources.FindObjectsOfTypeAll<CallCommentLog>();
-
-        foreach (CallCommentLog comment in allComments)
-        {
-            if (commentsSeen.Contains(comment.commentSaveId)) comment.off = true;
-        }
-
-    }
 }

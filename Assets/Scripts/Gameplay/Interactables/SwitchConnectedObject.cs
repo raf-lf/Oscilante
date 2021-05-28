@@ -10,6 +10,8 @@ public class SwitchConnectedObject : MonoBehaviour
     private int switchesActive;
     public string activeAnimatorString = "active";
     public Animator animator;
+    public bool forceActive;
+    public bool forceInactive;
 
     void Activate()
     {
@@ -26,11 +28,16 @@ public class SwitchConnectedObject : MonoBehaviour
     {
         switchesActive = 0;
 
-        for (int i = 0; i < switchesConnected.Length; i++)
+        if (forceActive) Activate();
+        else if (forceInactive) Deactivate();
+        else
         {
-            if (switchesConnected[i].isActive) switchesActive++;
+            for (int i = 0; i < switchesConnected.Length; i++)
+            {
+                if (switchesConnected[i].isActive) switchesActive++;
+            }
+            if (switchesActive >= switchesNeeded) Activate();
+            else Deactivate();
         }
-        if (switchesActive >= switchesNeeded) Activate();
-        else Deactivate();
     }
 }

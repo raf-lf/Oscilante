@@ -40,14 +40,19 @@ public class Hud : MonoBehaviour
 
     void Update()
     {
-        hpText.text = Player.hp + "/" + Player.hpMax;
+        if (MenuOptions.Invulnerability) hpText.text = "Invulnerável";
+        else hpText.text = Player.hp + "/" + Player.hpMax;
+
         v1 = Player.hp;
         v2 = Player.hpMax;
         hpBarFill = v1 / v2;
         hpBar.fillAmount = hpBarFill;
 
-        itemHeals.text = "" + GameManager.ItemHeal;
-        itemGrenades.text = "" + GameManager.ItemGrenade;
+        if (MenuOptions.InfiniteHeals) itemHeals.text = "Inf.";
+        else itemHeals.text = GameManager.ItemHeal.ToString();
+
+        if (MenuOptions.InfiniteGrenades) itemGrenades.text = "Inf.";
+        else itemGrenades.text = GameManager.ItemGrenade.ToString();
 
 
         //Repeat for every weapon
@@ -56,10 +61,14 @@ public class Hud : MonoBehaviour
             //Ignore for weapon 0 (melee)
             if (i != 0)
             {
-                ammoText[i].text = "" + PlayerWeapons.ammo[i] + "/"+PlayerWeapons.magazineSize[i];
-                clipText[i].text = "" + GameManager.AmmoClips[i];
+                if (MenuOptions.InfiniteAmmo) ammoText[i].text = "Inf.";
+                else ammoText[i].text = PlayerWeapons.ammo[i] + "/" + PlayerWeapons.magazineSize[i];
+
+                clipText[i].text = GameManager.AmmoClips[i].ToString();
+
                 v1 = PlayerWeapons.ammo[i];
                 v2 = PlayerWeapons.magazineSize[i];
+
                 ammoBarFill[i] = v1 / v2;
                 ammoBar[i].fillAmount = ammoBarFill[i];
             }

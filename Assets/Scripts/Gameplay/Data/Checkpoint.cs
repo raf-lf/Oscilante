@@ -1,24 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
     public int checkpointId;
 
-    private void Start()
-    {
-        //Destroys this checkpoint if it was already used, but is not current checkpoint.
-        if (SaveDataManager.checkpointsUsed.Contains(checkpointId) && SaveDataManager.currentCheckpointId != checkpointId) Destroy(gameObject);
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && SaveDataManager.currentCheckpointId != checkpointId)
+        if (collision.gameObject.CompareTag("Player"))
         {
-           // GameManager.scriptLog.Write("Checkpoint salvo!");
+            if (GetComponent<SaveableObject>()) GetComponent<SaveableObject>().SaveData();
+
+            // GameManager.scriptLog.Write("Checkpoint salvo!");
+            Debug.Log("Checkpoint saved.");
             SaveDataManager.SetCheckpoint(checkpointId, transform.position);
+
+            gameObject.SetActive(false);
         }
     }
 }

@@ -190,9 +190,9 @@ public class PlayerWeapons : MonoBehaviour
     {
         if (cooldown[equipedWeapon] == 0)
         {
-            if (ammo[equipedWeapon] > 0)
+            if (ammo[equipedWeapon] > 0 || MenuOptions.InfiniteAmmo)
             {
-                ammo[equipedWeapon]--;
+                if (!MenuOptions.InfiniteAmmo) ammo[equipedWeapon]--;
                 cooldown[equipedWeapon] = cooldownValues[equipedWeapon];
 
 

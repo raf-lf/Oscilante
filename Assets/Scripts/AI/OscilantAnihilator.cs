@@ -22,7 +22,6 @@ public class OscilantAnihilator : Creature
     public int avaiableMinions = 5;
 
     [Header("Components")]
-    public GameObject damageVFX;
     public Animator eyeAnimator;
     public Animator bladeAnimator;
     public Rigidbody2D blades;
@@ -74,12 +73,11 @@ public class OscilantAnihilator : Creature
 
     }
 
-    private void BeginBattle()
+    private void BossBattleBegin()
     {
             for (int i = 0; i < elevatorSwitches.Length; i++)
             {
                 elevatorSwitches[i].unusable = true;
-                elevatorSwitches[i].gameObject.GetComponent<Animator>().SetBool("unusable", true);
             }
 
         memoryMusic = GameManager.scriptAudio.bgmAudioSource.clip;
@@ -88,12 +86,28 @@ public class OscilantAnihilator : Creature
         GameManager.scriptAudio.bgmAudioSource.Play();
 
     }
-
-
-    public override void damageFeedback()
+    IEnumerator BossBattleEnd()
     {
-        Instantiate(damageVFX, transform);
+        GameManager.Cutscene(true);
+        Player.PlayerControls = false;
+        GameManager.scriptCamera.followTarget = gameObject.transform;
+        GameManager.scriptAudio.MusicOff(0.5f);
+
+        yield return new WaitForSeconds(8);
+        Player.PlayerControls = true;
+        GameManager.scriptCamera.followTarget = GameManager.PlayerCharacter.transform;
+        GameManager.Cutscene(false);
+        postDefeatCutscene.SetActive(true);
+
+        for (int i = 0; i < elevatorSwitches.Length; i++)
+        {
+            elevatorSwitches[i].unusable = false;
+        }
+        GameManager.scriptAudio.bgmAudioSource.clip = memoryMusic;
+        GameManager.scriptAudio.bgmAudioSource.Play();
+        GameManager.scriptAudio.MusicOn(1);
     }
+
 
     public override void Death()
     {
@@ -111,32 +125,8 @@ public class OscilantAnihilator : Creature
         }
         */
 
-        if (bossBatle)
-        {
-            GameManager.Cutscene(true);
-            Player.PlayerControls = false;
-            GameManager.scriptCamera.followTarget = gameObject.transform;
-            GameManager.scriptAudio.MusicOff(0.5f);
-            StartCoroutine(DeathEnd());
-        }
+        if (bossBatle) StartCoroutine(BossBattleEnd());
 
-    }
-    IEnumerator DeathEnd()
-    {
-        yield return new WaitForSeconds(8);
-        Player.PlayerControls = true;
-        GameManager.scriptCamera.followTarget = GameManager.PlayerCharacter.transform;
-        GameManager.Cutscene(false);
-        postDefeatCutscene.SetActive(true);
-
-        for (int i = 0; i < elevatorSwitches.Length; i++)
-        {
-            elevatorSwitches[i].unusable = false;
-            elevatorSwitches[i].gameObject.GetComponent<Animator>().SetBool("unusable", false);
-        }
-        GameManager.scriptAudio.bgmAudioSource.clip = memoryMusic;
-        GameManager.scriptAudio.bgmAudioSource.Play();
-        GameManager.scriptAudio.MusicOn(1);
     }
 
     public void bladeRotationBoost(float force)
@@ -263,7 +253,7 @@ public class OscilantAnihilator : Creature
             {
                 if (TargetInsideDetection() && anim.GetBool("active") == false)
                 {
-                    if(bossBatle) BeginBattle();
+                    if(bossBatle) BossBattleBegin();
                     anim.SetBool("active", true);
                     eyeAnimator.SetInteger("state", 1);
                     Invoke("finishedActivating", 1);

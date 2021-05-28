@@ -9,16 +9,10 @@ public class WeaponUpgrade : Interactible
     private void Start()
     {
         //Destroy this item if it was already picked in a previous save
-        if (GameManager.weaponUpgrades[upgradeId]) Destroy(gameObject);
+        if (GameManager.weaponUpgrades[upgradeId]) gameObject.SetActive(false);
 
     }
 
-    public override void RememberLoad()
-    {
-        base.RememberLoad();
-        Destroy(gameObject);
-
-    }
 
     public override void Interact()
     {

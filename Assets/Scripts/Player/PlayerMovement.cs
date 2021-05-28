@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
 
-    private LayerMask jumpableMask;
+    public LayerMask jumpableMask;
     private float jumpFallTimer;
 
     public SpriteRenderer head;
@@ -58,7 +58,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        jumpableMask = LayerMask.GetMask("Default");
     }
 
     public void ShootingFaceDirection(bool shootingOpposite)

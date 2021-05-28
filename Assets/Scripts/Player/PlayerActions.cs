@@ -47,14 +47,17 @@ public class PlayerActions : MonoBehaviour
 
     private void ItemHealUse()
     {
-        if (GameManager.ItemHeal > 0 && Player.PlayerControls && Player.CantAct == false && Time.time >= healCooldownTimer && remainingPulses == 0)
+        if (Player.PlayerControls && Player.CantAct == false && Time.time >= healCooldownTimer && remainingPulses == 0)
         {
-            GameManager.ItemHeal -= 1;
+            if (GameManager.ItemHeal > 0 || MenuOptions.InfiniteHeals)
+            {
+                if (!MenuOptions.InfiniteHeals) GameManager.ItemHeal -= 1;
 
-            HealActivate(true);
-            remainingPulses = healPulses;
+                HealActivate(true);
+                remainingPulses = healPulses;
 
-            healCooldownTimer = Time.time + healCooldown;
+                healCooldownTimer = Time.time + healCooldown;
+            }
         }
     }
 
@@ -76,19 +79,22 @@ public class PlayerActions : MonoBehaviour
 
     private void ItemGrenadelUse()
     {
-        if (GameManager.ItemGrenade > 0 && GameManager.scriptPlayer.inCover == false && Player.PlayerControls && Player.CantAct == false && Time.time >= throwCooldownTimer)
+        if (GameManager.scriptPlayer.inCover == false && Player.PlayerControls && Player.CantAct == false && Time.time >= throwCooldownTimer)
         {
-            GameManager.ItemGrenade -= 1;
+            if (GameManager.ItemGrenade > 0 || MenuOptions.InfiniteGrenades)
+            {
+                if (!MenuOptions.InfiniteGrenades) GameManager.ItemGrenade -= 1;
 
-            actionArmAnimator[0].Play("actionArm_throw");
+                actionArmAnimator[0].Play("actionArm_throw");
 
-            StopAllCoroutines();
-            StartCoroutine(RightActionArmReady(0));
-            StartCoroutine(ActionArmEnd(throwAnimationEnd));
+                StopAllCoroutines();
+                StartCoroutine(RightActionArmReady(0));
+                StartCoroutine(ActionArmEnd(throwAnimationEnd));
 
-            throwCooldownTimer = Time.time + throwCooldown;
+                throwCooldownTimer = Time.time + throwCooldown;
 
-            Invoke("GrenadeThrow", throwAnimationGrenadeDelay);
+                Invoke("GrenadeThrow", throwAnimationGrenadeDelay);
+            }
         }
     }
 

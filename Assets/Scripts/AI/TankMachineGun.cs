@@ -65,6 +65,7 @@ public class TankMachineGun : Creature
                 {
                     state = 0;
                     useCooldownTimer = Time.time + useCooldown;
+
                 }
                 else
                 {
@@ -72,6 +73,8 @@ public class TankMachineGun : Creature
                     {
                         state = 2;
                         hasAttacked = true;
+                        mainBody.TurretCooldown();
+
                     }
                 }
 

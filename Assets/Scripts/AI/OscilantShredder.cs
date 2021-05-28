@@ -11,8 +11,6 @@ public class OscilantShredder : Creature
     public float restDuration = 2;
     public float readyLungeDuration = 1;
     public float lungeForce;
-    public GameObject damageVFX;
-    public GameObject deathVFX;
     public float damagedKnockback;
 
     public GameObject overlord;
@@ -103,11 +101,12 @@ public class OscilantShredder : Creature
 
     public override void Death()
     {
+        base.Death();
+
         StopAllCoroutines();
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         GetComponent<Animator>().SetBool("death", true);
 
-        Instantiate(deathVFX, transform);
 
         if (overlord != null)
         {
@@ -116,11 +115,12 @@ public class OscilantShredder : Creature
         }
     }
 
-    public override void damageFeedback()
+    public override void Damage(int hpLoss, float knockback, Transform sourcePosition)
     {
+        base.Damage(hpLoss, knockback, sourcePosition);
         onWatch = false;
-        Instantiate(damageVFX, transform);
     }
+
 
     public bool TargetInsideAmbushArea()
     {

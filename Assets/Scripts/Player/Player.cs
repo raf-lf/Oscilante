@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public static int hp = 10;
     public static int hpMax = 10;
 
+    public GameObject damageVFX;
     public int iFramesSeconds = 1;
     private bool inIFrames;
     public SpriteRenderer[] spriteGroup;
@@ -35,11 +36,20 @@ public class Player : MonoBehaviour
 
     public void Damage(int hpLoss, float knockback, Transform sourcePosition)
     {
-        if (inIFrames == false)
+        if (inIFrames == false && MenuOptions.Invulnerability == false)
         {
             ChangeHp(hpLoss * -1);
 
-            ToggleIFrames(true);
+            if (hpLoss > 0)
+            {
+                if (damageVFX != null)
+                {
+                    GameObject vfx = Instantiate(damageVFX, transform);
+                    vfx.transform.position += new Vector3(0, .8f,0);
+                }
+
+                ToggleIFrames(true);
+            }
 
             if (knockback != 0 && sourcePosition != null)
             {

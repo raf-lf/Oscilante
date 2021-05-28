@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwitchMoveablePlatform : Interactible
+public class SwitchMoveablePlatform : Switch
 {
     public MoveablePlatform[] platformsToMove = new MoveablePlatform[1];
 

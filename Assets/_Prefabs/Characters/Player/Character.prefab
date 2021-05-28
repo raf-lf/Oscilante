@@ -945,7 +945,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 256
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -20660,10 +20660,9 @@ MonoBehaviour:
   climbSpeedMax: 2
   walkSpeedMax: 1
   rollSpeedBoost: 4
-  jumpForce: 21
-  jumpForceBoost: 0
-  jumpBoostWindow: 0.15
-  canJumpBoost: 1
+  jumpForce: 10
+  jumpForceBoost: 1.5
+  jumpBoostFrames: 10
   fallVelocityMemory: 0
   fallDamageLow: 1
   fallDamageHigh: 5

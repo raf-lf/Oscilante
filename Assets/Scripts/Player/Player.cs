@@ -90,18 +90,29 @@ public class Player : MonoBehaviour
             GameManager.scriptActions.HealActivate(false);
 
         }
+        GameManager.scriptLog.Interrupt();
+        GameManager.scriptComment.Interrupt();
+        GameManager.scriptCamera.ChangeOffset(new Vector3 (0,1,-5));
+        GameManager.scriptAudio.MusicOff(0.5f);
         StopCoroutine(PostDeath());
         StartCoroutine(PostDeath());
     }
 
     IEnumerator PostDeath()
     {
+        Invoke(nameof(DeathFadeOut),3);
         yield return new WaitForSeconds(4);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         hp = hpMax;
         PlayerControls = true;
+        GameManager.scriptAudio.MusicOn(1);
 
 
+    }
+
+    private void DeathFadeOut()
+    {
+        GameManager.overlay.GetComponent<Animator>().SetInteger("state", 1);
     }
 
     public void ToggleIFrames(bool toggleOn)

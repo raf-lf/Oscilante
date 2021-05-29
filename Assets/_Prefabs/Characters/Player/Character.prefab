@@ -20641,7 +20641,8 @@ MonoBehaviour:
   inCover: 0
   DamageCollider: {fileID: 7827060237178768225}
   CoverCollider: {fileID: 2961217819234676489}
-  shaderAnimator: {fileID: 615625077139122336}
+  shaderAnimator: {fileID: 5951111620490676493}
+  dead: 0
 --- !u!114 &4172648324059306283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20900,7 +20901,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4172648324078677303}
-  - component: {fileID: 615625077139122336}
+  - component: {fileID: 5951111620490676493}
   m_Layer: 0
   m_Name: Sprites
   m_TagString: Untagged
@@ -20925,7 +20926,7 @@ Transform:
   m_Father: {fileID: 4172648324059306452}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &615625077139122336
+--- !u!95 &5951111620490676493
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -21148,7 +21149,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.25
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 000000008f5d5364f3a9f8d5d99dc31867c9b18f75859aeb
+  m_ApplyToSortingLayers: 000000008f5d5364f3a9f8d5d99dc31867c9b18f75859aebd7c9f3f19bca3040
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -21579,7 +21580,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4754100897423843110}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

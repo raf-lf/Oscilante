@@ -16,7 +16,7 @@ public class Cutscene: MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && off == false && triggerColliderActivation)
+        if (collision.gameObject.CompareTag("Player") && off == false && triggerColliderActivation && GameManager.scriptPlayer.dead == false)
         {
             CutsceneStartEnd(true);
 

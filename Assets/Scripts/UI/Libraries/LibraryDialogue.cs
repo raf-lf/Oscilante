@@ -33,7 +33,7 @@ public static class LibraryDialogue
                                 {
                                     case 1:
                                         currentPortraitId = 2;
-                                        return ("Tem alguém aí? Nós estamos sendo!");
+                                        return ("Tem alguém aí? Nós estamos sendo atacados!");
                                     default: return null;
                                 }
                             case 3:

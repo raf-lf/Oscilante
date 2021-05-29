@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f63a6418ac9c68a49824e1f22b1bc303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
   knockback: 10
   speed: 15
   impactEffect: {fileID: 0}
@@ -512,7 +512,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 5
   m_LightVolumeOpacity: 0.01
-  m_ApplyToSortingLayers: 000000008f5d5364f3a9f8d5d99dc31867c9b18f75859aeb
+  m_ApplyToSortingLayers: 000000008f5d5364f3a9f8d5d99dc31867c9b18f75859aeb9bca3040d7c9f3f1
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0

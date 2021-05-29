@@ -10,7 +10,7 @@ public class SaveDataManager : MonoBehaviour
 
     [Header("Starting Resources")]
     public static int startHeals = 8;
-    public static int startGrenades = 0;
+    public static int startGrenades = 2;
     public static int[] startAmmoClips = { 0, 3, 0 };
 
     private void Start()

@@ -1,29 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class MenuUi : MonoBehaviour
 {
     private bool menuOpen;
+    public bool hideLevel3Content;
 
+    [Header("SubMenus")]
     public Animator submenuAnim;
     public Animator inventoryAnim;
     public Animator descriptionAnim;
     public Animator optionsAnim;
 
-    public AudioSource sfxSource;
-    public AudioSource bgmSource;
-    public GameObject overlay;
-
+    [Header("Descriptions")]
     public Text descriptionBoxText;
     public Text descriptionBoxTitle;
 
+    [Header("Inventory")]
+    public Text locationText;
+    public Text assignmentText;
+    public Animator weapons;
+    public Animator documents;
+
+    [Header("Inventory Items")]
     public Selectable[] weaponUpgradeBox = new Selectable[5];
     public Selectable[,] documentBox = new Selectable[4, 4];
     public Selectable[] medalBox = new Selectable[3];
 
+    [Header("Components")]
+    public GameObject overlay;
+    public AudioSource sfxSource;
+    public AudioSource bgmSource;
+
+    [Header("Portraits")]
     public Sprite[] characterPortraitSprites = new Sprite[7];
 
     private void Start()
@@ -34,6 +47,29 @@ public class MenuUi : MonoBehaviour
         for (int i = 0; i < LibraryDialogue.characterPortrait.Length; i++)
         {
             LibraryDialogue.characterPortrait[i] = characterPortraitSprites[i];
+        }
+
+    }
+
+    public void UpdateSceneInfo()
+    {
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Level 1":
+                locationText.text = "Deserto Radiaotivo";
+                assignmentText.text = "Preciso encontrar uma maneira de chegar até a cidade e ajudar Reina.";
+                break;
+            case "Level 2":
+                locationText.text = "Cidade Devastada";
+                if (SavedData.cutscenesSeen.Contains(2005)) assignmentText.text = "ENCONTRAR A ENTRADA DO METRÔ E ELIMINAR LÍDER DO NOVO GOVERNO ANTES DE CHEGAR AO OBJETIVO.";
+                else if (SavedData.cutscenesSeen.Contains(2002)) assignmentText.text = "ENCONTRAR A ENTRADA DO METRÔ E CHEGAR AO OBJETIVO.";
+                else assignmentText.text = "Preciso encontrar a entrada do metrô, onde fica a base da Resistência, e chegar até Reina.";
+                break;
+            case "Final Boss":
+                locationText.text = "Base da Resistência";
+                assignmentText.text = "ELIMINAR OBJETIVOS NA ÁREA.";
+                break;
+
         }
 
     }
@@ -138,6 +174,11 @@ public class MenuUi : MonoBehaviour
 
     void Update()
     {
+        UpdateSceneInfo();
+        weapons.SetBool("hasRifle", GameManager.unlockedWeapon[2]);
+        weapons.SetBool("hideLevel3Content", hideLevel3Content);
+        documents.SetBool("hideLevel3Content", hideLevel3Content);
+
         if (GameManager.CutscenePlaying == false)
         {
             if (menuOpen)

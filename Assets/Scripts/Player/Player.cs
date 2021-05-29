@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public static bool CantAct = false;
 
     public Animator shaderAnimator;
-    private bool dead;
+    public bool dead;
 
 
     void Start()

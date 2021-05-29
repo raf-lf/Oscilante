@@ -14,10 +14,20 @@ public abstract class CutsceneEvent : MonoBehaviour
     {
         yield return new WaitForSeconds(nextEventInterval);
 
-        GetComponent<Cutscene>().currentEvent += 1;
-        GetComponent<Cutscene>().PlayEvent();
+        if (GetComponent<Cutscene>())
+        {
+            GetComponent<Cutscene>().currentEvent += 1;
+            GetComponent<Cutscene>().PlayEvent();
+        }
+        else
+        {
+            //Directs events in children objects to search for the cutscene in a parent object. It's better this way.
+            GetComponentInParent<Cutscene>().currentEvent += 1;
+            GetComponentInParent<Cutscene>().PlayEvent();
+        }
 
     }
+
 
     //This is only for Call Dialogue and Continue Dialogue events
     public void ContinueEvent()

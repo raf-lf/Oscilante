@@ -20,6 +20,8 @@ public class Event_PlayAudio : CutsceneEvent
 
     public void playSFX()
     {
+        if (source == null) source = GameManager.scriptAudio.genericSfxAudioSource;
+
         source.volume = volume * GameManager.scriptAudio.volumeSfx;
         source.pitch = Random.Range(pitchVariance.x, pitchVariance.y);
         source.PlayOneShot(audioClip);

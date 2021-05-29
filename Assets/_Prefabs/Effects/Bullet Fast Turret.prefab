@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Color: {r: 0, g: 0.7880776, b: 1, a: 1}
   m_Intensity: 10
   m_LightVolumeOpacity: 0.01
-  m_ApplyToSortingLayers: 000000008f5d5364f3a9f8d5d99dc31867c9b18f75859aeb
+  m_ApplyToSortingLayers: 000000008f5d5364f3a9f8d5d99dc31867c9b18f75859aeb9bca3040d7c9f3f1
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -316,9 +316,10 @@ MonoBehaviour:
   damage: 2
   knockback: 15
   speed: 10
+  impactEffect: {fileID: 0}
+  autoDestroyTimer: 2
   rotationZ: 0
   direction: {x: 1, y: 0}
-  autoDestroyTimer: 2
 --- !u!212 &1167990767201439461
 SpriteRenderer:
   m_ObjectHideFlags: 0

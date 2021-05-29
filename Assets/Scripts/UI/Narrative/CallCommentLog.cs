@@ -30,7 +30,7 @@ public class CallCommentLog : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (off == false && collision.gameObject.CompareTag("Player"))
+        if (off == false && collision.gameObject.CompareTag("Player") && GameManager.scriptPlayer.dead == false)
         {
             if(isLogMessage) Log();
             else Comment();

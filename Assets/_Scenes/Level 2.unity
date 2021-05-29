@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5719,7 +5719,7 @@ PrefabInstance:
     - target: {fileID: 5897946354078139601, guid: a12f19319b755a646a717e7612aa2091,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5897946354078139601, guid: a12f19319b755a646a717e7612aa2091,
         type: 3}
@@ -21438,8 +21438,8 @@ Transform:
   m_LocalPosition: {x: 0.490259, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1557064103}
   - {fileID: 4086503}
+  - {fileID: 1557064103}
   - {fileID: 1363858165}
   - {fileID: 1477595858}
   - {fileID: 2056753563}
@@ -35613,7 +35613,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924831949}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1438613172}
@@ -64072,6 +64072,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496465984219050047, guid: 313ebc9f31b259b449adf96bb7b16bef,
         type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496465984219050047, guid: 313ebc9f31b259b449adf96bb7b16bef,
+        type: 3}
       propertyPath: m_Sprites.Array.size
       value: 6
       objectReference: {fileID: 0}
@@ -73458,6 +73463,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4528939889858919149, guid: c01a216d2246d2f4cae47a0dfd112638,
         type: 3}
+      propertyPath: m_Color.b
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528939889858919149, guid: c01a216d2246d2f4cae47a0dfd112638,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528939889858919149, guid: c01a216d2246d2f4cae47a0dfd112638,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528939889858919149, guid: c01a216d2246d2f4cae47a0dfd112638,
+        type: 3}
       propertyPath: m_ShapeTexture
       value: 
       objectReference: {fileID: 2800000, guid: ffcf05827fa0f174baf7d8fceefc9f6a, type: 3}
@@ -79687,7 +79707,7 @@ PrefabInstance:
     - target: {fileID: 5897946354078139601, guid: a12f19319b755a646a717e7612aa2091,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5897946354078139601, guid: a12f19319b755a646a717e7612aa2091,
         type: 3}

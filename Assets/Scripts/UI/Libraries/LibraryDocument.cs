@@ -22,11 +22,11 @@ public static class LibraryDocument
                     switch (id)
                     {
                         case 0:
-                            return ("Estudo Ambiental");
+                            return ("Despedida para o Marido");
                         case 1:
                             return ("Ficha Médica de Criança");
                         case 2:
-                            return ("Despedida para o Marido");
+                            return ("Estudo Ambiental");
                         case 3:
                             if (ReportCheck(category)) return ("Análise do Mundo");
                             else return noReportTitle;
@@ -52,11 +52,11 @@ public static class LibraryDocument
                     switch (id)
                     {
                         case 0:
-                            return ("Anotações do Cientista");
+                            return ("Chamado às Armas");
                         case 1:
                             return ("Confirmação de Patrocínio");
                         case 2:
-                            return ("Chamado às Armas");
+                            return ("Anotações do Cientista");
                         case 3:
                             if (ReportCheck(category)) return ("Análise da Resistência");
                             else return noReportTitle;
@@ -94,6 +94,24 @@ public static class LibraryDocument
                     switch (id)
                     {
                         case 0:
+                            return ("Beto, eu sinto muito. \n\nEu sei que estamos casados a pouco tempo e que você queria um tempo comigo durante esse final de semana, " +
+                                "mas eu preciso te contar o que aconteceu, e não consigo fazer isso olhando nos seus olhos, neste momento.\n\n Minha carreira e anos " +
+                                "de estudo jogados fora. Lembro quando eu era um jovem cursando economia, empolgado com a vida e com vontade de bater de frente " +
+                                "contra a sociedade.Provar para todos eles que não importa o que eles pensam de mim, eu seria o cara mais bem sucedido de todos!\n\n" +
+                                "A empresa mandou todos os funcionários embora a algumas horas atrás.Eu nunca tinha visto o Felipe chorar tanto, eles tiveram que o" +
+                                "restringir para que ele não se jogasse na frente dos carros. Honestamente, me surpreende como conseguimos ficar tanto tempo de portas " +
+                                "abertas com esta maldita guerra. Eu acho que foi culpa daqueles vídeos que estão divulgando sobre uma suposta arma química.Espero que " +
+                                "seja tudo uma mentira.\n\n Eu preciso de um tempo..Vou pras montanhas, quem sabe todo aquele meu conhecimento de escoteiro de quando " +
+                                "eu era moleque me ajude nesse momento difícil? \n\n Volte para a casa dos seus pais esse final de semana, fuja dessa cidade horrível " +
+                                "por pelo menos alguns dias. Eu volto quando tiver com a cabeça melhor. Aí penso como reconstruir minha vida nesse mundo de merda.\n\n" +
+                                "Desculpe, mas eu preciso ficar sozinho.\nTe amo, Carlos.");
+                        case 1:
+                            return ("Cinco anos… Apenas cinco anos é a idade da garotinha que morreu agora pouco… Danos ao trato respiratório causados por intoxicação. " +
+                                "Só hoje foram mais 17 crianças que morreram por causa dessa névoa infernal. Eu não acredito como esta droga de lugar ainda está funcionando. " +
+                                "Esse hospital deixou de ser um lugar de tratamento e virou um cemitério. Os corredores fedem a cadáver e o barulho das moscas é ensurdecedor… " +
+                                "\n\nEu não me importo quem foi o desgraçado responsável por criar essa arma química. Isso não é humano, e essa vida não é uma vida que valha a pena viver! " +
+                                "\n\nÉ impossível respirar direito lá fora sem o equipamento apropriado, mas eu não aguento mais. Estou indo para casa.");
+                        case 2:
                             return ("A situação desse mundo está difícil. Quando vejo o que aconteceu com o ambiente depois dessa guerra, meu coração de biólogo dá um aperto… " +
                                 "Será que fizemos a coisa certa de entrar para essa Resistência? Talvez eu e Piedade deveríamos ter simplesmente fugido, igual todos os outros. " +
                                 "\n\nMas também de que adianta? Do jeito que as coisas estão progredindo, logo logo o mundo inteiro vai estar do mesmo jeito que este país… " +
@@ -106,24 +124,6 @@ public static class LibraryDocument
                                 "\n\nO que tenho de fazer agora é esperar que Piedade volte para a base. Ela acredita que a Resistência usou os dados da minha pesquisa para fabricar a arma química! " +
                                 "Que absurdo! Como ela pode acreditar que nossos amigos tem algo a ver com essa catástrofe? Eles nos deram um lar e um propósito! " +
                                 "Espero que com o tempo ela esfrie a cabeça e volte… Estou com saudades.");
-                        case 1:
-                            return ("Cinco anos… Apenas cinco anos é a idade da garotinha que morreu agora pouco… Danos ao trato respiratório causados por intoxicação. " +
-                                "Só hoje foram mais 17 crianças que morreram por causa dessa névoa infernal. Eu não acredito como esta droga de lugar ainda está funcionando. " +
-                                "Esse hospital deixou de ser um lugar de tratamento e virou um cemitério. Os corredores fedem a cadáver e o barulho das moscas é ensurdecedor… " +
-                                "\n\nEu não me importo quem foi o desgraçado responsável por criar essa arma química. Isso não é humano, e essa vida não é uma vida que valha a pena viver! " +
-                                "\n\nÉ impossível respirar direito lá fora sem o equipamento apropriado, mas eu não aguento mais. Estou indo para casa.");
-                        case 2:
-                            return ("Beto, eu sinto muito. \n\nEu sei que estamos casados a pouco tempo e que você queria um tempo comigo durante esse final de semana, " +
-                                "mas eu preciso te contar o que aconteceu, e não consigo fazer isso olhando nos seus olhos, neste momento.\n\n Minha carreira e anos " +
-                                "de estudo jogados fora. Lembro quando eu era um jovem cursando economia, empolgado com a vida e com vontade de bater de frente " +
-                                "contra a sociedade.Provar para todos eles que não importa o que eles pensam de mim, eu seria o cara mais bem sucedido de todos!\n\n" +
-                                "A empresa mandou todos os funcionários embora a algumas horas atrás.Eu nunca tinha visto o Felipe chorar tanto, eles tiveram que o" +
-                                "restringir para que ele não se jogasse na frente dos carros. Honestamente, me surpreende como conseguimos ficar tanto tempo de portas " +
-                                "abertas com esta maldita guerra. Eu acho que foi culpa daqueles vídeos que estão divulgando sobre uma suposta arma química.Espero que " +
-                                "seja tudo uma mentira.\n\n Eu preciso de um tempo..Vou pras montanhas, quem sabe todo aquele meu conhecimento de escoteiro de quando " +
-                                "eu era moleque me ajude nesse momento difícil? \n\n Volte para a casa dos seus pais esse final de semana, fuja dessa cidade horrível " +
-                                "por pelo menos alguns dias. Eu volto quando tiver com a cabeça melhor. Aí penso como reconstruir minha vida nesse mundo de merda.\n\n" +
-                                "Desculpe, mas eu preciso ficar sozinho.\nTe amo, Carlos.");
                         case 3:
                             if (ReportCheck(category)) return ("Descrição do Relatório: Mundo");
                             else return noReport;
@@ -170,15 +170,14 @@ public static class LibraryDocument
                     switch (id)
                     {
                         case 0:
-                            return ("Já faz quanto tempo que o céu está manchado de verde? Uma memória constante do meu próprio trabalho, " +
-                                "algo que vai me assombrar pelos poucos meses que ainda me restam de vida. \n\nMinha saúde realmente está piorando… " +
-                                "Eu sabia que se continuasse trabalhando na arma, não iria sobreviver por muito tempo. Mas eu não tive escolha, " +
-                                "aqueles malditos têm que pagar pelo que fizeram e pelas vidas que tiraram. Eles são o motivo de Reina não ter uma mãe, " +
-                                "então agora perderão tudo! \n\nEu sinceramente sinto muito pelo acidente, a culpa deve ter sido de algum assistente incompetente. " +
-                                "Era para a arma ter atingido apenas pontos específicos como quartéis e instalações militares, ela não devia ter afetado a cidade. " +
-                                "\n\nQuando penso nas mães que perderam seus filhos sufocando por causa das toxinas no ar, " +
-                                "só consigo imaginar o que eu sentiria se fosse minha pequena Reina que estivesse lá fora... " +
-                                "Se existe uma vida após a morte, tenho certeza que o que me aguarda é o pior dos infernos.");
+                            return ("O que é um país? Um país não é um território marcado por mapas guardados no escritório de homens mesquinhos sentados em suas confortáveis poltronas! " +
+                                "Um país não é uma mina de recursos explorada e abusada por anos por líderes odiosos e avarentos! " +
+                                "E principalmente, um país não é um fantoche que ficará calado perante o abuso daquele que se chama de líder! " +
+                                "\n\nEncontrem o fogo em seus corações, companheiros e companheiras! Queimem suas almas com a chama das tochas da Resistência, " +
+                                "assim como queimarão aqueles que querem nos oprimir dentro de nosso próprio lar! " +
+                                "Que a gota em nossa bandeira seja a eterna memória dos mares de sangue derramados por nossos irmãos mortos lutando nossa luta! " +
+                                "Que nossas vozes sejam ouvidas acima das explosões das bombas e dos hinos recheados de mentiras bradados pelas forças do novo governo! " +
+                                "\n\nLevantem-se das ruínas de seus lares! Peguem suas armas e venham à luta! A Resistência está aqui, e unidos, vamos remover este mal de nossa querida terra!");
                         case 1:
                             return ("É por meio das Indústrias Águia que venho dar boas notícias, ao senhor e ao grupo que você representa. " +
                                 "\n\nNos próximos sete dias, um caminhão será enviado contendo armamentos, explosivos, munições e rações de combate. Acompanhando a entrega, estarão" +
@@ -189,14 +188,15 @@ public static class LibraryDocument
                                 "e a situação econômica do país voltar a ser favorável aos interesses de nosso grupo, analisaremos novas possibilidades de patrocinar futuros projetos. " +
                                 "\n\nAtenciosamente, Walter Bragança Filho, secretário de relações das Indústrias Águia.");
                         case 2:
-                            return ("O que é um país? Um país não é um território marcado por mapas guardados no escritório de homens mesquinhos sentados em suas confortáveis poltronas! " +
-                                "Um país não é uma mina de recursos explorada e abusada por anos por líderes odiosos e avarentos! " +
-                                "E principalmente, um país não é um fantoche que ficará calado perante o abuso daquele que se chama de líder! " +
-                                "\n\nEncontrem o fogo em seus corações, companheiros e companheiras! Queimem suas almas com a chama das tochas da Resistência, " +
-                                "assim como queimarão aqueles que querem nos oprimir dentro de nosso próprio lar! " +
-                                "Que a gota em nossa bandeira seja a eterna memória dos mares de sangue derramados por nossos irmãos mortos lutando nossa luta! " +
-                                "Que nossas vozes sejam ouvidas acima das explosões das bombas e dos hinos recheados de mentiras bradados pelas forças do novo governo! " +
-                                "\n\nLevantem-se das ruínas de seus lares! Peguem suas armas e venham à luta! A Resistência está aqui, e unidos, vamos remover este mal de nossa querida terra!");
+                            return ("Já faz quanto tempo que o céu está manchado de verde? Uma memória constante do meu próprio trabalho, " +
+                                "algo que vai me assombrar pelos poucos meses que ainda me restam de vida. \n\nMinha saúde realmente está piorando… " +
+                                "Eu sabia que se continuasse trabalhando na arma, não iria sobreviver por muito tempo. Mas eu não tive escolha, " +
+                                "aqueles malditos têm que pagar pelo que fizeram e pelas vidas que tiraram. Eles são o motivo de Reina não ter uma mãe, " +
+                                "então agora perderão tudo! \n\nEu sinceramente sinto muito pelo acidente, a culpa deve ter sido de algum assistente incompetente. " +
+                                "Era para a arma ter atingido apenas pontos específicos como quartéis e instalações militares, ela não devia ter afetado a cidade. " +
+                                "\n\nQuando penso nas mães que perderam seus filhos sufocando por causa das toxinas no ar, " +
+                                "só consigo imaginar o que eu sentiria se fosse minha pequena Reina que estivesse lá fora... " +
+                                "Se existe uma vida após a morte, tenho certeza que o que me aguarda é o pior dos infernos.");
                         case 3:
                             if (ReportCheck(category)) return ("Descrição do Relatório: Resistência");
                             else return noReport;

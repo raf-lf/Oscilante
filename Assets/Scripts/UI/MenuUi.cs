@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class MenuUi : MonoBehaviour
 {
-    private bool menuOpen;
+    public bool menuOpen;
     public bool hideLevel3Content;
 
     [Header("SubMenus")]
@@ -126,30 +126,43 @@ public class MenuUi : MonoBehaviour
 
     }
 
-    public void OptionsOpen()
+    public void ButtonOptions()
     {
-        optionsAnim.SetBool("active", true);
+        optionsAnim.SetBool("active", !optionsAnim.GetBool("active"));
 
-        if (descriptionAnim.GetBool("active")) DescriptionClose();
+        if (descriptionAnim.GetBool("active")) descriptionAnim.SetBool("active", false);
 
     }
 
-    public void OptionsClose()
+
+    public void DescriptionOpenClose(bool open)
     {
-        optionsAnim.SetBool("active", false);
+        descriptionAnim.SetBool("active", open);
+
+        if (open && optionsAnim.GetBool("active")) optionsAnim.SetBool("active", false);
+    }
+
+    public void Description()
+    {
+        
+        descriptionAnim.SetBool("active", !descriptionAnim.GetBool("active"));
+
+        if (optionsAnim.GetBool("active")) optionsAnim.SetBool("active", false);
+    }
+
+    public void ButtonExit()
+    {
+        MenuClose();
+        FadeOut();
+        Invoke(nameof(Exit), 2);
+        if (descriptionAnim.GetBool("active")) descriptionAnim.SetBool("active", false);
+        if (optionsAnim.GetBool("active")) optionsAnim.SetBool("active", false);
 
     }
 
-    public void DescriptionOpen()
+    private void Exit()
     {
-        descriptionAnim.SetBool("active", true);
-
-        if (optionsAnim.GetBool("active")) OptionsClose();
-    }
-
-    public void DescriptionClose()
-    {
-        descriptionAnim.SetBool("active", false);
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 
     public void MenuOpen()
@@ -160,11 +173,17 @@ public class MenuUi : MonoBehaviour
 
         menuOpen = true;
     }
+
+    public void FadeOut()
+    {
+        overlay.GetComponent<Animator>().SetInteger("state", 1);
+    }
+
     public void MenuClose()
     {
-        if (descriptionAnim.GetBool("active")) DescriptionClose();
-        if (optionsAnim.GetBool("active")) OptionsClose();
-        
+        if (optionsAnim.GetBool("active")) optionsAnim.SetBool("active", false);
+        if (descriptionAnim.GetBool("active")) descriptionAnim.SetBool("active", false);
+
         InventoryClose();
 
         GameManager.PauseGame(false);
@@ -189,7 +208,7 @@ public class MenuUi : MonoBehaviour
                 }
             }
 
-            else if (menuOpen == false && Input.GetKeyDown(KeyCode.Escape))
+            else if (menuOpen == false && GameManager.scriptPlayer.dead == false && Input.GetKeyDown(KeyCode.Escape))
             {
                 MenuOpen();
             }

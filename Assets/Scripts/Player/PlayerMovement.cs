@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForceBoost; //0 if no boost, 1.75 if boost
     public float jumpBoostFrames; //0.15
     private float currentJumpBoostFrames;
+    private bool canJumpBoost;
 
     [Header("Fall Damage")]
     public float fallVelocityMemory;
@@ -91,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
         jumping = true;
         jumpFallTimer = Time.time + 0.1f;
         currentJumpBoostFrames = jumpBoostFrames;
+        canJumpBoost = true;
 
         GameManager.scriptPlayerAudio.JumpUpSfx();
     }
@@ -328,7 +330,10 @@ public class PlayerMovement : MonoBehaviour
                 if(onGround || climbing) JumpAttempt();
             }
 
-            if (climbing)
+            //Turns off jump boost if player stops holding the jump key
+            if (canJumpBoost && !Input.GetKey(PlayerActions.keyJump)) canJumpBoost = false;
+
+                if (climbing)
             {
                 if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
                 {
@@ -395,9 +400,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         //Boosts jump force if jump key continues being pressed
-        if (Input.GetKey(PlayerActions.keyJump) && jumping && currentJumpBoostFrames>0) JumpBoost();
+        if (Input.GetKey(PlayerActions.keyJump) && jumping && currentJumpBoostFrames>0 && canJumpBoost) JumpBoost();
 
     }
 }

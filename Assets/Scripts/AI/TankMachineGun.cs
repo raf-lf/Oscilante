@@ -49,6 +49,8 @@ public class TankMachineGun : Creature
 
     protected override void Update()
     {
+        base.Update();
+
         anim.SetInteger("state", state);
 
         if (paused == false && dying == false)

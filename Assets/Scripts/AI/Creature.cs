@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class Creature : MonoBehaviour
 {
-    protected bool paused;
-    protected bool dying;
+    public bool paused;
+    public bool dying;
 
     [Header("Atributes")]
     public int hp;

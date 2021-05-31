@@ -115,12 +115,14 @@ public class Soldier : Creature
         rb.velocity = Vector2.zero;
         coverLeaveTargetTime = Time.time + Random.Range(coverTime.x, coverTime.y);
 
+        /*
         SpriteRenderer[] spriteGroup = GetComponentsInChildren<SpriteRenderer>();
         foreach (SpriteRenderer sprite in spriteGroup)
         {
             sprite.sortingLayerName = ("Cover");
 
         }
+        */
 
     }
 

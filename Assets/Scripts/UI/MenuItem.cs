@@ -33,9 +33,9 @@ public class MenuItem : MonoBehaviour,IPointerClickHandler
     {
         if (eventData.button == 0)
         {
-            if (GameManager.scriptMenu.descriptionAnim.GetBool("active")) GameManager.scriptMenu.DescriptionClose();
+            if (GameManager.scriptMenu.descriptionAnim.GetBool("active")) GameManager.scriptMenu.DescriptionOpenClose(false);
 
-            GameManager.scriptMenu.DescriptionOpen();
+            GameManager.scriptMenu.DescriptionOpenClose(true);
 
             switch (itemType)
             {

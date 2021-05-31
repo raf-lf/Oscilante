@@ -12,7 +12,7 @@ public class Landmine : MonoBehaviour
     {
         GameObject explosion = Instantiate(explosionEffect);
         explosion.transform.position = transform.position;
-        Destroy(this.gameObject);
+        Destroy(gameObject.transform.parent.gameObject);
         
     }
 

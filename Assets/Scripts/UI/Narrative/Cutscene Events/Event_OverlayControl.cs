@@ -6,7 +6,7 @@ public class Event_OverlayControl : CutsceneEvent
 {
     public enum control
     {
-        fadeOut, fadeIn
+        fadeOut, fadeIn, fadeOutInstant
     }
     public control controlType;
 
@@ -24,6 +24,10 @@ public class Event_OverlayControl : CutsceneEvent
                 overlayAnimator.SetInteger("state", 0);
                 break;
             case control.fadeOut:
+                overlayAnimator.SetInteger("state", 1);
+                break;
+            case control.fadeOutInstant:
+                overlayAnimator.Play("black");
                 overlayAnimator.SetInteger("state", 1);
                 break;
         }

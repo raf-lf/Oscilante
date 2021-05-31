@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
 
     public void Damage(int hpLoss, float knockback, Transform sourcePosition)
     {
-        if (inIFrames == false && MenuOptions.Invulnerability == false)
+        if (inIFrames == false && PlayerControls && MenuOptions.Invulnerability == false)
         {
             ChangeHp(hpLoss * -1);
 
@@ -149,12 +149,14 @@ public class Player : MonoBehaviour
             anim.SetBool("cover", covering);
             shaderAnimator.SetBool("cover", covering);
 
+            /*
             spriteGroup = GetComponentsInChildren<SpriteRenderer>();
             foreach (SpriteRenderer sprite in spriteGroup)
             {
                 if (covering) sprite.sortingLayerName = "Cover";
                 else sprite.sortingLayerName = "Default";
             }
+            */
         }
 
     }

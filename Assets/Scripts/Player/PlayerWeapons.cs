@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class PlayerWeapons : MonoBehaviour
 {
-    [Header("Weapon Stats")]
+    [Header("Equip")]
     public static int equipedWeapon = -1;
     public int equipedWeaponMemory;
+
+    [Header("Stats")]
     public static int[] ammo = { 0, 6, 50 };
     public static int[] magazineSize = { 0, 6, 50 };
-
-    //Weapon can't fire when cooldown >0
     public int[] cooldownValues = { 30, 30, 10 };
-    [SerializeField] private int[] cooldown = { 0, 0, 0 };
+    [SerializeField] 
+    private int[] cooldown = { 0, 0, 0 };
 
-    //What effect/bullet a weapon spawns when it's used
-    public GameObject[] effect = new GameObject[3];
+    [Header("Upgrades")]
     public int unupgradedPistolClipSize = 6;
     public int upgradedPistolClipSize = 10;
     public float rifleCriticalChance = 0.15f;
@@ -23,17 +23,17 @@ public class PlayerWeapons : MonoBehaviour
     public GameObject pistolSecondaryShot;
     public GameObject rifleSecondaryShot;
 
-    [Header("Weapon Objects")]
-    public Animator meleeAnimator;
-    //Weapon objects
+    [Header("Components")]
+    public GameObject[] effect = new GameObject[3];
     public GameObject[] weapon = new GameObject[3];
-    //Point of origin for effects/bullets in weapon objects
     public Transform[] effectOrigin = new Transform[3];
-
-    public float rotationZ;
-    public Vector2 direction;
-
+    public Animator meleeAnimator;
     public SpriteRenderer[] playerArms = new SpriteRenderer[2];
+
+    [HideInInspector]
+    public float rotationZ;
+    [HideInInspector]
+    public Vector2 direction;
 
 
     //Swap Weapon method is accessed through PlayerActions class
@@ -66,26 +66,6 @@ public class PlayerWeapons : MonoBehaviour
             //unhides equipped weapon
             HideUnhideWeapons(false);
 
-            //UI Hotkey animator control
-            for (int i = 0; i < weapon.Length; i++)
-            {
-                //Does the following for the equiped weapon
-                if (i == equipedWeapon)
-                {
-                    //Enables ammo bar, ignores if melee
-                    if (i != 0) GameManager.scriptHud.ammoBarAnimator[i].SetBool("hidden", false);
-                    //Enables active hotkey icon
-                    GameManager.scriptHud.itemHotkeyAnimator[i].SetBool("active", true);
-                }
-                //Does the following for all other weapons
-                else
-                {
-                    //Disables ammo bar, ignores if melee
-                    if (i != 0) GameManager.scriptHud.ammoBarAnimator[i].SetBool("hidden", true);
-                    //Disables active hotkey icon
-                    GameManager.scriptHud.itemHotkeyAnimator[i].SetBool("active", false);
-                }
-            }
         }
 
     }
@@ -129,7 +109,6 @@ public class PlayerWeapons : MonoBehaviour
         }
     }
 
-  
     public void UpdateAim()
     { 
         //Gets mouse position

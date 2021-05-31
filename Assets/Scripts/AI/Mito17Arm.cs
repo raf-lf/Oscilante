@@ -2,42 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mito17Arm : MonoBehaviour
+public class Mito17Arm : Creature
 {
-    public bool paused;
     public Mito17Main main;
-
-    [Header("Detection")]
-    public float detectionRange;
-    public LayerMask detectionMask;
-    public GameObject target;
+    public int state;
 
     [Header("Attack")]
-    public bool attacking;
     public GameObject projectile;
-    private float attackIntervalTimer;
+    public Transform projectileOrigin;
+    public float aimVariance;
     private float shotInterval = 0.15f;
-    private float shotTimer;
+    private float timer;
 
     public void AttackBegin()
     {
-        if(Time.time > attackIntervalTimer)
-        {
-            attackIntervalTimer = Time.time + main.gunUseInterval[main.phase];
-
-        }
+        if (Time.time > timer) state = 1;
 
     }
+
+    public void AttackEnd()
+    {
+        state = 0;
+        timer = Time.time + main.gunUseInterval[main.phase];
+
+    }
+
     public void Shot()
     {
-        if(Time.time > shotTimer)
+        if(Time.time > timer)
         {
-            shotTimer = Time.time + shotInterval;
+            timer = Time.time + shotInterval;
+
+            Projectile.ShootProjectile(projectile, projectileOrigin.position, target.transform.position, aimVariance);
 
         }
 
     }
-
+    /*
     public GameObject TargetDetection()
     {
         if (Physics2D.OverlapCircle(transform.position, detectionRange, detectionMask))
@@ -46,16 +47,23 @@ public class Mito17Arm : MonoBehaviour
         }
         else return null;
     }
+    */
 
-    private void Update()
+    protected override void Update()
     {
-        if (paused == false)
-        {
-            target = TargetDetection();
+        GetComponent<Animator>().SetInteger("state", state);
 
-            if (target != null)
+
+        if (!main.paused && !paused && !dying)
+        {
+            switch (state)
             {
-                AttackBegin();
+                case 0:
+                    if (TargetInsideDetection()) AttackBegin();
+                    break;
+                case 1:
+                    Shot();
+                    break;
             }
         }
     }

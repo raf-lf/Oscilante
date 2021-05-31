@@ -4,26 +4,36 @@ using UnityEngine;
 
 public class Mito17Charger : MonoBehaviour
 {
-    public bool active;
-    public bool broken;
+    public GameObject breakVfx;
+    public Animator connectedCord;
+    public bool isActive;
+    public int state;
 
     public void Activate()
     {
-        broken = false;
-        active = true;
+        state = 1;
+
+    }
+
+    public void FinishedActivating()
+    {
+        isActive = true;
 
     }
 
     public void Break()
     {
-        broken = true;
-        active = false;
+        isActive = false;
+        state = 0;
+        GameObject blast = Instantiate(breakVfx);
+        blast.transform.position = transform.position + new Vector3(0,0.4f,0);
+
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Breaker") && broken == false)
+        if (collision.gameObject.CompareTag("Breaker"))
         {
             Break();
         }
@@ -31,8 +41,9 @@ public class Mito17Charger : MonoBehaviour
 
     private void Update()
     {
-        GetComponent<Animator>().SetBool("active", active);
-        GetComponent<Animator>().SetBool("broken", broken);
+        GetComponent<Animator>().SetInteger("state", state);
+
+        connectedCord.SetBool("active", isActive);
     }
 
 }

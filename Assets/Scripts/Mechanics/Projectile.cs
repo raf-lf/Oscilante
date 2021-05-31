@@ -39,7 +39,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void Impact()
+    public void Impact()
     {
         GetComponent<Animator>().SetInteger("state", 1);
         GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
@@ -81,5 +81,18 @@ public class Projectile : MonoBehaviour
     private void FixedUpdate()
     {
         if (Time.time >= autoDestroyTargetTime && autoDestroyTimer != 0) GetComponent<Animator>().SetInteger("state", 2);
+    }
+
+    public static void ShootProjectile(GameObject proj, Vector3 aimOri, Vector3 aimTar, float aimVar)
+    {
+        GameObject shot = Instantiate(proj);
+        shot.transform.position = aimOri;
+
+        aimTar += new Vector3(Random.Range(-aimVar, aimVar), Random.Range(-aimVar, aimVar));
+
+        shot.GetComponent<Projectile>().rotationZ = Calculations.GetRotationZToTarget(aimOri, aimTar);
+        shot.GetComponent<Projectile>().direction = Calculations.GetDirectionToTarget(aimOri, aimTar);
+
+
     }
 }

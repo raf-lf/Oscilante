@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class MenuOptions : MonoBehaviour
 {
+    private bool setup;
+
     [Header("Graphics")]
     public Toggle togglePostProcessing;
     public Toggle togglePixelPerfect;
@@ -30,7 +32,6 @@ public class MenuOptions : MonoBehaviour
 
     private void Start()
     {
-
         Camera.main.GetComponent<CameraReferences>().postProcessing.enabled = postProcessingEnabled;
         Camera.main.GetComponent<CameraReferences>().pixelPerfect.enabled = pixelPerfectEnabled;
         togglePostProcessing.isOn = postProcessingEnabled;
@@ -49,8 +50,11 @@ public class MenuOptions : MonoBehaviour
 
     private void Update()
     {
-        Camera.main.GetComponent<CameraReferences>().postProcessing.enabled = togglePostProcessing.isOn;
-        Camera.main.GetComponent<CameraReferences>().pixelPerfect.enabled = togglePixelPerfect.isOn;
+        postProcessingEnabled = togglePostProcessing.isOn;
+        pixelPerfectEnabled = togglePixelPerfect.isOn;
+
+        Camera.main.GetComponent<CameraReferences>().postProcessing.enabled = postProcessingEnabled;
+        Camera.main.GetComponent<CameraReferences>().pixelPerfect.enabled = pixelPerfectEnabled;
 
         GameManager.scriptAudio.volumeSfx = volumeSliderSfx.value;
         GameManager.scriptAudio.volumeAmbient = volumeSliderAmbient.value;

@@ -50,6 +50,7 @@ public class SaveDataManager : MonoBehaviour
         GameManager.PlayerCharacter.transform.position = playerSpawnPosition;
         Camera.main.gameObject.transform.position = playerSpawnPosition + GameManager.scriptCamera.offset;
 
+        GameManager.scriptWeapons.SwapWeapon(PlayerWeapons.equipedWeapon);
         LoadResources();
         LoadSaveableObjects();
     }
@@ -136,7 +137,7 @@ public class SaveDataManager : MonoBehaviour
     private static void ConfirmLoadObject(SaveableObject saveableObject, int id)
     {
         saveableObject.LoadData();
-        Debug.Log(saveableObject.name + " with Id " + id + " was loaded");
+        //Debug.Log(saveableObject.name + " with Id " + id + " was loaded");
 
     }
 

@@ -119,11 +119,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.352
       objectReference: {fileID: 0}
-    - target: {fileID: 3506620369615479169, guid: 13c1addbbe073cd4eba921e56a1d08e5,
-        type: 3}
-      propertyPath: maskDestruction.m_Bits
-      value: 10753
-      objectReference: {fileID: 0}
     - target: {fileID: 3509865109856290136, guid: 13c1addbbe073cd4eba921e56a1d08e5,
         type: 3}
       propertyPath: m_Sprite

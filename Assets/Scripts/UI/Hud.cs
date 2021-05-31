@@ -40,6 +40,10 @@ public class Hud : MonoBehaviour
 
     void Update()
     {
+        UpdateWeaponInfo();
+
+        GetComponent<Animator>().SetBool("cutscene", GameManager.CutscenePlaying);
+
         if (MenuOptions.Invulnerability) hpText.text = "Invulnerável";
         else hpText.text = Player.hp + "/" + Player.hpMax;
 
@@ -73,5 +77,51 @@ public class Hud : MonoBehaviour
                 ammoBar[i].fillAmount = ammoBarFill[i];
             }
         }
+    }
+
+    private void UpdateWeaponInfo()
+    {
+
+        for (int i = 0; i < GameManager.scriptWeapons.weapon.Length; i++)
+        {
+            //Updates Hotkeys
+            if (GameManager.unlockedWeapon[i])
+            {
+                itemHotkeyAnimator[i].SetBool("enabled", true);
+                
+                if (i == PlayerWeapons.equipedWeapon) itemHotkeyAnimator[i].SetBool("active", true);
+                else itemHotkeyAnimator[i].SetBool("active", false);
+
+            }
+            else itemHotkeyAnimator[i].SetBool("enabled", false);
+
+            //Update Ammo Bars
+            if (ammoBarAnimator[i] != null)
+            {
+                if (GameManager.scriptMenu.menuOpen)
+                {
+                    if (GameManager.unlockedWeapon[i])
+                    {
+                        ammoBarAnimator[i].SetBool("hidden", false);
+
+                        if (i == 2) ammoBarAnimator[i].SetBool("low", true);
+                        else ammoBarAnimator[i].SetBool("low", false);
+                    }
+
+                    else ammoBarAnimator[i].SetBool("hidden", true);
+                }
+                else
+                {
+                    ammoBarAnimator[i].SetBool("low", false);
+
+                    if (i == PlayerWeapons.equipedWeapon) ammoBarAnimator[i].SetBool("hidden", false);
+                    else ammoBarAnimator[i].SetBool("hidden", true);
+                }
+                
+               
+            }
+
+        }
+
     }
 }

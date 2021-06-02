@@ -31,6 +31,20 @@ public class Tank : Creature
     public AudioClip bossMusic;
     private AudioClip memoryMusic;
 
+    public override void LoadData()
+    {
+
+        postDefeatSwitch.unusable = false;
+        arenaDoor.forceInactive = false;
+
+        foreach (GameObject zone in bossCameraZones)
+        {
+            zone.SetActive(false);
+        }
+
+        parent.SetActive(false);
+
+    }
 
     private void BossBattleBegin()
     {
@@ -112,6 +126,8 @@ public class Tank : Creature
     public override void Death()
     {
         base.Death();
+
+        if (bossBatle && GetComponent<SaveableObject>()) GetComponent<SaveableObject>().SaveData();
 
         if (bossBatle) StartCoroutine(BossBattleEnd());
 

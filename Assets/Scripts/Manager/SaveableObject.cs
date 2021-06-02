@@ -42,5 +42,10 @@ public class SaveableObject : MonoBehaviour
             GetComponent<Cutscene>().off = true;
         }
 
+        if (GetComponent<Creature>())
+        {
+            GetComponent<Creature>().LoadData();
+        }
+
     }
 }

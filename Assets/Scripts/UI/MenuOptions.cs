@@ -37,9 +37,9 @@ public class MenuOptions : MonoBehaviour
         togglePostProcessing.isOn = postProcessingEnabled;
         togglePixelPerfect.isOn = pixelPerfectEnabled;
 
-        volumeSliderSfx.value = GameManager.scriptAudio.volumeSfx;
-        volumeSliderAmbient.value = GameManager.scriptAudio.volumeAmbient;
-        volumeSliderBgm.value = GameManager.scriptAudio.volumeBgm;
+        volumeSliderSfx.value = AudioManager.volumeSfx;
+        volumeSliderAmbient.value = AudioManager.volumeAmbient;
+        volumeSliderBgm.value = AudioManager.volumeBgm;
 
         toggleInvulnerability.isOn = Invulnerability;
         toggleInfiniteHeals.isOn = InfiniteHeals;
@@ -56,9 +56,9 @@ public class MenuOptions : MonoBehaviour
         Camera.main.GetComponent<CameraReferences>().postProcessing.enabled = postProcessingEnabled;
         Camera.main.GetComponent<CameraReferences>().pixelPerfect.enabled = pixelPerfectEnabled;
 
-        GameManager.scriptAudio.volumeSfx = volumeSliderSfx.value;
-        GameManager.scriptAudio.volumeAmbient = volumeSliderAmbient.value;
-        GameManager.scriptAudio.volumeBgm = volumeSliderBgm.value;
+        AudioManager.volumeSfx = volumeSliderSfx.value;
+        AudioManager.volumeAmbient = volumeSliderAmbient.value;
+        AudioManager.volumeBgm = volumeSliderBgm.value;
 
         Invulnerability = toggleInvulnerability.isOn;
         InfiniteHeals = toggleInfiniteHeals.isOn;

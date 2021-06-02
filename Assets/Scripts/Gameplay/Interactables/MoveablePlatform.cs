@@ -49,7 +49,7 @@ public class MoveablePlatform : MonoBehaviour
 
         currentSfxVolume = Mathf.Clamp(currentSfxVolume, 0, 1);
 
-        movingSfx.volume = currentSfxVolume * GameManager.scriptAudio.volumeSfx;
+        movingSfx.volume = currentSfxVolume * AudioManager.volumeSfx;
 
     }
 }

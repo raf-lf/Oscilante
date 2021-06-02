@@ -46,8 +46,17 @@ public class OscilantAnihilator : Creature
     public SwitchMoveablePlatform[] elevatorSwitches = new SwitchMoveablePlatform[3];
     public AudioClip bossMusic;
     private AudioClip memoryMusic;
+    public Animator cityGates;
 
 
+    public override void LoadData()
+    {
+
+        cityGates.SetBool("active", true);
+        postDefeatCutscene.SetActive(true);
+        gameObject.SetActive(false);
+
+    }
 
     public void SfxActivate()
     {
@@ -111,6 +120,8 @@ public class OscilantAnihilator : Creature
 
     public override void Death()
     {
+        if (bossBatle && GetComponent<SaveableObject>()) GetComponent<SaveableObject>().SaveData();
+
         StopAllCoroutines();
         eyeAnimator.SetInteger("state", 3);
         busy = true;

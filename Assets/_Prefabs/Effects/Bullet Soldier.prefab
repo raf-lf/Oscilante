@@ -248,7 +248,7 @@ MonoBehaviour:
   knockback: 10
   speed: 15
   impactEffect: {fileID: 0}
-  autoDestroyTimer: 1
+  autoDestroyTimer: 3
   rotationZ: 0
   direction: {x: 0, y: 0}
 --- !u!212 &1167990767201439461

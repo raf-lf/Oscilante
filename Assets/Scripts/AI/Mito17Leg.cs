@@ -50,7 +50,7 @@ public class Mito17Leg : MonoBehaviour
 
         targetFrames = (int)(main.stompTime[main.phase] * 60);
 
-        if (!paused && !main.paused)
+        if (!paused && !main.paused && !main.dying)
         {
             switch (state)
             {

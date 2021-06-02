@@ -276,7 +276,8 @@ public class PlayerMovement : MonoBehaviour
         {
             move = false;
 
-            if (jumping == false) rb.velocity = new Vector2(rb.velocity.x / 2, rb.velocity.y);
+           if (jumping == false) rb.velocity = new Vector2(rb.velocity.x / 4, rb.velocity.y);
+           else rb.velocity = new Vector2(rb.velocity.x / 2, rb.velocity.y);
         }
 
     }

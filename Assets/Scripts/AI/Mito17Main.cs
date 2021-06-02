@@ -10,30 +10,32 @@ public class Mito17Main : Creature
     public int phase;
     public int state;
 
+    [Header("Components")]
     public GameObject mainBody;
+    public Animator damageFeeback;
 
     [Header("Shield Chargers")]
     public Mito17Charger[] shieldChargers = new Mito17Charger[4];
     public float chargerActivationDelay = 10;
     private float stateTimer;
     public float exposedInterval = 5;
-    public int[] chargersToActivate = { 1, 2, 4 };
+    public int[] chargersToActivate;
 
     [Header("Attacks")]
     public Mito17Arm[] gunArms = new Mito17Arm[2];
-    public float[] gunUseInterval = { 8, 4, 2 };
+    public float[] gunUseInterval;
     public Mito17Leg[] legs = new Mito17Leg[2];
-    public float[] stompTime = { 4, 2, 0.5f };
+    public float[] stompTime;
 
     [Header("Missile Shooter")]
     public Mito17MissileLauncher missileShooter;
-    public float[] missileInterval = { 0, 10, 5 };
+    public float[] missileInterval;
 
     [Header("Mines")]
     public GameObject mine;
     public BoxCollider2D mineSpawner;
-    public int[] minesQty = { 0, 3, 5 };
-    public float[] mineInterval = { 0, 30, 15 };
+    public int[] minesQty;
+    public float[] mineInterval;
     private float mineIntervalTimer;
 
     [Header("Explosion")]
@@ -43,19 +45,69 @@ public class Mito17Main : Creature
     public GameObject wallToBreak;
     public GameObject[] gasLeaks;
 
-    public override void Start()
+    [Header("Narrative")]
+    public CallCommentLog[] battleComments = new CallCommentLog[4];
+    public Cutscene postBattleCutscene;
+
+    [Header("Boss Battle")]
+    private AudioClip memoryMusic;
+    public AudioClip bossMusic;
+    public SwitchConnectedObject nextAreaDoor;
+
+
+    public override void LoadData()
     {
-        //DELETE MEEEEEE
-        StartBattle();
+        nextAreaDoor.forceInactive = false;
+
+        wallToBreak.SetActive(false);
+
+        foreach (GameObject leak in gasLeaks)
+        {
+            leak.SetActive(true);
+            leak.GetComponent<Animator>().SetBool("disabled", true);
+        }
+
+        mainBody.SetActive(false);
+
     }
 
-    public void StartBattle()
+    public void StartBattleSignal()
     {
+        StartCoroutine(StartBattle());
+    }
+
+    public IEnumerator StartBattle()
+    {
+        nextAreaDoor.forceInactive = true;
+
+        memoryMusic = GameManager.scriptAudio.bgmAudioSource.clip;
+        GameManager.scriptAudio.MusicMax();
+        GameManager.scriptAudio.bgmAudioSource.clip = bossMusic;
+        GameManager.scriptAudio.bgmAudioSource.Play();
+
+        mainBody.GetComponent<Animator>().Play("activation");
+        yield return new WaitForSeconds(3);
+
+
         active = true;
         BeginShielded();
+
     }
 
+    public void BattleEnd()
+    {
+        GameManager.scriptAudio.MusicOff(0.5f);
 
+        nextAreaDoor.forceInactive = false;
+
+        if (memoryMusic != null)
+        {
+            GameManager.scriptAudio.bgmAudioSource.clip = memoryMusic;
+            GameManager.scriptAudio.bgmAudioSource.Play();
+            GameManager.scriptAudio.MusicOn(1);
+        }
+
+    }
 
     private void BeginShielded()
     {
@@ -72,8 +124,8 @@ public class Mito17Main : Creature
     {
         int roll = (int)Random.Range(0, shieldChargers.Length);
 
-        Debug.Log(roll);
-        if (shieldChargers[roll].state==1) RollChargers();
+       // Debug.Log(roll);
+        if (shieldChargers[roll].state == 1) RollChargers();
         else shieldChargers[roll].Activate();
     }
     private void CheckShieldChargers()
@@ -104,8 +156,6 @@ public class Mito17Main : Creature
             BeginShielded();
         }
     }
-
-
     private IEnumerator Explosion()
     {
         alreadyExploded = true;
@@ -130,6 +180,9 @@ public class Mito17Main : Creature
 
     public override void Death()
     {
+        if (GetComponent<SaveableObject>()) GetComponent<SaveableObject>().SaveData();
+
+        state = 3;
         dying = true;
         if (deathVFX != null) Instantiate(deathVFX, transform);
 
@@ -147,28 +200,35 @@ public class Mito17Main : Creature
         mainBody.GetComponent<Animator>().SetBool("dying", true);
 
         anim.SetBool("dying", true);
+
+        postBattleCutscene.CutsceneStartEnd(true);
+    }
+    public void DeathSequenceEnd()
+    {
+        BattleEnd();
+        mainBody.GetComponent<Animator>().Play("death");
+
     }
 
     protected override void Update()
     {
-
         base.Update();
 
         UpdatePhase();
 
-        if(active && paused == false && dying == false)
+        if (!dying) damageFeeback.SetInteger("phase", phase);
+        else damageFeeback.SetInteger("phase", 0);
+
+        if (active) PlayComment();
+
+        if (active && paused == false && dying == false)
         {
-            if (phase == 2 && !alreadyExploded)
+            PhaseActions();
+
+            if (phase == 3 && !alreadyExploded)
             {
                 StartCoroutine(Explosion());
             }
-
-            if (phase >= 1)
-            {
-                missileShooter.active = true;
-                MineSpawn();
-            }
-            else missileShooter.active = false;
 
             switch (state)
             {
@@ -203,15 +263,59 @@ public class Mito17Main : Creature
 
     }
 
-
+    private void PhaseActions()
+    {
+            switch (phase)
+            {
+                case 0:
+                    missileShooter.active = false;
+                    break;
+                case 1:
+                    missileShooter.active = true;
+                    break;
+                case 2:
+                    missileShooter.active = true;
+                    MineSpawn();
+                    break;
+                case 3:
+                    missileShooter.active = true;
+                    MineSpawn();
+                    break;
+            }
+    }
     private void UpdatePhase()
     {
         if (!dying)
         {
-            if (hp < hpMax * .33f) phase = 2;
-            else if (hp < hpMax * .66f) phase = 1;
-            else phase = 0;
+            if (hp > 0)
+            {
+                if (hp < hpMax * .25f)
+                {
+                    phase = 3;
+                }
+                else if (hp < hpMax * .50f) 
+                {
+                    phase = 2;
+                }
+                else if (hp < hpMax * .75f) 
+                {
+                    phase = 1;
+
+                }
+                else phase = 0;
+            }
         }
 
     }
+    
+    private void PlayComment()
+    {
+        if (!battleComments[phase].off)
+        {
+            battleComments[phase].off = true;
+            battleComments[phase].Comment();
+        }
+
+    }
+
 }

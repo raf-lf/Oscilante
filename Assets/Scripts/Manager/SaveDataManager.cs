@@ -116,6 +116,7 @@ public class SaveDataManager : MonoBehaviour
         if (saveableObject.GetComponent<Checkpoint>()) SavedData.checkpointsUsed.Add(idToSave);
         if (saveableObject.GetComponent<CallCommentLog>()) SavedData.commentsSeen.Add(idToSave);
         if (saveableObject.GetComponent<Cutscene>()) SavedData.cutscenesSeen.Add(idToSave);
+        if (saveableObject.GetComponent<Creature>()) SavedData.bossesDefeated.Add(idToSave);
 
         Debug.Log(saveableObject.name + " was saved with Id " + idToSave);
     }
@@ -131,6 +132,7 @@ public class SaveDataManager : MonoBehaviour
             if (saveableObject.GetComponent<Checkpoint>() && SavedData.checkpointsUsed.Contains(idToLoad)) ConfirmLoadObject(saveableObject, idToLoad);
             if (saveableObject.GetComponent<CallCommentLog>() && SavedData.commentsSeen.Contains(idToLoad)) ConfirmLoadObject(saveableObject, idToLoad);
             if (saveableObject.GetComponent<Cutscene>() && SavedData.cutscenesSeen.Contains(idToLoad)) ConfirmLoadObject(saveableObject, idToLoad);
+            if (saveableObject.GetComponent<Creature>() && SavedData.bossesDefeated.Contains(idToLoad)) ConfirmLoadObject(saveableObject, idToLoad);
         }
     }
 

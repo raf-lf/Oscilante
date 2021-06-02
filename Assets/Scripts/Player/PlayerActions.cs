@@ -47,7 +47,7 @@ public class PlayerActions : MonoBehaviour
 
     private void ItemHealUse()
     {
-        if (Player.PlayerControls && Player.CantAct == false && Time.time >= healCooldownTimer && remainingPulses == 0)
+        if (Time.time >= healCooldownTimer && remainingPulses == 0)
         {
             if (GameManager.ItemHeal > 0 || MenuOptions.InfiniteHeals)
             {
@@ -79,7 +79,7 @@ public class PlayerActions : MonoBehaviour
 
     private void ItemGrenadelUse()
     {
-        if (GameManager.scriptPlayer.inCover == false && Player.PlayerControls && Player.CantAct == false && Time.time >= throwCooldownTimer)
+        if (GameManager.scriptPlayer.inCover == false && Time.time >= throwCooldownTimer)
         {
             if (GameManager.ItemGrenade > 0 || MenuOptions.InfiniteGrenades)
             {
@@ -206,13 +206,16 @@ public class PlayerActions : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.GamePaused == false)
+        if (!GameManager.GamePaused && !Player.CantAct && Player.PlayerControls)
         {
+            /*
             if (Input.GetKeyDown(keyTest))
             {
                 testAnimationUse();
 
             }
+            */
+
             if (Input.GetKeyDown(keyHeal))
             {
                 ItemHealUse();
@@ -232,11 +235,11 @@ public class PlayerActions : MonoBehaviour
             {
                 if (Input.GetKeyDown(keyWeapon[i]) && GameManager.unlockedWeapon[i]) GameManager.scriptWeapons.SwapWeapon(i);
             }
+        }
 
-            if (remainingPulses > 0 && Time.time > pulseTimer)
-            {
-                Pulse();
-            }
+        if (remainingPulses > 0 && Time.time > pulseTimer)
+        {
+            Pulse();
         }
     }
 

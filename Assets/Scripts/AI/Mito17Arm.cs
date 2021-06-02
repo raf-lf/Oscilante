@@ -54,7 +54,7 @@ public class Mito17Arm : Creature
         GetComponent<Animator>().SetInteger("state", state);
 
 
-        if (!main.paused && !paused && !dying)
+        if (main.active && !main.paused && !paused && !dying)
         {
             switch (state)
             {

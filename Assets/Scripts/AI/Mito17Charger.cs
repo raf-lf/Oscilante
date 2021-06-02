@@ -9,6 +9,8 @@ public class Mito17Charger : MonoBehaviour
     public bool isActive;
     public int state;
 
+    public CallCommentLog breakComment;
+
     public void Activate()
     {
         state = 1;
@@ -27,6 +29,12 @@ public class Mito17Charger : MonoBehaviour
         state = 0;
         GameObject blast = Instantiate(breakVfx);
         blast.transform.position = transform.position + new Vector3(0,0.4f,0);
+
+        if (!breakComment.off)
+        {
+            breakComment.off = true;
+            breakComment.Comment();
+        }
 
 
     }

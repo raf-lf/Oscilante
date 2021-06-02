@@ -39,7 +39,7 @@ public class PlayerWeapons : MonoBehaviour
     //Swap Weapon method is accessed through PlayerActions class
     public void SwapWeapon(int weaponId)
     {
-        if (Player.PlayerControls && Player.CantAct == false && GameManager.GamePaused == false)
+        if (Player.CantAct == false)
         {
             //If key for equipped weapon is pressed, unequip weapon
             if (weaponId == equipedWeapon)

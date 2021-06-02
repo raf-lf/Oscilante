@@ -10,6 +10,10 @@ public class MenuUi : MonoBehaviour
     public bool menuOpen;
     public bool hideLevel3Content;
 
+    [Header("Medals")]
+    public static bool[] achievmentLogShown = new bool[3];
+    public AudioClip medalUnlockClip;
+
     [Header("SubMenus")]
     public Animator submenuAnim;
     public Animator inventoryAnim;
@@ -78,17 +82,14 @@ public class MenuUi : MonoBehaviour
     {
         for (int i = 0; i < weaponUpgradeBox.Length; i++)
         {
-            if (GameManager.weaponUpgrades[i]) weaponUpgradeBox[i].interactable = true;
+            if (GameManager.weaponUpgrades[i])
+            {
+                weaponUpgradeBox[i].interactable = true;
+            }
             else weaponUpgradeBox[i].interactable = false;
 
         }
 
-        for (int i = 0; i < medalBox.Length; i++)
-        {
-            if (GameManager.medals[i]) medalBox[i].interactable = true;
-            else medalBox[i].interactable = false;
-
-        }
 
         for (int i1 = 0; i1 < documentBox.GetLength(0); i1++)
         {
@@ -97,12 +98,89 @@ public class MenuUi : MonoBehaviour
 
             for (int i2 = 0; i2 < documentBox.GetLength(1); i2++)
             {
-                if (GameManager.documents[i1, i2]) documentBox[i1, i2].interactable = true;
+                if (GameManager.documents[i1, i2])
+                {
+                    documentBox[i1, i2].interactable = true;
+                }
                 else documentBox[i1, i2].interactable = false;
 
             }
         }
 
+
+        for (int i = 0; i < medalBox.Length; i++)
+        {
+            if (GameManager.medals[i]) medalBox[i].interactable = true;
+            else medalBox[i].interactable = false;
+
+        }
+
+    }
+
+    public void AchievmentCheck()
+    {
+        int collectableCount = 0;
+
+        for (int i1 = 0; i1 < documentBox.GetLength(0); i1++)
+        {
+            for (int i2 = 0; i2 < documentBox.GetLength(1); i2++)
+            {
+                if (GameManager.documents[i1, i2]) collectableCount++;
+            }
+        }
+
+        for (int i = 0; i < GameManager.weaponUpgrades.Length; i++)
+        {
+            if (GameManager.weaponUpgrades[i]) collectableCount++;
+
+        }
+
+        for (int i = 0; i < GameManager.unlockedWeapon.Length; i++)
+        {
+            if (GameManager.unlockedWeapon[i]) collectableCount++;
+
+        }
+
+        if (hideLevel3Content)
+        {
+            if (collectableCount >= 13)
+            {
+                GameManager.medals[1] = true;
+                AchievmentLog(1);
+            }
+        }
+        else
+        {
+            if (collectableCount >= 24)
+            {
+                GameManager.medals[1] = true;
+                AchievmentLog(1);
+            }
+        }
+
+        int resourcesCount = GameManager.ItemHeal + GameManager.ItemGrenade + GameManager.AmmoClips[1] + GameManager.AmmoClips[2];
+
+        if (resourcesCount >= 30)
+        {
+            GameManager.medals[2] = true;
+            AchievmentLog(2);
+        }
+
+        //CHANGE THIS TRIGGER
+        if (SavedData.cutscenesSeen.Contains(3003)) GameManager.medals[0] = true;
+
+    }
+
+    public void AchievmentLog(int id)
+    {
+        if (!achievmentLogShown[id] && !GameManager.scriptLog.textActive)
+        {
+            achievmentLogShown[id] = true;
+
+            AudioManager.PlaySfx(medalUnlockClip, 1, Vector2.one);
+
+            GameManager.scriptLog.Write(LibraryMenu.LogMedal(LibraryMenu.ReturnMedalInfo(true,id)));
+        }
     }
 
     public void InventoryOpen()
@@ -167,7 +245,10 @@ public class MenuUi : MonoBehaviour
 
     public void MenuOpen()
     {
+        UpdateSceneInfo();
+
         InventoryOpen();
+
 
         GameManager.PauseGame(true);
 
@@ -193,7 +274,7 @@ public class MenuUi : MonoBehaviour
 
     void Update()
     {
-        UpdateSceneInfo();
+        AchievmentCheck();
         weapons.SetBool("hasRifle", GameManager.unlockedWeapon[2]);
         weapons.SetBool("hideLevel3Content", hideLevel3Content);
         documents.SetBool("hideLevel3Content", hideLevel3Content);

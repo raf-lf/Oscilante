@@ -18,15 +18,15 @@ public class PlayAudioLoop : MonoBehaviour
         switch (type)
         {
             case audioType.sfx:
-                source.volume = source.volume * GameManager.scriptAudio.volumeSfx;
+                source.volume = source.volume * AudioManager.volumeSfx;
                 break;
 
             case audioType.ambient:
-                source.volume = source.volume * GameManager.scriptAudio.volumeAmbient;
+                source.volume = source.volume * AudioManager.volumeAmbient;
                 break;
 
             case audioType.bgm:
-                source.volume = source.volume * GameManager.scriptAudio.volumeBgm;
+                source.volume = source.volume * AudioManager.volumeBgm;
                 break;
         }
 

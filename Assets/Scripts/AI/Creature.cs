@@ -41,9 +41,14 @@ public abstract class Creature : MonoBehaviour
     public Vector2 standartPitchVariance = new Vector2(.7f, 1.3f);
 
 
+    public virtual void LoadData()
+    {
+
+    }
+
     public void playSFX(AudioClip[] audioClip, float volume, Vector2 pitchVariance)
     {
-        sfxSource.volume = volume * GameManager.scriptAudio.volumeSfx;
+        sfxSource.volume = volume * AudioManager.volumeSfx;
         sfxSource.pitch = Random.Range(pitchVariance.x, pitchVariance.y);
         sfxSource.PlayOneShot(audioClip[(int)Random.Range(0, audioClip.Length)]);
 

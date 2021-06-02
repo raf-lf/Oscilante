@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     public static int hp = 10;
     public static int hpMax = 10;
 
+    public static bool PlayerControls = true;
+    public static bool CantAct = false;
+
     public GameObject damageVFX;
     public int iFramesSeconds = 1;
     private bool inIFrames;
@@ -16,9 +19,6 @@ public class Player : MonoBehaviour
     public bool inCover;
     public Collider2D DamageCollider;
     public Collider2D CoverCollider;
-
-    public static bool PlayerControls = true;
-    public static bool CantAct = false;
 
     public Animator shaderAnimator;
     public bool dead;

@@ -64,11 +64,9 @@ public static class LibraryMenu
             {
                 switch (medalId)
                 {
-                    case 0:
-                        return
-                        "Descobriu a verdadeira natureza de Quila e dos oscilantes.";
-                    case 1: return "Encontrou todos os documentos e melhorias de armas no jogo!";
-                    case 2: return "Acumulou um total de 50 objetos entre granadas e pentes de munição!";
+                    case 0: return "Descobriu a verdadeira natureza de Quilla e dos oscilantes.";
+                    case 1: return "Encontrou todas as armas, melhorias e  documentos jogo!";
+                    case 2: return "Acumulou um total de 50 recursos não usados!";
                     default: return null;
                 }
             }
@@ -136,9 +134,14 @@ public static class LibraryMenu
             default: return null;
         }
     }
-        public static string LogDocument(string documentName)
+    public static string LogDocument(string documentName)
     {
         return "Documento '" + documentName + "' encontrado";
+
+    }
+    public static string LogMedal(string medalName)
+    {
+        return "Medalha '" + medalName + "' conquistada!";
 
     }
 }

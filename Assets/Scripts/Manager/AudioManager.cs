@@ -10,9 +10,9 @@ public class AudioManager : MonoBehaviour
     public AudioSource genericSfxAudioSource;
     public AudioSource genericAmbientAudioSource;
 
-    public float volumeSfx = 1;
-    public float volumeBgm = .25f;
-    public float volumeAmbient = .75f;
+    public static float volumeSfx = .5f;
+    public static float volumeBgm = .75f;
+    public static float volumeAmbient = .5f;
     public float volumeBgmModifier = 1;
 
     private void Start()
@@ -25,6 +25,14 @@ public class AudioManager : MonoBehaviour
         genericSfxAudioSource.volume = volumeSfx;
         genericAmbientAudioSource.volume = volumeAmbient;
         bgmAudioSource.volume = volumeBgm * volumeBgmModifier;
+
+    }
+
+    public static void PlaySfx(AudioClip clip, float volume, Vector2 pitchVariance)
+    {
+        GameManager.scriptAudio.genericSfxAudioSource.volume = volume * AudioManager.volumeSfx;
+        GameManager.scriptAudio.genericSfxAudioSource.pitch = Random.Range(pitchVariance.x, pitchVariance.y);
+        GameManager.scriptAudio.genericSfxAudioSource.PlayOneShot(clip);
 
     }
 

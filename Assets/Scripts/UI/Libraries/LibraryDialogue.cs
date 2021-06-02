@@ -1194,10 +1194,315 @@ public static class LibraryDialogue
                     default: return null;
                 }
 
+            //Final Level dialogues
+            case 4:
+                switch(chatId)
+                {
+                    //Mito-17 encounter
+                    case 1:
+                        switch (sectionId)
+                        {
+                            case 1:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 0;
+                                        return ("Reina? Eu estou aqui! Onde você está?");
+                                    case 2:
+                                        currentPortraitId = 3;
+                                        return ("Não tão rápido, ratazana! Ou será que já se esqueceu de mim?");
+                                    case 3:
+                                        currentPortraitId = 0;
+                                        return ("Apareça, Narus! Não tenho tempo para gracinhas! Vamos acabar logo com isso!");
+                                    case 4:
+                                        currentPortraitId = 3;
+                                        return ("Muito bem, verme! Já está na hora de você ser esmagada!");
+
+                                    default: return null;
+                                }
+                            case 2:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 3;
+                                        return ("O que acha dele? Uma beleza, não é? Eu o chamo de Mito-17!");
+                                    case 2:
+                                        currentPortraitId = 0;
+                                        return ("Vai se esconder dentro de uma máquina? Por que não desce aqui embaixo e luta comigo você mesmo?!");
+                                    case 3:
+                                        currentPortraitId = 3;
+                                        return ("Você acha que sou burro, garota? Você pode ser um verme insolente, mas dizimou a maioria das minhas tropas!");
+                                    case 4:
+                                        currentPortraitId = 3;
+                                        return ("Nem parece humana! Você é um monstro grotesco que deve ser esmagado!");
+                                    case 5:
+                                        currentPortraitId = 0;
+                                        return ("Então vamos começar! Eu vou te arrancar desse assento e fazer você pagar por tudo que já fez!");
+                                    case 6:
+                                        currentPortraitId = 3;
+                                        return ("Quanta ousadia! É você e sua preciosa Resistência que vão pagar por terem arruinado meu país!");
+
+                                    default: return null;
+                                }
+                            default: return null;
+                        }
+
+                    //Last boss victory
+                    case 2:
+                        switch (sectionId)
+                        {
+                            case 1:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 3;
+                                        return ("Meu... Meu Mito-17! O que... O QUE VOCÊ FEZ?!");
+                                    case 2:
+                                        currentPortraitId = 3;
+                                        return ("COMO UMA MULHER TOLA COMO VOCÊ FOI CAPAZ DE DERROTAR MINHA ARMA SUPREMA?!");
+                                    case 3:
+                                        currentPortraitId = 3;
+                                        return ("ABERRAÇÃO! VOCÊ NÃO É UMA MULHER COMUM, NÃO É?!");
+                                    case 4:
+                                        currentPortraitId = 0;
+                                        return ("O mundo pode estar em ruínas, Narus. Mas hoje ele se torna um pouco melhor com a sua morte.");
+                                    case 5:
+                                        currentPortraitId = 3;
+                                        return ("DESGRAÇADA! VOCÊ E AQUELA GAROTA IMUNDA VÃO QUEIMAR NO INFERNO...!");
+
+                                    default: return null;
+                                }
+                            case 2:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 0;
+                                        return ("...");
+                                    case 2:
+                                        currentPortraitId = 1;
+                                        return ("O líder do novo governo foi eliminado.");
+                                    case 3:
+                                        currentPortraitId = 0;
+                                        return ("Sim.");
+                                    case 4:
+                                        currentPortraitId = 1;
+                                        return ("O que você está sentindo agora, agente?");
+                                    case 5:
+                                        currentPortraitId = 0;
+                                        return ("Eu... Eu não estou sentindo nada.");
+                                    case 6:
+                                        currentPortraitId = 1;
+                                        return ("Nossa missão ainda não acabou, agente.");
+                                    case 7:
+                                        currentPortraitId = 0;
+                                        return ("Não... Acabou?");
+                                    case 8:
+                                        currentPortraitId = 1;
+                                        return ("Minha última tarefa é analisar nosso encontro com a garota.");
+                                    case 9:
+                                        currentPortraitId = 0;
+                                        return ("Reina?");
+                                    case 10:
+                                        currentPortraitId = 1;
+                                        return ("Nosso objetivo final.");
+                                    case 11:
+                                        currentPortraitId = 1;
+                                        return ("Após isso, nosso propósito será concluído.");
+                                    case 12:
+                                        currentPortraitId = 0;
+                                        return ("...");
+                                    case 13:
+                                        currentPortraitId = 1;
+                                        return ("É para isso que fomos criados, agente.");
+
+                                    default: return null;
+                                }
+
+                            case 3:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 0;
+                                        return ("Nossa... Missão...");
+                                    case 2:
+                                        currentPortraitId = 0;
+                                        return ("Você acredita que faremos do mundo um lugar melhor, operador?");
+                                    case 3:
+                                        currentPortraitId = 1;
+                                        return ("Minha função é apenas observar e analisar como minha outra metade reage ao trajeto, agente.");
+                                    case 4:
+                                        currentPortraitId = 1;
+                                        return ("Ao contrário de você, não sou programado para ter a capacidade de responder uma pergunta como essa.");
+                                    case 5:
+                                        currentPortraitId = 0;
+                                        return ("...");
+
+                                    default: return null;
+                                }
+                            default: return null;
+                        }
+
+                    //Encountering Reina, last cutscene
+                    case 3:
+                        switch (sectionId)
+                        {
+                            case 1:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 0;
+                                        return "Reina? Nós estamos aqui.";
+
+                                    default: return null;
+                                }
+                            case 2:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 2;
+                                        return "...Quilla?";
+
+                                    default: return null;
+                                }
+                            case 3:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 2;
+                                        return "Então... Narus está morto?";
+                                    case 2:
+                                        currentPortraitId = 0;
+                                        return "Sim.";
+
+                                    default: return null;
+                                }
+                            case 4:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 2;
+                                        return "Você conseguiu! Eu sabia que você era capaz!";
+                                    case 2:
+                                        currentPortraitId = 2;
+                                        return "Finalmente estamos seguros! Estou tão feliz de te ver!";
+                                    case 3:
+                                        currentPortraitId = 0;
+                                        return "Eu... Também estou...";
+                                    case 4:
+                                        currentPortraitId = 2;
+                                        return "Agora vai ficar tudo bem! Não é mesmo?";
+                                    case 5:
+                                        currentPortraitId = 0;
+                                        return "...";
+
+                                    default: return null;
+                                }
+                            case 5:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 2;
+                                        return "...Não é?";
+                                    case 2:
+                                        currentPortraitId = 0;
+                                        return "Sim... Vai.";
+
+                                    default: return null;
+                                }
+
+                            case 6:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 0;
+                                        return "...";
+                                    case 2:
+                                        currentPortraitId = 1;
+                                        return "Nossa missão foi concluída, agente.";
+
+                                    default: return null;
+                                }
+
+                            case 7:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 1;
+                                        return "Todos os dados da missão foram enviados.";
+                                    case 2:
+                                        currentPortraitId = 1;
+                                        return "Acredito que ainda temos alguns minutos antes de que nossas personalidaeds sejam recombinadas " +
+                                            "e apagadas.";
+
+                                    default: return null;
+                                }
+
+                            case 8:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 0;
+                                        return "...";
+                                    case 2:
+                                        currentPortraitId = 1;
+                                        return "O que você quer fazer nestes últimos momentos?";
+                                    case 3:
+                                        currentPortraitId = 0;
+                                        return "Eu quero ver minha filha novamente, operador.";
+                                    case 4:
+                                        currentPortraitId = 1;
+                                        return "Posso dar replay nessa memória uma última vez, agente.";
+
+                                    default: return null;
+                                }
+
+                            case 9:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 0;
+                                        return "...";
+                                    case 2:
+                                        currentPortraitId = 0;
+                                        return "Obrigada.";
+
+                                    default: return null;
+                                }
+
+                            case 10:
+                                switch (lineId)
+                                {
+                                    case 1:
+                                        currentPortraitId = 6;
+                                        return "FUSÃO DE FRAGMENTO DE ANÁLISE 'OPERADOR' E FRAGMENTO DE PERSONALIDADE 'QUILLA' COMPLETADA.";
+                                    case 2:
+                                        currentPortraitId = 6;
+                                        return "MISSÃO CONCLUÍDA. UM PASSO NA DIREÇÃO DE UM NOVO NOVO ALVORECER PARA O FUTURO OSCILANTE.";
+                                    case 3:
+                                        currentPortraitId = 6;
+                                        return "PREPARANDO FORMATAÇÃO DE MEMÓRIA EM...";
+                                    case 4:
+                                        currentPortraitId = 6;
+                                        return "3...";
+                                    case 5:
+                                        currentPortraitId = 6;
+                                        return "2...";
+                                    case 6:
+                                        currentPortraitId = 6;
+                                        return "1...";
+                                    case 7:
+                                        currentPortraitId = 6;
+                                        return "OSCILANTE REPLICANTE RESETADO.";
+
+                                    default: return null;
+                                }
+
+                            default: return null;
+                        }
+                    default: return null;
+                }
             default:
                 return null;
-
-
         }
     }
 
@@ -1610,6 +1915,95 @@ public static class LibraryDialogue
                     default: return null;
 
 
+                }
+
+            case 4:
+                switch (chatId)
+                {
+                    //Before final fight
+                    case 1:
+                        switch (lineId)
+                        {
+                            case 1:
+                                currentPortraitId = 1;
+                                return "Agente... Estou recebendo leituras de algum tipo de máquina muito grande na sala seguinte.";
+                            case 2:
+                                currentPortraitId = 0;
+                                return "Deve ser a surpresa que Narus preparou... Não faz diferença, ele está no meu caminho.";
+
+                            default: return null;
+                        }
+
+                    //Battle begin
+                    case 2:
+                        switch (lineId)
+                        {
+                            case 1:
+                                currentPortraitId = 1;
+                                return "A armadura deste meca é resistente demais. Seus disparos não terão efeito, agente.";
+                            case 2:
+                                currentPortraitId = 0;
+                                return "Porcaria! Preciso encontrar uma maneira de criar uma brecha!";
+
+                            default: return null;
+                        }
+
+                    //Shield Generator
+                    case 3:
+                        switch (lineId)
+                        {
+                            case 1:
+                                currentPortraitId = 1;
+                                return "Esta bateria parece alimentar as barreiras defensivas do meca, mas é protegida por um campo de força que " +
+                                    "repele ataques de longa distância e explosões.";
+
+                            default: return null;
+                        }
+                    //Shield Generator Broken
+                    case 4:
+                        switch (lineId)
+                        {
+                            case 1:
+                                currentPortraitId = 3;
+                                return "Sua insolente! Como ousa quebrar meu equipamento prcioso?!";
+
+                            default: return null;
+                        }
+
+                    //Boss phase 1
+                    case 5:
+                        switch (lineId)
+                        {
+                            case 1:
+                                currentPortraitId = 3;
+                                return "Como consegue se mover tão rápido?! Pare de zanzar igual uma barata tonta!";
+
+                            default: return null;
+                        }
+
+                    //Boss phase 2
+                    case 6:
+                        switch (lineId)
+                        {
+                            case 1:
+                                currentPortraitId = 3;
+                                return "Como seu corpo tolera estes ferimentos?! Que tipo de aberração é você?!";
+
+                            default: return null;
+                        }
+
+                    //Boss phase 3
+                    case 7:
+                        switch (lineId)
+                        {
+                            case 1:
+                                currentPortraitId = 3;
+                                return "VOCÊ NÃO VAI ESCAPAR DESSA! VÁ PARA O INFERNO, MALDITA!";
+
+                            default: return null;
+                        }
+
+                    default: return null;
                 }
 
             default: return null;

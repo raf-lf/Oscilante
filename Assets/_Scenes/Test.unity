@@ -2188,12 +2188,12 @@ PrefabInstance:
     - target: {fileID: 3278435304769980720, guid: cf3f237e292a77f4199a22a501fb4ef8,
         type: 3}
       propertyPath: heal
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3278435304769980720, guid: cf3f237e292a77f4199a22a501fb4ef8,
         type: 3}
       propertyPath: oneUse
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3278435304769980720, guid: cf3f237e292a77f4199a22a501fb4ef8,
         type: 3}
@@ -2203,12 +2203,12 @@ PrefabInstance:
     - target: {fileID: 3278435304769980720, guid: cf3f237e292a77f4199a22a501fb4ef8,
         type: 3}
       propertyPath: rifleClips
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3278435304769980720, guid: cf3f237e292a77f4199a22a501fb4ef8,
         type: 3}
       propertyPath: pistolClips
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3278435304769980721, guid: cf3f237e292a77f4199a22a501fb4ef8,
         type: 3}

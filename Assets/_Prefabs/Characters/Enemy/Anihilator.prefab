@@ -43822,6 +43822,7 @@ GameObject:
   - component: {fileID: 6039247206017560614}
   - component: {fileID: 6039247206017560615}
   - component: {fileID: 6039247206017560616}
+  - component: {fileID: 8296902609090689510}
   m_Layer: 8
   m_Name: Anihilator
   m_TagString: Enemy
@@ -43866,6 +43867,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08bb7915af5ae9549a142466a8297baf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paused: 0
+  dying: 0
   hp: 100
   hpMax: 100
   knockbackEffect: 1
@@ -43925,6 +43928,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   bossMusic: {fileID: 8300000, guid: 68fe9d916f3bffc46a852c1fa15f640f, type: 3}
+  cityGates: {fileID: 0}
 --- !u!50 &6039247206017560614
 Rigidbody2D:
   serializedVersion: 4
@@ -43981,6 +43985,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8296902609090689510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6039247206017560617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f4d814b9672684ca06f97afbf774f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveId: 0
+  instantSave: 1
+  saveOnNextCheckpoint: 0
 --- !u!1 &6039247206132627325
 GameObject:
   m_ObjectHideFlags: 0

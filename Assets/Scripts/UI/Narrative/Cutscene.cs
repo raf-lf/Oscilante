@@ -10,6 +10,7 @@ public class Cutscene: MonoBehaviour
     public bool triggerColliderActivation = true;
 
     [Header("Events")]
+    [HideInInspector]
     public int currentEvent = 0;
     public CutsceneEvent[] events = new CutsceneEvent[1];
 

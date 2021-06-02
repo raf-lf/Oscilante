@@ -35,7 +35,7 @@ public abstract class TextBoxParent : MonoBehaviour
             case 3: return "Narus";
             case 4: return "Ermitão";
             case 5: return "Dra.P";
-            case 6: return "IA Oscilante";
+            case 6: return "???";
             default: return "???";
         }
     }

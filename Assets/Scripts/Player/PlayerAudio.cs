@@ -23,11 +23,12 @@ public class PlayerAudio : MonoBehaviour
     public AudioClip[] swap = new AudioClip[3];
     public AudioClip[] reload = new AudioClip[3];
     public AudioClip[] noAmmo = new AudioClip[3];
+    public AudioClip shred;
 
 
     public void playSFX(AudioClip[] audioClip, float volume, Vector2 pitchVariance)
     {
-        source.volume = volume * GameManager.scriptAudio.volumeSfx;
+        source.volume = volume * AudioManager.volumeSfx;
         source.pitch = Random.Range(pitchVariance.x, pitchVariance.y);
         source.PlayOneShot(audioClip[(int)Random.Range(0, audioClip.Length)]);
 
@@ -35,26 +36,32 @@ public class PlayerAudio : MonoBehaviour
 
     public void SfxSwap()
     {
-        source.volume = .5f * GameManager.scriptAudio.volumeSfx;
+        source.volume = .5f * AudioManager.volumeSfx;
         source.pitch = Random.Range(standartPitchVariance.x, standartPitchVariance.y);
         source.PlayOneShot(swap[PlayerWeapons.equipedWeapon]);
     }
     public void SfxReload()
     {
-        source.volume = 1 * GameManager.scriptAudio.volumeSfx;
+        source.volume = 1 * AudioManager.volumeSfx;
         source.pitch = Random.Range(standartPitchVariance.x, standartPitchVariance.y);
         source.PlayOneShot(reload[PlayerWeapons.equipedWeapon]);
     }
     public void SfxNoAmmo()
     {
-        source.volume = 1 * GameManager.scriptAudio.volumeSfx;
+        source.volume = 1 * AudioManager.volumeSfx;
         source.pitch = Random.Range(standartPitchVariance.x, standartPitchVariance.y);
         source.PlayOneShot(noAmmo[PlayerWeapons.equipedWeapon]);
+    }
+    public void SfxOscilantAttack()
+    {
+        source.volume = 1 * AudioManager.volumeSfx;
+        source.pitch = Random.Range(standartPitchVariance.x, standartPitchVariance.y);
+        source.PlayOneShot(shred);
     }
 
     public void StepSfx(float volume)
     {
-        source.volume = volume * GameManager.scriptAudio.volumeSfx;
+        source.volume = volume * AudioManager.volumeSfx;
         source.pitch = Random.Range(.9f, 1.1f);
         switch (floorType)
         {

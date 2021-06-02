@@ -16,7 +16,6 @@ public static class GameManager
     public static int[] AmmoClips = { 0, 0, 0 };
     public static bool[] unlockedWeapon = { true, true, false };
 
-
     [Header("Collectibles")]
     public static bool[] weaponUpgrades = new bool[5];
     public static bool[,] documents = new bool[4, 4];
@@ -41,8 +40,11 @@ public static class GameManager
     public static TextDialogue scriptDialogue;
     public static Cutscene currentCutscene;
 
+    [Header("Components")]
     public static GameObject overlay;
 
+    [Header("Triggers")]
+    public static bool secretEndingUnlocked;
 
     public static void PauseGame(bool pause)
     {

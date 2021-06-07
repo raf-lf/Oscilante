@@ -4825,7 +4825,7 @@ GameObject:
   - component: {fileID: 8518503289986607398}
   - component: {fileID: 4800914848116233315}
   m_Layer: 14
-  m_Name: Bullet Tank Turret Impact
+  m_Name: M17 Missile Impact
   m_TagString: Flammable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4862,7 +4862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDamage: 4
-  enemyDamage: 0
+  enemyDamage: 16
   knockback: 20
   damageDelay: 0.1
   affectedPlayer: {fileID: 0}

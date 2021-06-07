@@ -37,6 +37,12 @@ public class SaveDataManager : MonoBehaviour
 
     }
 
+    public static void ResetPlayerPosition()
+    {
+        playerSpawnPosition = Vector2.zero;
+
+    }
+
     public static void SaveData()
     {
         SaveResources();

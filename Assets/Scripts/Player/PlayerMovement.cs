@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movement")]
+    [Header("Speed")]
     public float moveSpeedIncrement = 1;
     public float moveSpeedMax = 6;
     public float crouchSpeedMax = 2;
@@ -27,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     public int fallDamageHigh;
     public float fallDamageLowVelocity;
     public float fallDamageHighVelocity;
-
 
     [Header("States")]
     public bool move;
@@ -204,6 +203,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (climbOn)
             {
+
                 jumping = false;
                 rb.gravityScale = 0;
 

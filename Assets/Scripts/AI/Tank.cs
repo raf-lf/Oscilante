@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Tank : Creature
 {
+    public int phase;
+    public Animator damageFeedbackAnimator;
 
     [Header("Turret")]
     public float aimVariance;
@@ -12,7 +14,6 @@ public class Tank : Creature
     public float attackCooldownTimer;
     public GameObject projectile;
     public bool inCooldown;
-
 
     [Header("Parts")]
     public Animator turretAnimator;
@@ -46,6 +47,7 @@ public class Tank : Creature
 
     }
 
+
     private void BossBattleBegin()
     {
         battleBegun = true;
@@ -54,7 +56,6 @@ public class Tank : Creature
         arenaDoor.forceInactive = true;
 
         memoryMusic = GameManager.scriptAudio.bgmAudioSource.clip;
-        GameManager.scriptAudio.MusicMax();
         GameManager.scriptAudio.bgmAudioSource.clip = bossMusic;
         GameManager.scriptAudio.bgmAudioSource.Play();
 
@@ -136,6 +137,30 @@ public class Tank : Creature
         Destroy(parent, 10);
     }
 
+    private void UpdatePhase()
+    {
+        damageFeedbackAnimator.SetInteger("phase", phase);
+
+        if (hp > 0)
+        {
+            if (hp < hpMax * .25f)
+            {
+                phase = 3;
+            }
+            else if (hp < hpMax * .50f)
+            {
+                phase = 2;
+            }
+            else if (hp < hpMax * .75f)
+            {
+                phase = 1;
+
+            }
+            else phase = 0;
+        }
+        else phase = 0;
+
+    }
 
     private void FixedUpdate()
     {
@@ -145,6 +170,8 @@ public class Tank : Creature
 
     protected override void Update()
     {
+        UpdatePhase();
+
         if (paused == false && dying == false)
         {
             turretAnimator.SetBool("cooldown", inCooldown);

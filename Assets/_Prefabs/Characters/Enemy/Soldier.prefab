@@ -419,6 +419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2e109b707f38c4ba0a9b7b9611c889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paused: 0
+  dying: 0
   hp: 10
   hpMax: 10
   knockbackEffect: 5
@@ -452,7 +454,7 @@ MonoBehaviour:
     type: 3}
   projectileOrigin: {fileID: 6500930757160283001}
   weapon: {fileID: 981873073933748482}
-  restTime: 1
+  restTime: 2
   fleeDistance: 3
   fleeTime: 2
   stayPut: 0

@@ -40,6 +40,9 @@ public class MenuUi : MonoBehaviour
     public AudioSource sfxSource;
     public AudioSource bgmSource;
 
+    [Header("Cursor")]
+    public Texture2D[] cursor = new Texture2D[4];
+
     [Header("Portraits")]
     public Sprite[] characterPortraitSprites = new Sprite[7];
 
@@ -272,8 +275,43 @@ public class MenuUi : MonoBehaviour
         menuOpen = false;
     }
 
+    public void UpdateCursor()
+    {
+        if (menuOpen) Cursor.SetCursor(cursor[0], new Vector2(0, 0),CursorMode.Auto);
+        else 
+        {
+            int id = PlayerWeapons.equipedWeapon;
+            
+            switch (id)
+            {
+
+                case -1:
+                    Cursor.SetCursor(cursor[0], new Vector2(0, 0), CursorMode.Auto);
+                    break;
+                case 0:
+                    Cursor.SetCursor(cursor[1], new Vector2(8.5f, 8.5f), CursorMode.Auto);
+                    break;
+
+                default:
+                    if(PlayerWeapons.ammo[id] == 0)
+                        Cursor.SetCursor(cursor[4], new Vector2(8.5f, 8.5f), CursorMode.Auto);
+                    else if (PlayerWeapons.ammo[id] <= PlayerWeapons.magazineSize[id] * 0.25)
+                        Cursor.SetCursor(cursor[3], new Vector2(8.5f, 8.5f), CursorMode.Auto);
+                    else if (PlayerWeapons.ammo[id] <= PlayerWeapons.magazineSize[id] * 0.5)
+                        Cursor.SetCursor(cursor[2], new Vector2(8.5f, 8.5f), CursorMode.Auto);
+                    else
+                        Cursor.SetCursor(cursor[1], new Vector2(8.5f, 8.5f), CursorMode.Auto);
+
+                    break;
+            }
+        }
+
+    }
+
     void Update()
     {
+        UpdateCursor();
+
         AchievmentCheck();
         weapons.SetBool("hasRifle", GameManager.unlockedWeapon[2]);
         weapons.SetBool("hideLevel3Content", hideLevel3Content);

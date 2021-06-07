@@ -21,8 +21,6 @@ public class CreditsRollout : MonoBehaviour
 
     public IEnumerator GoToMenu()
     {
-        SavedData.ClearSavedLists();
-
         GameManager.scriptAudio.MusicOff(1);
         overlay.SetInteger("state", 1);
         yield return new WaitForSeconds(2);

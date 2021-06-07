@@ -10,9 +10,9 @@ public class AudioManager : MonoBehaviour
     public AudioSource genericSfxAudioSource;
     public AudioSource genericAmbientAudioSource;
 
-    public static float volumeSfx = .5f;
-    public static float volumeBgm = .75f;
-    public static float volumeAmbient = .5f;
+    public static float volumeSfx = .3f;
+    public static float volumeBgm = .5f;
+    public static float volumeAmbient = .3f;
     public float volumeBgmModifier = 1;
 
     private void Start()
@@ -49,9 +49,5 @@ public class AudioManager : MonoBehaviour
         GetComponent<Animator>().SetBool("musicOff", false);
         GetComponent<Animator>().SetBool("max", false);
 
-    }
-    public void MusicMax()
-    {
-        GetComponent<Animator>().SetBool("max", true);
     }
 }

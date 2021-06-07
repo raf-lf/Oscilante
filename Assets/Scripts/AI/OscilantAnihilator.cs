@@ -5,10 +5,13 @@ using UnityEngine;
 public class OscilantAnihilator : Creature
 {
 
+    [Header("Specific")]
+    public int phase;
+    public Animator damageFeedbackAnimator;
+
     [Header("Behavior")]
     public bool active;
     private bool busy;
-    private int damagedState = -1;
 
     [Header("Attack")]
     public float attackRadius = 2;
@@ -29,16 +32,13 @@ public class OscilantAnihilator : Creature
     public GameObject minion;
     private Vector3 minionSpawnPosition;
     public List<GameObject> minionList = new List<GameObject>();
-    public ParticleSystem[] damageTierVfx = new ParticleSystem[3];
-    private ParticleSystem.EmissionModule[] damageTierVfxEmission = new ParticleSystem.EmissionModule[3];
 
 
     [Header("Audio")]
-    public AudioSource damageLoopSource;
     public AudioClip[] attack = new AudioClip[1];
     public AudioClip[] activate = new AudioClip[1];
     public AudioClip[] stomp = new AudioClip[1];
-    public AudioClip[] damageLoop = new AudioClip[3];
+    public AudioClip[] death = new AudioClip[1];
 
     [Header ("Boss Battle")]
     public bool bossBatle;
@@ -70,15 +70,15 @@ public class OscilantAnihilator : Creature
     {
         playSFX(stomp, 0.3f, standartPitchVariance);
     }
+    public void SfxDeath()
+    {
+        playSFX(death, 1, Vector2.one);
+    }
 
 
     public override void Start()
     {
         base.Start();
-        for (int i = 0; i < damageTierVfx.Length; i++)
-        {
-            damageTierVfxEmission[i] = damageTierVfx[i].emission;
-        }
 
     }
 
@@ -90,7 +90,6 @@ public class OscilantAnihilator : Creature
             }
 
         memoryMusic = GameManager.scriptAudio.bgmAudioSource.clip;
-        GameManager.scriptAudio.MusicMax();
         GameManager.scriptAudio.bgmAudioSource.clip = bossMusic;
         GameManager.scriptAudio.bgmAudioSource.Play();
 
@@ -209,54 +208,34 @@ public class OscilantAnihilator : Creature
 
     }
 
+    private void UpdatePhase()
+    {
+        damageFeedbackAnimator.SetInteger("phase", phase);
+
+        if (hp > 0)
+        {
+            if (hp < hpMax * .25f)
+            {
+                phase = 3;
+            }
+            else if (hp < hpMax * .50f)
+            {
+                phase = 2;
+            }
+            else if (hp < hpMax * .75f)
+            {
+                phase = 1;
+
+            }
+            else phase = 0;
+        }
+        else phase = 0;
+
+    }
 
     protected override void Update()
     {
-        if (active && hp > 0)
-        {
-            if (damagedState != 3 && hp < hpMax * 0.25)
-            {
-                damagedState = 3;
-                damageTierVfxEmission[0].enabled = true;
-                damageTierVfxEmission[1].enabled = true;
-                damageTierVfxEmission[2].enabled = true;
-                damageLoopSource.clip = damageLoop[2];
-                if (damageLoopSource.clip != damageLoop[2]) damageLoopSource.Play();
-            }
-            else if (damagedState != 2 && hp < hpMax * 0.5)
-            {
-                damagedState = 2;
-                damageTierVfxEmission[0].enabled = true;
-                damageTierVfxEmission[1].enabled = true;
-                damageTierVfxEmission[2].enabled = false;
-                damageLoopSource.clip = damageLoop[1];
-                if (damageLoopSource.clip != damageLoop[1]) damageLoopSource.Play();
-            }
-            else if (damagedState != 1 && hp < hpMax * 0.75)
-            {
-                damagedState = 1;
-                damageTierVfxEmission[0].enabled = true;
-                damageTierVfxEmission[1].enabled = false;
-                damageTierVfxEmission[2].enabled = false;
-                damageLoopSource.clip = damageLoop[0];
-                if (damageLoopSource.clip != damageLoop[0]) damageLoopSource.Play();
-            }
-            else if (damagedState != 0)
-            {
-                damagedState = 0;
-                damageTierVfxEmission[0].enabled = false;
-                damageTierVfxEmission[1].enabled = false;
-                damageTierVfxEmission[2].enabled = false;
-                damageLoopSource.clip = null;
-            }
-        }
-        else
-        {
-            damageTierVfxEmission[0].enabled = false;
-            damageTierVfxEmission[1].enabled = false;
-            damageTierVfxEmission[2].enabled = false;
-        }
-
+        UpdatePhase();
 
         if (GameManager.CutscenePlaying == false)
         {

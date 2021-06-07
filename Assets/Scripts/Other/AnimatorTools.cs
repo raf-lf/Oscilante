@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimatorTools : MonoBehaviour
 {
+
     public void AnimatorBoolTrue(string boolName)
     {
         GetComponent<Animator>().SetBool(boolName, true);

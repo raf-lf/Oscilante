@@ -13,6 +13,12 @@ public class Mito17Leg : MonoBehaviour
     private int targetFrames;
     public BoxCollider2D stompChargeArea;
     public LayerMask playerDetection;
+    public AudioClip[] stompSfx;
+
+    public void SfxStomp()
+    {
+       main.playSFX(stompSfx, 1, Vector2.one);
+    }
 
     private void StompBegin()
     {

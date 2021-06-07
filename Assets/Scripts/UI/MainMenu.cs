@@ -9,6 +9,12 @@ public class MainMenu : MonoBehaviour
     public Animator options;
     public Animator credits;
 
+    private void Start()
+    {
+        SaveDataManager.ResetPlayerPosition();
+        SavedData.ClearSavedLists();
+    }
+
     public void ButtonStartGame()
     {
         FadeOut();
@@ -53,6 +59,7 @@ public class MainMenu : MonoBehaviour
 
     public void FadeOut()
     {
+        GameManager.scriptAudio.MusicOff(1);
         overlay.GetComponent<Animator>().SetInteger("state", 1);
     }
 }

@@ -160,6 +160,10 @@ public class Player : MonoBehaviour
         }
 
     }
+    public void TrueNatureTrigger()
+    {
+        GameManager.secretEndingUnlocked = true;
+    }
 
     public IEnumerator IFramesCount()
     {

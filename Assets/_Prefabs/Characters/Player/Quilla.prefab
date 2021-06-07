@@ -20762,6 +20762,7 @@ MonoBehaviour:
   jumpableMask:
     serializedVersion: 2
     m_Bits: 524289
+  climbCooldown: 0.1
   head: {fileID: 3813781784611526417}
 --- !u!114 &4172648324059306448
 MonoBehaviour:

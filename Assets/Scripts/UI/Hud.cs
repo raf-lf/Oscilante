@@ -8,11 +8,16 @@ public class Hud : MonoBehaviour
     public Image hpBar;
     public Text hpText;
 
+    public Animator hpOverlay;
+
     public Image[] ammoBar = new Image[3];
     public Text[] ammoText = new Text[3];
     public Text[] clipText = new Text[3];
     public Animator[] ammoBarAnimator = new Animator[3];
     public Animator[] itemHotkeyAnimator = new Animator[3];
+
+    public GameObject cursorAmmoParent;
+    public Image[] cursorAmmoBar = new Image[3];
 
     private float hpBarFill;
     private float v1;
@@ -40,7 +45,9 @@ public class Hud : MonoBehaviour
 
     void Update()
     {
+        UpdateCursorAmmoBar();
         UpdateWeaponInfo();
+        UpdateHpOverlay();
 
         GetComponent<Animator>().SetBool("cutscene", GameManager.CutscenePlaying);
 
@@ -75,8 +82,31 @@ public class Hud : MonoBehaviour
 
                 ammoBarFill[i] = v1 / v2;
                 ammoBar[i].fillAmount = ammoBarFill[i];
+
+                cursorAmmoBar[i].fillAmount = ammoBarFill[i];
+
+                /*
+                if (PlayerWeapons.equipedWeapon != i) cursorAmmoBar[i].enabled = false;
+                else cursorAmmoBar[i].enabled = true;
+                */
+
             }
         }
+    }
+
+    private void UpdateHpOverlay()
+    {
+        if (Player.hp <= 0) hpOverlay.SetInteger("state", 3);
+        else if (Player.hp <= Player.hpMax * 0.25) hpOverlay.SetInteger("state", 2);
+        else if (Player.hp <= Player.hpMax * 0.5) hpOverlay.SetInteger("state", 1);
+        else hpOverlay.SetInteger("state", 0);
+
+    }
+
+    private void UpdateCursorAmmoBar()
+    {
+        cursorAmmoParent.transform.position = Input.mousePosition;
+        
     }
 
     private void UpdateWeaponInfo()

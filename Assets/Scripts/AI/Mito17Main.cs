@@ -49,15 +49,20 @@ public class Mito17Main : Creature
     public CallCommentLog[] battleComments = new CallCommentLog[4];
     public Cutscene postBattleCutscene;
 
+    [Header("Audio")]
+    public AudioClip[] faceShield;
+
+
     [Header("Boss Battle")]
-    private AudioClip memoryMusic;
     public AudioClip bossMusic;
-    public SwitchConnectedObject nextAreaDoor;
+    private AudioClip memoryMusic;
+    public SwitchConnectedObject[] arenaDoors = new SwitchConnectedObject[2];
 
 
     public override void LoadData()
     {
-        nextAreaDoor.forceInactive = false;
+        arenaDoors[0].forceInactive = false;
+        arenaDoors[1].forceInactive = false;
 
         wallToBreak.SetActive(false);
 
@@ -71,6 +76,11 @@ public class Mito17Main : Creature
 
     }
 
+    public void SfxFaceShield()
+    {
+        playSFX(faceShield, 1, new Vector2(.9f,1.1f));
+    }
+
     public void StartBattleSignal()
     {
         StartCoroutine(StartBattle());
@@ -78,10 +88,10 @@ public class Mito17Main : Creature
 
     public IEnumerator StartBattle()
     {
-        nextAreaDoor.forceInactive = true;
+        arenaDoors[0].forceInactive = true;
+        arenaDoors[1].forceInactive = true;
 
         memoryMusic = GameManager.scriptAudio.bgmAudioSource.clip;
-        GameManager.scriptAudio.MusicMax();
         GameManager.scriptAudio.bgmAudioSource.clip = bossMusic;
         GameManager.scriptAudio.bgmAudioSource.Play();
 
@@ -98,7 +108,8 @@ public class Mito17Main : Creature
     {
         GameManager.scriptAudio.MusicOff(0.5f);
 
-        nextAreaDoor.forceInactive = false;
+        arenaDoors[0].forceInactive = false;
+        arenaDoors[1].forceInactive = false;
 
         if (memoryMusic != null)
         {

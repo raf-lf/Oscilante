@@ -23,6 +23,7 @@ public class MenuUi : MonoBehaviour
     [Header("Descriptions")]
     public Text descriptionBoxText;
     public Text descriptionBoxTitle;
+    public Scrollbar descriptionBoxSlider;
 
     [Header("Inventory")]
     public Text locationText;
@@ -88,8 +89,13 @@ public class MenuUi : MonoBehaviour
             if (GameManager.weaponUpgrades[i])
             {
                 weaponUpgradeBox[i].interactable = true;
+            //    weaponUpgradeBox[i].GetComponentInChildren<Image>().enabled = true;
             }
-            else weaponUpgradeBox[i].interactable = false;
+            else
+            {
+                weaponUpgradeBox[i].interactable = false;
+              //  weaponUpgradeBox[i].GetComponentInChildren<Image>().enabled = false;
+            }
 
         }
 
@@ -104,8 +110,13 @@ public class MenuUi : MonoBehaviour
                 if (GameManager.documents[i1, i2])
                 {
                     documentBox[i1, i2].interactable = true;
+                   // documentBox[i1, i2].GetComponentInChildren<Image>().enabled = true;
                 }
-                else documentBox[i1, i2].interactable = false;
+                else
+                {
+                    documentBox[i1, i2].interactable = false;
+                  //  documentBox[i1, i2].GetComponentInChildren<Image>().enabled = false;
+                }
 
             }
         }
@@ -113,8 +124,16 @@ public class MenuUi : MonoBehaviour
 
         for (int i = 0; i < medalBox.Length; i++)
         {
-            if (GameManager.medals[i]) medalBox[i].interactable = true;
-            else medalBox[i].interactable = false;
+            if (GameManager.medals[i])
+            {
+                medalBox[i].interactable = true;
+              //  medalBox[i].GetComponentInChildren<Image>().enabled = true;
+            }
+            else
+            {
+                medalBox[i].interactable = false;
+             //   medalBox[i].GetComponentInChildren<Image>().enabled = false;
+            }
 
         }
 
@@ -161,7 +180,7 @@ public class MenuUi : MonoBehaviour
             }
         }
 
-        int resourcesCount = GameManager.ItemHeal + GameManager.ItemGrenade + GameManager.AmmoClips[1] + GameManager.AmmoClips[2];
+        int resourcesCount = GameManager.ItemGrenade + GameManager.AmmoClips[1] + GameManager.AmmoClips[2];
 
         if (resourcesCount >= 30)
         {
@@ -170,7 +189,7 @@ public class MenuUi : MonoBehaviour
         }
 
         //CHANGE THIS TRIGGER
-        if (SavedData.cutscenesSeen.Contains(3003)) GameManager.medals[0] = true;
+        if (GameManager.secretEndingUnlocked) GameManager.medals[0] = true;
 
     }
 
@@ -277,32 +296,38 @@ public class MenuUi : MonoBehaviour
 
     public void UpdateCursor()
     {
-        if (menuOpen) Cursor.SetCursor(cursor[0], new Vector2(0, 0),CursorMode.Auto);
-        else 
+        if (GameManager.CutscenePlaying) Cursor.visible = false;
+        else
         {
-            int id = PlayerWeapons.equipedWeapon;
-            
-            switch (id)
+            Cursor.visible = true;
+
+            if (menuOpen) Cursor.SetCursor(cursor[0], new Vector2(0, 0), CursorMode.Auto);
+            else
             {
+                int id = PlayerWeapons.equipedWeapon;
 
-                case -1:
-                    Cursor.SetCursor(cursor[0], new Vector2(0, 0), CursorMode.Auto);
-                    break;
-                case 0:
-                    Cursor.SetCursor(cursor[1], new Vector2(8.5f, 8.5f), CursorMode.Auto);
-                    break;
+                switch (id)
+                {
 
-                default:
-                    if(PlayerWeapons.ammo[id] == 0)
-                        Cursor.SetCursor(cursor[4], new Vector2(8.5f, 8.5f), CursorMode.Auto);
-                    else if (PlayerWeapons.ammo[id] <= PlayerWeapons.magazineSize[id] * 0.25)
-                        Cursor.SetCursor(cursor[3], new Vector2(8.5f, 8.5f), CursorMode.Auto);
-                    else if (PlayerWeapons.ammo[id] <= PlayerWeapons.magazineSize[id] * 0.5)
-                        Cursor.SetCursor(cursor[2], new Vector2(8.5f, 8.5f), CursorMode.Auto);
-                    else
+                    case -1:
+                        Cursor.SetCursor(cursor[0], new Vector2(0, 0), CursorMode.Auto);
+                        break;
+                    case 0:
                         Cursor.SetCursor(cursor[1], new Vector2(8.5f, 8.5f), CursorMode.Auto);
+                        break;
 
-                    break;
+                    default:
+                        if (PlayerWeapons.ammo[id] == 0)
+                            Cursor.SetCursor(cursor[4], new Vector2(8.5f, 8.5f), CursorMode.Auto);
+                        else if (PlayerWeapons.ammo[id] <= PlayerWeapons.magazineSize[id] * 0.25)
+                            Cursor.SetCursor(cursor[3], new Vector2(8.5f, 8.5f), CursorMode.Auto);
+                        else if (PlayerWeapons.ammo[id] <= PlayerWeapons.magazineSize[id] * 0.5)
+                            Cursor.SetCursor(cursor[2], new Vector2(8.5f, 8.5f), CursorMode.Auto);
+                        else
+                            Cursor.SetCursor(cursor[1], new Vector2(8.5f, 8.5f), CursorMode.Auto);
+
+                        break;
+                }
             }
         }
 

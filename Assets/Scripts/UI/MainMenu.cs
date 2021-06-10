@@ -9,8 +9,15 @@ public class MainMenu : MonoBehaviour
     public Animator options;
     public Animator credits;
 
+    public Texture2D menuCursor;
+
     private void Start()
     {
+        Cursor.SetCursor(menuCursor, new Vector2(0, 0), CursorMode.Auto);
+
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+
         SaveDataManager.ResetPlayerPosition();
         SavedData.ClearSavedLists();
     }

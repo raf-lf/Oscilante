@@ -9,8 +9,8 @@ public class SaveDataManager : MonoBehaviour
     public static int currentCheckpointId;
 
     [Header("Starting Resources")]
-    public static int startHeals = 8;
-    public static int startGrenades = 2;
+    public static int startHeals = 10;
+    public static int startGrenades = 3;
     public static int[] startAmmoClips = { 0, 3, 0 };
 
     private void Start()

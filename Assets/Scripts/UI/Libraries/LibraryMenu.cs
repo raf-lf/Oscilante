@@ -30,11 +30,11 @@ public static class LibraryMenu
                 {
                     case 0: return 
                             "Pente especial para armas de fogo secundária, fábricado para as forças do novo governo. Além de possuir uma capacidade de munição aumentada, " +
-                            "aumenta a eficiência dos disparos, fazendo com que mais munição possa ser aproveitada de cada clipe usado em uma recarga. \n " +
+                            "aumenta a eficiência dos disparos, fazendo com que mais munição possa ser aproveitada de cada clipe usado em uma recarga. \n\n " +
                             "Aumenta de 6 para 10 a quantidade de munição que cabe em um único clipe da pistola. Clipes de pistola também passam a conter 4 disparos adicionais.";
                     case 1: return "";
                     case 2: return "Propulsor magnético prototipado por engenheiros militares do novo governo que pode ser instalado em um fuzil. Disparos são impulsionados por " +
-                            "magnetismo para aumentar seu impacto. A tecnologia ainda não foi aperfeiçoada, então o propulsor tem apenas uma chance baixa de funcionr. \n" +
+                            "magnetismo para aumentar seu impacto. A tecnologia ainda não foi aperfeiçoada, então o propulsor tem apenas uma chance baixa de funcionar. \n\n" +
                             "Disparos tem 15 % de ter sua velocidade aumentada e causar dano adicional.";
                     case 3: return "";
                     case 4: return "";
@@ -68,8 +68,8 @@ public static class LibraryMenu
                 switch (medalId)
                 {
                     case 0: return "Descobriu a verdadeira natureza de Quilla e dos oscilantes.";
-                    case 1: return "Encontrou todas as armas, melhorias e  documentos jogo!";
-                    case 2: return "Acumulou um total de 50 recursos não usados!";
+                    case 1: return "Encontrou todas as armas, melhorias e documentos jogo!";
+                    case 2: return "Acumulou um total de 30 recursos não usados!";
                     default: return null;
                 }
             }

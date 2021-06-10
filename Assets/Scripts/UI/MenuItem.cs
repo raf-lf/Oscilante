@@ -37,6 +37,7 @@ public class MenuItem : MonoBehaviour,IPointerClickHandler
 
             GameManager.scriptMenu.DescriptionOpenClose(true);
 
+
             switch (itemType)
             {
                 //Weapon Upgrades
@@ -55,6 +56,16 @@ public class MenuItem : MonoBehaviour,IPointerClickHandler
                     GameManager.scriptMenu.descriptionBoxText.text = LibraryMenu.ReturnMedalInfo(false, id1);
                     break;
             }
+
+            Invoke(nameof(ResetScroll), .1f);
+            ResetScroll();
+
         }
+    }
+
+    private void ResetScroll()
+    {
+        GameManager.scriptMenu.descriptionBoxSlider.value = 1;
+
     }
 }

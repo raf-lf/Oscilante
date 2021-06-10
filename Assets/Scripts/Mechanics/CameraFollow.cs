@@ -7,10 +7,11 @@ public class CameraFollow : MonoBehaviour
     public float followSpeed;
     private float startFollowSpeed;
     public Transform followTarget;
+
+    [Header("Offsets")]
     public Vector3 offset;
     private Vector3 startOffset;
-    public Vector3 pauseOffsetValues = new Vector3(-5,0,5);
-    private Vector3 pauseOffset;
+    public Vector3 pauseOffset;
 
     void Start()
     {
@@ -49,24 +50,23 @@ public class CameraFollow : MonoBehaviour
 
     }
 
-    public void PauseCameraOffset(bool pause)
-    {
-        if (pause)
-        {
-            pauseOffset += pauseOffsetValues;
-        }
-        else
-        {
-            pauseOffset -= pauseOffsetValues;
-        }
-
-    }
-
     void Update()
     {
         //Try setting player character until it is set
         if (followTarget == null) followTarget = GameManager.PlayerCharacter.transform;
-        if (followTarget != null) transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(followTarget.position.x, followTarget.position.y, followTarget.position.z) + offset + pauseOffset, followSpeed);
-        
+
+        if (followTarget != null)
+        {
+            if (GameManager.scriptMenu.menuOpen)
+            {
+                transform.position = Vector3.Lerp(transform.position, followTarget.position + pauseOffset, followSpeed);
+
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(transform.position, new Vector3(followTarget.position.x, followTarget.position.y, followTarget.position.z) + offset, followSpeed);
+
+            }
+        }
     }
 }

@@ -15,13 +15,13 @@ MonoBehaviour:
   m_Angles:
   - m_Start: -45
     m_End: 45
-    m_Order: 4
+    m_Order: 0
     m_Sprites:
     - {fileID: 21300000, guid: d9d0e4d5755a533439266b01526b1fb1, type: 3}
     - {fileID: 21300000, guid: 333bb055b5afb0d448dfb5e3710487ce, type: 3}
   - m_Start: -135
     m_End: -45
-    m_Order: 0
+    m_Order: 1
     m_Sprites:
     - {fileID: 21300000, guid: 5a973c5f1e80ad94ca6a46bdb75d6f44, type: 3}
   - m_Start: 45
@@ -33,7 +33,7 @@ MonoBehaviour:
     m_End: 225
     m_Order: 0
     m_Sprites:
-    - {fileID: 21300000, guid: d9d0e4d5755a533439266b01526b1fb1, type: 3}
+    - {fileID: 21300000, guid: ef7115b619dfe3147acc10140f823cc6, type: 3}
   m_FillTexture: {fileID: 0}
   m_CornerSprites:
   - m_CornerType: 0

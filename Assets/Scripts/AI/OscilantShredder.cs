@@ -188,6 +188,6 @@ public class OscilantShredder : Creature
         Gizmos.color = new Color(1,0,0,.3f);
 
         if (hiding) Gizmos.DrawCube(new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z), new Vector2(3.2f, 2.4f));
-       // Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }

@@ -23,10 +23,13 @@ public class Player : MonoBehaviour
     public Animator shaderAnimator;
     public bool dead;
 
+    public GameObject popupHeal;
+    public GameObject popupReload;
+
 
     void Start()
     {
-        GameManager.PlayerCharacter = this.gameObject;
+        GameManager.PlayerCharacter = gameObject;
         GameManager.scriptPlayer = GetComponent<Player>();
         GameManager.scriptWeapons = GetComponent<PlayerWeapons>();
         GameManager.scriptMovement = GetComponent<PlayerMovement>();
@@ -171,7 +174,42 @@ public class Player : MonoBehaviour
         if (dead == false) ToggleIFrames(false);
     }
 
+    private void Update()
+    {
+        if (!dead)
+        {
+            if (hp <= hpMax * .2f && GameManager.ItemHeal > 0 && GameManager.scriptActions.remainingPulses <= 0) popupHeal.SetActive(true);
+            else popupHeal.SetActive(false);
 
+            if (PlayerWeapons.equipedWeapon != -1 && PlayerWeapons.equipedWeapon != 0)
+            {
+                if (PlayerWeapons.ammo[PlayerWeapons.equipedWeapon] <= 0 && GameManager.AmmoClips[PlayerWeapons.equipedWeapon] > 0 && !popupHeal.activeInHierarchy) popupReload.SetActive(true);
+                else popupReload.SetActive(false);
+
+            }
+            else popupReload.SetActive(false);
+        }
+        else
+        {
+            popupHeal.SetActive(false);
+            popupReload.SetActive(false);
+        }
+
+
+        if (PlayerMovement.facingLeft)
+        {
+            popupReload.transform.rotation = Quaternion.Euler(0, 0, 0);
+            popupHeal.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        }
+        else
+        {
+            popupReload.transform.rotation = Quaternion.Euler(0,0,0);
+            popupHeal.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+
+    }
 }
 
 

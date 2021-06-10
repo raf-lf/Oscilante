@@ -53,7 +53,7 @@ MonoBehaviour:
   followSpeed: 0.1
   followTarget: {fileID: 0}
   offset: {x: 0, y: 2, z: -10}
-  pauseOffsetValues: {x: 2.6, y: -1, z: 5}
+  pauseOffset: {x: 1.5, y: 1, z: -4}
 --- !u!114 &1138088945020960178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,9 +522,6 @@ MonoBehaviour:
   bgmAudioSource: {fileID: 4696962850497276789}
   genericSfxAudioSource: {fileID: 1370561003072127481}
   genericAmbientAudioSource: {fileID: 8046207149120550724}
-  volumeSfx: 1
-  volumeBgm: 0.25
-  volumeAmbient: 0.75
   volumeBgmModifier: 1
 --- !u!95 &8347359059370769539
 Animator:

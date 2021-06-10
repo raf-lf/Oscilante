@@ -4858,7 +4858,7 @@ Transform:
   - {fileID: 8630447546742478262}
   - {fileID: 4588422944785147201}
   m_Father: {fileID: 5756434188335206524}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &448586726222051960
 MonoBehaviour:
@@ -5135,7 +5135,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 1.05}
+  m_Size: {x: 0.4, y: 1.05}
   m_EdgeRadius: 0
 --- !u!1 &5756434188335206526
 GameObject:
@@ -5170,8 +5170,8 @@ Transform:
   - {fileID: 7535104894941572388}
   - {fileID: 2535391209326045657}
   - {fileID: 9102990595001382399}
-  - {fileID: 8878349743795576605}
   - {fileID: 1371427247800077881}
+  - {fileID: 8878349743795576605}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10172,7 +10172,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 1.05}
+  m_Size: {x: 0.4, y: 1.05}
   m_EdgeRadius: 0
 --- !u!1 &7188680609322314610
 GameObject:
@@ -10287,7 +10287,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5756434188335206524}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &2412694122737272166
 AudioSource:
@@ -10310,9 +10310,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 5
-  MaxDistance: 20
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -10345,7 +10345,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -9,6 +9,7 @@ public class Soldier : Creature
     [SerializeField]
     private bool agressive;
     public int state;
+    private bool covering;
 
     [Header("Attack")]
     public float aimVariance;
@@ -37,7 +38,6 @@ public class Soldier : Creature
     private float coverLeaveTargetTime;
 
 
-
     public override void Start()
     {
         base.Start();
@@ -45,14 +45,41 @@ public class Soldier : Creature
 
     }
 
-    private void BeginRest()
+    private void Shoot()
     {
-        restEndTargetTime = Time.time + restTime;
+        FaceTarget();
 
+        if (Time.time >= shotIntervalTimer)
+        {
+            shotsRemaining--;
+            shotIntervalTimer = Time.time + shotInterval;
+
+            Vector2 shotTarget = target.transform.position + new Vector3(Random.Range(-aimVariance, aimVariance), Random.Range(-aimVariance, aimVariance), 0);
+            shotTarget.y += 1;
+
+            float rotationZ = Calculations.GetRotationZToTarget(transform.position, shotTarget);
+
+            if (rotationZ > 90 || rotationZ < -90) weapon.transform.rotation = Quaternion.Euler(0, 180, -rotationZ + 180);
+            else weapon.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
+
+            GameObject shot = Instantiate(projectile);
+            shot.transform.position = projectileOrigin.position;
+            shot.GetComponent<Projectile>().rotationZ = Calculations.GetRotationZToTarget(transform.position, shotTarget);
+            shot.GetComponent<Projectile>().direction = Calculations.GetDirectionToTarget(transform.position, shotTarget);
+        }
+
+    }
+
+    private void BeginIdle()
+    {
+        state = 0;
     }
 
     private void BeginAttack()
     {
+        state = 1;
+        covering = false;
+        StopMove();
         shotsRemaining = (int)Random.Range(shots.x, shots.y+1);
 
     }
@@ -61,87 +88,51 @@ public class Soldier : Creature
     {
         if (facingOpposite) weapon.transform.rotation = Quaternion.Euler(0,180,0);
         else weapon.transform.rotation = Quaternion.Euler(0, 0, 0);
-        BeginRest();
 
+        BeginRest();
     }
 
-    private void Shoot()
+
+    private void BeginRest()
     {
-        FaceTarget();
-        shotsRemaining--;
-        shotIntervalTimer = Time.time + shotInterval;
-
-        Vector2 shotTarget = target.transform.position + new Vector3 (Random.Range(-aimVariance, aimVariance), Random.Range(-aimVariance, aimVariance),0);
-        shotTarget.y += 1;
-
-        float rotationZ = Calculations.GetRotationZToTarget(projectileOrigin.position, shotTarget);
-                
-        if (rotationZ > 90 || rotationZ < -90) weapon.transform.rotation = Quaternion.Euler(0, 180, -rotationZ + 180);
-        else weapon.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
-
-        GameObject shot = Instantiate(projectile);
-        shot.transform.position = projectileOrigin.position;
-        shot.GetComponent<Projectile>().rotationZ = Calculations.GetRotationZToTarget(projectileOrigin.position, shotTarget);
-        shot.GetComponent<Projectile>().direction = Calculations.GetDirectionToTarget(projectileOrigin.position, shotTarget);
+        state = 2;
+        restEndTargetTime = Time.time + restTime;
 
     }
 
     private void BeginFlee()
     {
+        state = 3;
         fleeTargetTime = Time.time + fleeTime;
-    }
 
-    private void Flee()
-    {
-        if (Vector2.Distance(target.transform.position, transform.position) < fleeDistance)
-        {
-            if (target.transform.position.x > transform.position.x && facingOpposite == false)
-            {
-                ChangeDirection(true);
-
-            }
-            else if (target.transform.position.x < transform.position.x && facingOpposite == true)
-            {
-                ChangeDirection(false);
-            }
-
-            if (stayPut == false) Move();
-        }
     }
 
     private void BeginCover()
     {
-        coverInContact.beingUsed = true;
-        rb.velocity = Vector2.zero;
+        state = 4;
         coverLeaveTargetTime = Time.time + Random.Range(coverTime.x, coverTime.y);
 
-        /*
-        SpriteRenderer[] spriteGroup = GetComponentsInChildren<SpriteRenderer>();
-        foreach (SpriteRenderer sprite in spriteGroup)
-        {
-            sprite.sortingLayerName = ("Cover");
-
-        }
-        */
+        StopMove();
+        covering = true;
+        coverInContact.beingUsed = true;
 
     }
 
     private void EndCover()
     {
+        BeginIdle();
+
+        covering = false;
         coverInContact.beingUsed = false;
-
-        SpriteRenderer[] spriteGroup = GetComponentsInChildren<SpriteRenderer>();
-        foreach (SpriteRenderer sprite in spriteGroup)
-        {
-            sprite.sortingLayerName = ("Default");
-
-        }
 
     }
 
     public override void Death()
     {
-        if (state == 4) EndCover();
+        StopMove();
+
+        if (covering) EndCover();
+
         base.Death();
 
     }
@@ -152,63 +143,93 @@ public class Soldier : Creature
         detectionRadius = 14;
     }
 
+    public void StateIdle()
+    {
+        if (TargetInsideDetection()) BeginAttack();
+    }
+
+    public void StateAttack()
+    {
+        if (shotsRemaining > 0) Shoot();
+        else EndAttack();
+
+    }
+    public void StateRest()
+    {
+        if (Time.time > restEndTargetTime) BeginFlee();
+    }
+
+    public void StateFleeing()
+    {
+        if(Time.time > fleeTargetTime)
+        {
+            BeginIdle();
+        }
+        else
+        {
+            if (coverInContact != null && coverInContact.beingUsed == false && Vector2.Distance(target.transform.position, transform.position) > fleeDistance)
+            {
+                BeginCover();
+            }
+
+            if (!stayPut)
+            { 
+                if (Vector2.Distance(target.transform.position, transform.position) < fleeDistance)
+                {
+                    if (target.transform.position.x > transform.position.x && facingOpposite == false) ChangeDirection(true);
+                    else if (target.transform.position.x < transform.position.x && facingOpposite == true) ChangeDirection(false);
+
+                    Move();
+                }
+                else StopMove();
+            }
+
+        }
+
+    }
+
+    public void StateCover()
+    {
+        if (Time.time > coverLeaveTargetTime) EndCover();
+
+    }
+
     protected override void Update()
     {
         base.Update();
 
-        anim.SetInteger("state", state);
-
-        if (paused == false && dying == false)
+        if (!dying)
         {
-            if (agressive == false)
+            anim.SetBool("cover", covering);
+            anim.SetInteger("state", state);
+        }
+
+        if (!paused && !dying)
+        {
+            if (!agressive)
             {
                 if (TargetInsideDetection()) agressive = true;
 
             }
             else
             {
-                if (state == 0)
+                switch (state)
                 {
-                    if (TargetInsideDetection())
-                    {
-                        state = 1;
-                        BeginAttack();
-                    }
-                }
-                else if (state == 1)
-                {
-                    if (shotsRemaining > 0)
-                    { 
-                        if(Time.time >= shotIntervalTimer) Shoot();
-                    }
-
-                    else
-                    {
-                        EndAttack();
-                        state = 2;
-                    }
-                }
-
-                else if (state == 2 && Time.time > restEndTargetTime)
-                {
-                    BeginFlee();
-                    state = 3;
-                }
-                else if (state == 4 && Time.time > coverLeaveTargetTime)
-                {
-                    EndCover();
-                    state = 0;
-                }
-                else if (state == 3)
-                {
-                    //Attempts to hide in cover only if touching an empty cover and if the player is not nearby
-                    if (coverInContact != null && coverInContact.beingUsed == false && Vector2.Distance(target.transform.position, transform.position) > fleeDistance)
-                    {
-                        state = 4;
-                        BeginCover();
-                    }
-                    else if (Time.time < fleeTargetTime) Flee();
-                    else state = 0;
+                    case 0:
+                        StateIdle();
+                        break;
+                    case 1:
+                        StateAttack();
+                        break;
+                    case 2:
+                        StateRest();
+                        break;
+                    case 3:
+                        StateFleeing();
+                        break;
+                    case 4:
+                        StateCover();
+                        break;
                 }
             }
         }

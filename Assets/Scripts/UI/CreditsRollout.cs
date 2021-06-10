@@ -12,7 +12,6 @@ public class CreditsRollout : MonoBehaviour
 
     void Update()
     {
-        GetComponent<Animator>().StartRecording(50);
         if (Input.GetMouseButton(0)) GetComponent<Animator>().speed = fastSpeed;
         else  GetComponent<Animator>().speed = normalSpeed;
 

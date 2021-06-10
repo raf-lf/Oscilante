@@ -98,6 +98,12 @@ public abstract class Creature : MonoBehaviour
         }
     }
 
+    public virtual void StopMove()
+    {
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GetComponent<Animator>().SetBool("move", false);
+    }
+
     public void SwitchDirection()
     {
         facingOpposite = !facingOpposite;
@@ -141,11 +147,6 @@ public abstract class Creature : MonoBehaviour
 
     }
 
-    public virtual void StopMove()
-    {
-        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        GetComponent<Animator>().SetBool("move", false);
-    }
 
 
     public virtual void Damage(int hpLoss, float knockback, Transform sourcePosition)

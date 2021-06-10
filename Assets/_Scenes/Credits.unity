@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5983,7 +5983,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -3050}
+  m_AnchoredPosition: {x: 0, y: -3295.99}
   m_SizeDelta: {x: 0, y: 1400}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &688347362
@@ -23298,8 +23298,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Joanatan Felipe da Silva\nJoaquim Neto\nMatheus Gon\xE7alves dos Reis\nMaur\xEDcio
-    Abreu\nNicolas Henriques de Almeira\nRodolfo Cochi Bezerra"
+  m_Text: "Bruno Cheng Yu Jin\nFelipe Holanda Linhares Feitosa\nFelipe Prado Rosell\nGuilherme
+    de Souza Pestilho\nJefferson Le\xE3o Pires\nJoanatan Felipe da Silva\nJoaquim
+    Neto\nLamartine Queiroga\nLorenzo Ferretti Rocco\nMatheus Gon\xE7alves dos Reis\nMatheus
+    Gon\xE7alves Zaitune da Silva\nMaur\xEDcio Abreu\nNayara Bezerra Guimar\xE3es\nNicolas
+    Henriques de Almeira\nRodolfo Cochi Bezerra\nYamin Ten\xF3rio Variani"
 --- !u!222 &1841916962
 CanvasRenderer:
   m_ObjectHideFlags: 0

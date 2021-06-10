@@ -11,6 +11,7 @@ public class Mito17Charger : MonoBehaviour
 
     public CallCommentLog breakComment;
 
+
     public void Activate()
     {
         state = 1;

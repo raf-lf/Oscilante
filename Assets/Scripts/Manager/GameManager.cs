@@ -49,7 +49,6 @@ public static class GameManager
     public static void PauseGame(bool pause)
     {
         GamePaused = pause;
-        scriptCamera.PauseCameraOffset(pause);
 
         if (pause) Time.timeScale = 0;
         else Time.timeScale = 1;

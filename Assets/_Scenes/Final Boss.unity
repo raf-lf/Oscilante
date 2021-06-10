@@ -16072,6 +16072,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4172648324059306286, guid: a3d246c36458c58458a4f255fa560830,
         type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 2800000, guid: 6e05cb9bc6f5c7948a22183fc3cf407d, type: 3}
+    - target: {fileID: 4172648324059306286, guid: a3d246c36458c58458a4f255fa560830,
+        type: 3}
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
